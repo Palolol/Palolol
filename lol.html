@@ -1,73 +1,172 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day of the Week Checker with Animation</title>
+  
   <style>
-  @import url("https:// fonts.googleapis.com/css? family=Luckiest+Guy");
-  body { 
-    background-color: skyblue;
-    overflow: hidden;
-    font-family: "Luckiest Guy", cursive;
-    -webkit-font-smoothing: antialiased;
-}
+    @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+    /* Set background color */
+    body {
+      background-color: skyblue;
+      font-family: 'Luckiest Guy', cursive;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+
+    /* Centered heading */
     h1 {
-      cursor: default;
-      position: absolute;
-      top: 0;
-      Left: 0;
-      right: 0;
-      bottom:0;
-      width: 100%;
-      height: 100px;
-      margin: auto;
-      display: block;
+      margin: 0;
       text-align: center;
-    }   
+    }
+
+    /* Bouncing text */
     h1 span {
-      position: relative;
-      top: 20px;
       display: inline-block;
       animation: bounce 0.3s ease infinite alternate;
       font-size: 80px;
       color: #1220e2;
-      text-shadow: 0 1px 0 #ccc, Ө
-      2px 0 #ccc, 0 3px 0 #ccc, Ө
-      4px 0 #ccc,
-      0 5px 0 #ccc, 0 6px 0
-      transparent, 0 7px 0
-      transparent, 0 8px 0
-      transparent,
-      0 9px 0 transparent, 0 10px
-      10px rgba(0, 0, 0, 0.4);
-    }
-    h1 span:nth-child(2) {
-     animation-delay: 0.1s
-
+      text-shadow: 0 1px 0 #ccc, 2px 0 #ccc, 0 3px 0 #ccc, 4px 0 #ccc, 0 5px 0 #ccc,
+                   0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+                   0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
     }
 
+    /* Different delay for each letter for a nice animation effect */
+    h1 span:nth-child(2) { animation-delay: 0.1s; }
+    h1 span:nth-child(3) { animation-delay: 0.2s; }
+    h1 span:nth-child(4) { animation-delay: 0.3s; }
+    h1 span:nth-child(5) { animation-delay: 0.4s; }
+    h1 span:nth-child(6) { animation-delay: 0.5s; }
+    h1 span:nth-child(7) { animation-delay: 0.6s; }
+
+    /* Keyframe for the bounce effect */
     @keyframes bounce {
       100% {
-       top: -20px;
-       text-shadow: 0 1px 0
-       #48ff00, 0 2px 0 hsl(133, 100%, 50%), 0 3px 0 #00ff00, 0 4px 0 #ccc,
-       0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 8px 0 #ccc, 0 9px 0 #ccc,
-       0 50px 25px rgba(0, 0, 0, 0.2);
-    
+        transform: translateY(-20px);
+        text-shadow: 0 1px 0 #48ff00, 0 2px 0 hsl(133, 100%, 50%), 0 3px 0 #00ff00, 0 4px 0 #ccc,
+                     0 5px 0 #ccc, 0 6px 0 #ccc, 0 7px 0 #ccc, 8px 0 #ccc, 0 9px 0 #ccc,
+                     0 50px 25px rgba(0, 0, 0, 0.2);
       }
+    }
+
+    /* Container for the day checker */
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #output {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
     }
   </style>
 </head>
-
 <body>
- <h1>
-   <span>P</span>
-   <span>A</span>
-   <span>L</span>
-   <span>O</span>
-   <span>L</span>
-   <span>O</span>
-   <span>L</span>
-  </h1>
-</body>
 
+  <!-- Animated Title -->
+  <h1>
+    <span>P</span>
+    <span>A</span>
+    <span>L</span>
+    <span>O</span>
+    <span>L</span>
+    <span>O</span>
+    <span>L</span>
+  </h1>
+
+  <!-- Day of the Week Checker -->
+  <div class="container">
+    <h2>Day of the Week Checker</h2>
+    <form id="dayForm" onsubmit="checkDay(); return false;">
+      <label for="dayInput">Enter the day number (1-7):</label>
+      <input type="number" id="dayInput" min="1" max="7" required>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    function checkDay() {
+      const day = parseInt(document.getElementById('dayInput').value);
+      let output = '';
+
+      switch (day) {
+        case 1:
+          output = "It's Sunday.";
+          break;
+        case 2:
+          output = "It's Monday.";
+          break;
+        case 3:
+          output = "It's Tuesday.";
+          break;
+        case 4:
+          output = "It's Wednesday.";
+          break;
+        case 5:
+          output = "It's Thursday.";
+          break;
+        case 6:
+          output = "It's Friday.";
+          break;
+        case 7:
+          output = "It's Saturday.";
+          break;
+        default:
+          output = "Have a nice holiday!";
+          break;
+      }
+
+      document.getElementById('output').textContent = output;
+    }
+  </script>
+
+</body>
 </html>
