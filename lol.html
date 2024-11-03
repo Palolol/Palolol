@@ -136,6 +136,38 @@
       font-size: 18px;
       color: #333;
     }
+        @media (max-width: 768px) {
+      h1 span {
+        font-size: 60px; /* Reduce size for smaller screens */
+      }
+
+      .center-image {
+        width: 200px; /* Adjust center image size */
+        height: 200px;
+      }
+
+      .corner-image {
+        width: 100px; /* Smaller corner images for mobile */
+      }
+
+      button {
+        font-size: 14px; /* Smaller button font */
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 span {
+        font-size: 50px; /* Further reduce size for very small screens */
+      }
+
+      button {
+        padding: 8px 16px; /* Smaller button padding */
+      }
+
+      #output {
+        font-size: 16px; /* Adjust output text size */
+      }
+      }
   </style>
 </head>
 <body>
