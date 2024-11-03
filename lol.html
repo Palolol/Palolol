@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Day of the Week Checker with Animation</title>
+  <title>Day and Date Checker with Animation</title>
   
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
 
-    /* Set background color */
+    /* Set background image and color */
     body {
       background-color: skyblue;
+      background-size: cover;
+      background-position: center;
       font-family: 'Luckiest Guy', cursive;
       display: flex;
       justify-content: center;
@@ -37,14 +39,6 @@
                    0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
     }
 
-    /* Different delay for each letter for a nice animation effect */
-    h1 span:nth-child(2) { animation-delay: 0.1s; }
-    h1 span:nth-child(3) { animation-delay: 0.2s; }
-    h1 span:nth-child(4) { animation-delay: 0.3s; }
-    h1 span:nth-child(5) { animation-delay: 0.4s; }
-    h1 span:nth-child(6) { animation-delay: 0.5s; }
-    h1 span:nth-child(7) { animation-delay: 0.6s; }
-
     /* Keyframe for the bounce effect */
     @keyframes bounce {
       100% {
@@ -65,26 +59,18 @@
       margin-top: 30px;
     }
 
+    /* Style for the added image */
+    .center-image {
+      width: 100px; /* Adjust the width as needed */
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 50%; /* This makes the image circular */
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
     h2 {
       color: #333;
       margin-bottom: 20px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 18px;
-      color: #555;
-    }
-
-    input {
-      padding: 10px;
-      font-size: 16px;
-      width: 100%;
-      box-sizing: border-box;
-      margin-bottom: 20px;
-      border: 2px solid #ddd;
-      border-radius: 5px;
     }
 
     button {
@@ -121,50 +107,25 @@
     <span>L</span>
   </h1>
 
-  <!-- Day of the Week Checker -->
+  <!-- Container with added image -->
   <div class="container">
-    <h2>Day of the Week Checker</h2>
-    <form id="dayForm" onsubmit="checkDay(); return false;">
-      <label for="dayInput">Enter the day number (1-7):</label>
-      <input type="number" id="dayInput" min="1" max="7" required>
-      <button type="submit">Submit</button>
-    </form>
-    <div id="output"></div>
+    <img src="https://scontent.fpnh1-2.fna.fbcdn.net/v/t39.30808-6/448383112_822303456509918_4606620791175041868_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=4KqbHzy7tjoQ7kNvgGsp1q3&_nc_zt=23&_nc_ht=scontent.fpnh1-2.fna&_nc_gid=AbGdub-fAgmRB4OlduP-auk&oh=00_AYDVfYNUb9GM99vs1Yol9L_dUuDCbVd8XPGGbQsT1xGiTQ&oe=672D49FD" alt="Facebook Image" class="center-image">
+    <h2>Check Today's Day and Date</h2>
+    <button onclick="displayDate()">Check</button>
+    <p id="output"></p>
   </div>
 
   <script>
-    function checkDay() {
-      const day = parseInt(document.getElementById('dayInput').value);
-      let output = '';
-
-      switch (day) {
-        case 1:
-          output = "It's Sunday.";
-          break;
-        case 2:
-          output = "It's Monday.";
-          break;
-        case 3:
-          output = "It's Tuesday.";
-          break;
-        case 4:
-          output = "It's Wednesday.";
-          break;
-        case 5:
-          output = "It's Thursday.";
-          break;
-        case 6:
-          output = "It's Friday.";
-          break;
-        case 7:
-          output = "It's Saturday.";
-          break;
-        default:
-          output = "Have a nice holiday!";
-          break;
-      }
-
-      document.getElementById('output').textContent = output;
+    function displayDate() {
+      const today = new Date();
+      const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' });
+      const fullDate = today.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      document.getElementById('output').textContent = `Today is ${dayOfWeek}, ${fullDate}.`;
     }
   </script>
 
