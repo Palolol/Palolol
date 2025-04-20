@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Day and Date Checker with Animation</title>
+  <title>Palolol</title>
   
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
 
     body {
-      background-image: url('https://scontent.fpnh1-1.fna.fbcdn.net/v/t39.30808-6/339744477_139132822265872_4427238680429694506_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=xaB7U5rH9iUQ7kNvgHLTa3x&_nc_zt=23&_nc_ht=scontent.fpnh1-1.fna&_nc_gid=ALtCPiHB8IWXQwts3RMXCL0&oh=00_AYD4lnQDtS-9BanL9speB0qvWWc9q6kSap7prnYSDEBi5Q&oe=672D6400'); /* Add your background image URL here */
-      background-color: rgb(183, 235, 135); /* Fallback color */
+      background-image: url('https://media.npr.org/assets/img/2023/08/28/_36a8456_sy_nj_wide-8834a4249492d4821e770582082edbe89b89ea2e.jpg'); /* Add your background image URL here */
+      background-color: #1220e2;/* Fallback color */
       background-size: cover; /* Cover the entire viewport */
       background-position: center; /* Center the background image */
       font-family: 'Luckiest Guy', cursive;
@@ -19,6 +19,7 @@
       flex-direction: column;
       height: 150vh; /* Full height of the viewport */
       margin: 0; /* Remove default margin */
+      overflow-y: scroll; /* Enables scrolling */
     }
 
 
@@ -89,8 +90,51 @@
         height: 300px; /* Keep aspect ratio */
         border-radius: 50%; /* Makes the image round */
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 20px; /* Adds margin above the image */
+    }
+        /* Tic-Tac-Toe Board Styling */
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      gap: 7.5px;
+      justify-content: center;
+      margin: 20px auto;
     }
 
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: white;
+      border: 2px solid #333;
+      font-size: 60px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      cursor: pointer;
+    }
+
+    .cell:hover {
+      background-color: #e0e0e0;
+    }
+
+    #status {
+      font-size: 20px;
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
 
     .top-left {
       top: 10px;
@@ -132,10 +176,11 @@
     }
 
     #output {
-      margin-top: 20px;
+      margin-top: 50px;
       font-size: 18px;
       color: #333;
     }
+    
         @media (max-width: 768px) {
       h1 span {
         font-size: 60px; /* Reduce size for smaller screens */
@@ -185,21 +230,115 @@
 
   <!-- Container with added images -->
   <div class="container">
-    <img src="https://pbs.twimg.com/media/GfkGhe6asAArJ2l?format=jpg&name=large" alt="Center Image" class="center-image">
+  
+    <img src="https://pbs.twimg.com/media/GoZdeoVWwAAXp_w?format=jpg&name=small" alt="Center Image" class="center-image">
     
     <!-- Corner Images -->
-    <img src="" alt="Top Left" class="corner-image top-left">
-    <img src="" alt="Top Right" class="corner-image top-right">
-    <img src="" alt="Bottom Left" class="corner-image bottom-left">
-    <img src="" alt="Bottom Right" class="corner-image bottom-right">
+    <img src="https://pbs.twimg.com/media/GfkGhe6asAArJ2l?format=jpg&name=large" alt="Top Left" class="corner-image top-left">
+    <img src="https://pbs.twimg.com/media/GeMg0CGbMAEjAOp?format=jpg&name=large" alt="Top Right" class="corner-image top-right">
+    <img src="https://pbs.twimg.com/media/Gckr_ZqXUAA7X3f?format=jpg&name=large" alt="Bottom Left" class="corner-image bottom-left">
+    <img src="https://pbs.twimg.com/media/GfkGhe8aEAA0eQF?format=jpg&name=360x360" alt="Bottom Right" class="corner-image bottom-right">
 
     <h2>Check Today's Day and Date</h2>
     <button onclick="displayDate()">Check</button>
     <p id="output"></p>
   </div>
+  <div class="container">
+    <p id="output"></p>
+
+    <div class="bottom">
+      <p id="output"></p>
+  
+      <!-- Tic-Tac-Toe Game -->
+      <div class="board" id="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+      </div>
+      <p id="status">Player X's turn</p>
+      <button onclick="resetGame()">Restart Game</button>
+    </div>
 
   <script>
+  
+    let currentPlayer = 'X';
+    let gameBoard = ["", "", "", "", "", "", "", "", ""];
+    let gameActive = true;
+    const statusDisplay = document.getElementById("status");
+
+    const winningCombinations = [
+      [0,1,2], [3,4,5], [6,7,8],  // rows
+      [0,3,6], [1,4,7], [2,5,8],  // columns
+      [0,4,8], [2,4,6]            // diagonals
+    ];
+
+    document.querySelectorAll('.cell').forEach(cell => {
+      cell.addEventListener('click', handleCellClick);
+    });
+
+    function handleCellClick(e) {
+      const index = e.target.dataset.index;
+
+      if (!gameActive || gameBoard[index] !== "") return;
+
+      gameBoard[index] = currentPlayer;
+      e.target.textContent = currentPlayer;
+
+      if (checkWinner()) {
+        statusDisplay.textContent = `Player ${currentPlayer} wins!`;
+        gameActive = false;
+      } else if (!gameBoard.includes("")) {
+        statusDisplay.textContent = "It's a draw!";
+        gameActive = false;
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
+      }
+    }
+
+    function checkWinner() {
+      return winningCombinations.some(combination => {
+        return combination.every(index => gameBoard[index] === currentPlayer);
+      });
+    }
+
+    function resetGame() {
+      currentPlayer = 'X';
+      gameBoard = ["", "", "", "", "", "", "", "", ""];
+      gameActive = true;
+      statusDisplay.textContent = "Player X's turn";
+      document.querySelectorAll('.cell').forEach(cell => {
+        cell.textContent = "";
+      });
+    }
+
     function displayDate() {
+      const today = new Date();
+      const day = today.toLocaleString('en-us', { weekday: 'long' });
+      const date = today.toLocaleDateString();
+      document.getElementById("output").innerHTML = `Today is ${day}, ${date}`;
+    }
+
+    // Automatically display date when the page loads
+    displayDate();
+
+    // Center the X in the grid cells
+    document.querySelectorAll('.cell').forEach(cell => {
+      cell.style.display = 'flex';
+      cell.style.alignItems = 'center';
+      cell.style.justifyContent = 'center';
+    });
+
+  </script>
+
+  <script>
+      function displayDate() {
       const today = new Date();
       const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' });
       const fullDate = today.toLocaleDateString('en-US', {
