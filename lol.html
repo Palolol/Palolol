@@ -1,37 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Palolol</title>
-  
+
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
 
     body {
-      background-image: url('https://media.npr.org/assets/img/2023/08/28/_36a8456_sy_nj_wide-8834a4249492d4821e770582082edbe89b89ea2e.jpg'); /* Add your background image URL here */
-      background-color: #1220e2;/* Fallback color */
-      background-size: cover; /* Cover the entire viewport */
-      background-position: center; /* Center the background image */
+      background-image: url('https://media.npr.org/assets/img/2023/08/28/_36a8456_sy_nj_wide-8834a4249492d4821e770582082edbe89b89ea2e.jpg');
+      background-color: #1220e2;
+      background-size: cover;
+      background-position: center;
       font-family: 'Luckiest Guy', cursive;
       display: flex;
       align-items: center;
       flex-direction: column;
-      height: 150vh; /* Full height of the viewport */
-      margin: 0; /* Remove default margin */
-      overflow-y: scroll; /* Enables scrolling */
+      height: 200vh;
+      margin: 0;
+      overflow-y: scroll;
     }
 
-
-    /* Centered heading */
     h1 {
       margin: 0;
       text-align: center;
       position: relative;
-      z-index: 1; /* Ensures the text appears above other elements */
+      z-index: 1;
     }
 
-    /* Bouncing text */
     h1 span {
       display: inline-block;
       animation: bounce 0.3s ease infinite alternate;
@@ -42,7 +39,6 @@
                    0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
     }
 
-    /* Keyframe for the bounce effect */
     @keyframes bounce {
       100% {
         transform: translateY(-20px);
@@ -52,109 +48,49 @@
       }
     }
 
-    /* Container for the day checker */
     .container {
-        height: auto; /* Full viewport height */
-        margin: 0 auto; /* Remove default margin */
-        animation: rainbow 5s infinite; /* Animation with a duration of 5 seconds */
-        text-align: center;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        padding: 10px;
-        position: center; /* Enables absolute positioning of corner images */
-        margin-top: -100px;
-        display: block; 
+      height: auto;
+      margin: 0 auto;
+      animation: rainbow 5s infinite;
+      text-align: center;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      padding: 10px;
+      margin-top: -100px;
+      display: block;
     }
-    @keyframes rainbow {
-            0% { background-color: red; }
-            14% { background-color: orange; }
-            28% { background-color: yellow; }
-            42% { background-color: green; }
-            57% { background-color: blue; }
-            71% { background-color: indigo; }
-            85% { background-color: violet; }
-            100% { background-color: red; } /* Loop back to red */
-        }
 
-    /* Style for the added images */
+    @keyframes rainbow {
+      0% { background-color: red; }
+      14% { background-color: orange; }
+      28% { background-color: yellow; }
+      42% { background-color: green; }
+      57% { background-color: blue; }
+      71% { background-color: indigo; }
+      85% { background-color: violet; }
+      100% { background-color: red; }
+    }
+
     .corner-image {
-      width: 150px; /* Adjust the size as needed */
+      width: 150px;
       height: auto;
       position: fixed;
-      border-radius: 50%; /* Makes the corners of the image rounded */
+      border-radius: 50%;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .center-image {
-        width: 300px; /* Adjusted size */
-        height: 300px; /* Keep aspect ratio */
-        border-radius: 50%; /* Makes the image round */
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        margin-top: 20px; /* Adds margin above the image */
-    }
-        /* Tic-Tac-Toe Board Styling */
-    .board {
-      display: grid;
-      grid-template-columns: repeat(3, 100px);
-      gap: 7.5px;
-      justify-content: center;
-      margin: 20px auto;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
     }
 
-    .cell {
-      width: 100px;
-      height: 100px;
-      background-color: white;
-      border: 2px solid #333;
-      font-size: 60px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      cursor: pointer;
-    }
-
-    .cell:hover {
-      background-color: #e0e0e0;
-    }
-
-    #status {
-      font-size: 20px;
-      margin: 15px 0;
-    }
-
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    .top-left {
-      top: 10px;
-      left: 10px;
-    }
-
-    .top-right {
-      top: 10px;
-      right: 10px;
-    }
-
-    .bottom-left {
-      bottom: 10px;
-      left: 10px;
-    }
-
-    .bottom-right {
-      bottom: 10px;
-      right: 10px;
-    }
+    .top-left { top: 10px; left: 10px; }
+    .top-right { top: 10px; right: 10px; }
+    .bottom-left { bottom: 10px; left: 10px; }
+    .bottom-right { bottom: 10px; right: 10px; }
 
     h2 {
       color: #333;
@@ -176,64 +112,61 @@
     }
 
     #output {
-      margin-top: 50px;
+      margin-top: 30px;
       font-size: 18px;
       color: #333;
     }
-    
-        @media (max-width: 768px) {
-      h1 span {
-        font-size: 60px; /* Reduce size for smaller screens */
-      }
 
-      .center-image {
-        width: 200px; /* Adjust center image size */
-        height: 200px;
-      }
+    /* Tic Tac Toe Styles */
+    .game-board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      justify-content: center;
+      margin-top: 30px;
+    }
 
-      .corner-image {
-        width: 100px; /* Smaller corner images for mobile */
-      }
+    .cell {
+      background-color: white;
+      font-size: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
 
-      button {
-        font-size: 14px; /* Smaller button font */
-      }
+    .status {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      h1 span { font-size: 60px; }
+      .center-image { width: 200px; height: 200px; }
+      .corner-image { width: 100px; }
+      button { font-size: 14px; }
+      .cell { width: 80px; height: 80px; font-size: 36px; }
     }
 
     @media (max-width: 480px) {
-      h1 span {
-        font-size: 50px; /* Further reduce size for very small screens */
-      }
-
-      button {
-        padding: 8px 16px; /* Smaller button padding */
-      }
-
-      #output {
-        font-size: 16px; /* Adjust output text size */
-      }
-      }
+      h1 span { font-size: 50px; }
+      button { padding: 8px 16px; }
+      #output { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Animated Title -->
   <h1>
-    <span>P</span>
-    <span>A</span>
-    <span>L</span>
-    <span>O</span>
-    <span>L</span>
-    <span>O</span>
-    <span>L</span>
+    <span>P</span><span>A</span><span>L</span><span>O</span><span>L</span><span>O</span><span>L</span>
   </h1>
 
-  <!-- Container with added images -->
   <div class="container">
-  
     <img src="https://pbs.twimg.com/media/GoZdeoVWwAAXp_w?format=jpg&name=small" alt="Center Image" class="center-image">
-    
-    <!-- Corner Images -->
     <img src="https://pbs.twimg.com/media/GfkGhe6asAArJ2l?format=jpg&name=large" alt="Top Left" class="corner-image top-left">
     <img src="https://pbs.twimg.com/media/GeMg0CGbMAEjAOp?format=jpg&name=large" alt="Top Right" class="corner-image top-right">
     <img src="https://pbs.twimg.com/media/Gckr_ZqXUAA7X3f?format=jpg&name=large" alt="Bottom Left" class="corner-image bottom-left">
@@ -242,103 +175,16 @@
     <h2>Check Today's Day and Date</h2>
     <button onclick="displayDate()">Check</button>
     <p id="output"></p>
+
+    <!-- Tic Tac Toe Game -->
+    <h2>Tic Tac Toe Game</h2>
+    <div class="game-board" id="board"></div>
+    <div class="status" id="status"></div>
+    <button onclick="restartGame()">Restart Game</button>
   </div>
-  <div class="container">
-    <p id="output"></p>
-
-    <div class="bottom">
-      <p id="output"></p>
-  
-      <!-- Tic-Tac-Toe Game -->
-      <div class="board" id="board">
-        <div class="cell" data-index="0"></div>
-        <div class="cell" data-index="1"></div>
-        <div class="cell" data-index="2"></div>
-        <div class="cell" data-index="3"></div>
-        <div class="cell" data-index="4"></div>
-        <div class="cell" data-index="5"></div>
-        <div class="cell" data-index="6"></div>
-        <div class="cell" data-index="7"></div>
-        <div class="cell" data-index="8"></div>
-      </div>
-      <p id="status">Player X's turn</p>
-      <button onclick="resetGame()">Restart Game</button>
-    </div>
 
   <script>
-  
-    let currentPlayer = 'X';
-    let gameBoard = ["", "", "", "", "", "", "", "", ""];
-    let gameActive = true;
-    const statusDisplay = document.getElementById("status");
-
-    const winningCombinations = [
-      [0,1,2], [3,4,5], [6,7,8],  // rows
-      [0,3,6], [1,4,7], [2,5,8],  // columns
-      [0,4,8], [2,4,6]            // diagonals
-    ];
-
-    document.querySelectorAll('.cell').forEach(cell => {
-      cell.addEventListener('click', handleCellClick);
-    });
-
-    function handleCellClick(e) {
-      const index = e.target.dataset.index;
-
-      if (!gameActive || gameBoard[index] !== "") return;
-
-      gameBoard[index] = currentPlayer;
-      e.target.textContent = currentPlayer;
-
-      if (checkWinner()) {
-        statusDisplay.textContent = `Player ${currentPlayer} wins!`;
-        gameActive = false;
-      } else if (!gameBoard.includes("")) {
-        statusDisplay.textContent = "It's a draw!";
-        gameActive = false;
-      } else {
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
-      }
-    }
-
-    function checkWinner() {
-      return winningCombinations.some(combination => {
-        return combination.every(index => gameBoard[index] === currentPlayer);
-      });
-    }
-
-    function resetGame() {
-      currentPlayer = 'X';
-      gameBoard = ["", "", "", "", "", "", "", "", ""];
-      gameActive = true;
-      statusDisplay.textContent = "Player X's turn";
-      document.querySelectorAll('.cell').forEach(cell => {
-        cell.textContent = "";
-      });
-    }
-
     function displayDate() {
-      const today = new Date();
-      const day = today.toLocaleString('en-us', { weekday: 'long' });
-      const date = today.toLocaleDateString();
-      document.getElementById("output").innerHTML = `Today is ${day}, ${date}`;
-    }
-
-    // Automatically display date when the page loads
-    displayDate();
-
-    // Center the X in the grid cells
-    document.querySelectorAll('.cell').forEach(cell => {
-      cell.style.display = 'flex';
-      cell.style.alignItems = 'center';
-      cell.style.justifyContent = 'center';
-    });
-
-  </script>
-
-  <script>
-      function displayDate() {
       const today = new Date();
       const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' });
       const fullDate = today.toLocaleDateString('en-US', {
@@ -346,9 +192,63 @@
         month: 'long',
         day: 'numeric'
       });
-      
       document.getElementById('output').textContent = `Today is ${dayOfWeek}, ${fullDate}.`;
     }
+
+    // Tic Tac Toe logic
+    const board = document.getElementById('board');
+    const status = document.getElementById('status');
+    let currentPlayer = 'X';
+    let cells = Array(9).fill(null);
+
+    function checkWinner() {
+      const winCombos = [
+        [0,1,2], [3,4,5], [6,7,8],
+        [0,3,6], [1,4,7], [2,5,8],
+        [0,4,8], [2,4,6]
+      ];
+      for (let combo of winCombos) {
+        const [a,b,c] = combo;
+        if (cells[a] && cells[a] === cells[b] && cells[b] === cells[c]) {
+          return cells[a];
+        }
+      }
+      return cells.every(cell => cell) ? 'Draw' : null;
+    }
+
+    function handleClick(index) {
+      if (cells[index] || checkWinner()) return;
+      cells[index] = currentPlayer;
+      render();
+      const winner = checkWinner();
+      if (winner) {
+        status.textContent = winner === 'Draw' ? "It's a draw!" : `${winner} wins!`;
+      } else {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        status.textContent = `It's ${currentPlayer}'s turn.`;
+      }
+    }
+
+    function render() {
+      board.innerHTML = '';
+      cells.forEach((cell, index) => {
+        const div = document.createElement('div');
+        div.classList.add('cell');
+        div.textContent = cell || '';
+        div.onclick = () => handleClick(index);
+        board.appendChild(div);
+      });
+    }
+
+    function restartGame() {
+      cells = Array(9).fill(null);
+      currentPlayer = 'X';
+      status.textContent = "It's X's turn.";
+      render();
+    }
+
+    // Initial game setup
+    restartGame();
   </script>
 
 </body>
