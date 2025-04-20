@@ -40,6 +40,7 @@ h1 span {
   }
 }
 
+/* Container Styling */
 .container {
   height: auto;
   margin: 0 auto;
@@ -50,8 +51,13 @@ h1 span {
   padding: 10px;
   margin-top: -100px;
   display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: flex-start; /* Align to the top of the container */
 }
 
+/* Rainbow animation */
 @keyframes rainbow {
   0% { background-color: red; }
   14% { background-color: orange; }
@@ -63,6 +69,7 @@ h1 span {
   100% { background-color: red; }
 }
 
+/* Corner Images */
 .corner-image {
   width: 150px;
   height: auto;
@@ -84,11 +91,46 @@ h1 span {
 .bottom-left { bottom: 10px; left: 10px; }
 .bottom-right { bottom: 10px; right: 10px; }
 
+/* Profile Section */
+.profile {
+  text-align: center;
+  margin-top: 50px; /* Space between h1 and profile */
+  padding: 20px;
+  color: white;
+  
+}
+
+.profile h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.profile .profile-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+  margin-bottom: 15px;
+}
+
+.profile p {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Arial', sans-serif;
+  margin-top: 10px;
+  background-color: rgba(0, 0, 0, 0.336);
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Header Text */
 h2 {
   color: #333;
   margin-bottom: 20px;
 }
 
+/* Button Styles */
 button {
   padding: 10px 20px;
   background-color: #007bff;
@@ -136,6 +178,7 @@ button:hover {
   color: #000;
 }
 
+/* Media Queries */
 @media (max-width: 768px) {
   h1 span { font-size: 60px; }
   .center-image { width: 200px; height: 200px; }
