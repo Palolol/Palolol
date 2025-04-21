@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
 
 body {
+
   background-image: url('https://media.npr.org/assets/img/2023/08/28/_36a8456_sy_nj_wide-8834a4249492d4821e770582082edbe89b89ea2e.jpg');
   background-color: #1220e2;
-  background-size: cover;
-  background-position: center;
+  background-size: contain;          /* Show entire image */
   font-family: 'Luckiest Guy', cursive;
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 200vh;
+  height: vh;
   margin: 0;
   overflow-y: scroll;
 }
@@ -185,10 +185,21 @@ button:hover {
   .corner-image { width: 100px; }
   button { font-size: 14px; }
   .cell { width: 80px; height: 80px; font-size: 36px; }
+
+  .square-background {
+    background-size: contain;
+    height: 100vh;
+  }
 }
 
 @media (max-width: 480px) {
   h1 span { font-size: 50px; }
   button { padding: 8px 16px; }
   #output { font-size: 16px; }
+
+  .square-background {
+    background-size: contain;
+    height: 100vh;
+  }
 }
+
