@@ -1,5 +1,10 @@
 <template>
   <div>
+    <Navbar />
+    <h1>Hello</h1>
+    <router-view />
+  </div>
+  <div>
     <!-- Bouncing Title -->
     <h1>
       <span v-for="(letter, i) in titleLetters" :key="i">{{ letter }}</span>
@@ -51,6 +56,9 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import Navbar from './components/NavBar/Navbar.vue'
+
+// ── Navbar ──────────────────────────────────────────────
 
 // ── Title ──────────────────────────────────────────────
 const titleLetters = ['P','A','L','O','L','O','L']
