@@ -6,4 +6,4 @@ Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://
 
 Finally learn Framework of JS
 
-# Palolol - Software Developer. Welcome the official GitHub of Palolol. I am learning Python, C++, and Vue."
+<h1><center> "Palolol - Software Developer. Welcome the official GitHub of Palolol. I am learning Python, C++, and Vue."</center><h1>
