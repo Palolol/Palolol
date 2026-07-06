@@ -58,11 +58,13 @@
       <!-- Virtual Teacher — First Project Story -->
       <div class="first-project-card">
         <div class="first-project-avatar">
-          <img
+          <video
             :src="animeTeacherUrl"
-            alt="Anime virtual teacher"
-            @error="onAvatarError"
-          />
+            autoplay
+            muted
+            loop
+            playsinline
+          ></video>
           <div class="avatar-glow"></div>
           <div class="avatar-tag">Virtual Teacher</div>
         </div>
@@ -70,14 +72,13 @@
           <div class="bubble-tail"></div>
           <div class="bubble-title">
             <span class="bubble-icon">🎓</span>
-            <span>My First Project — as told by your virtual teacher</span>
+            <span>My First Project</span>
           </div>
-          <div class="first-project-text">
-            <span>{{ typedStory }}</span><span class="caret">|</span>
-          </div>
-          <button class="first-project-replay" @click="replayStory">
-            ▶ Replay story
-          </button>
+          <p class="first-project-text">
+            My first project? A tiny Python calculator. From one script to
+            expert systems, mobile apps, and AI models — every developer starts
+            with a single line.
+          </p>
         </div>
       </div>
 
@@ -171,12 +172,14 @@
           <span class="pill">🐍 Python</span>
         </div>
         <div class="port-avatar">
-          <img
+          <video
             :src="animeTeacherUrl"
-            alt="Anime virtual teacher"
+            autoplay
+            muted
+            loop
+            playsinline
             class="port-avatar-img"
-            @error="onAvatarError"
-          />
+          ></video>
         </div>
       </div>
 
@@ -330,47 +333,7 @@ onUnmounted(() => {
 const titleLetters = ["P", "A", "L", "O", "L", "O", "L"];
 
 // ── Home: Virtual Teacher — First Project Story ───────────────────
-const animeTeacherUrl =
-  "https://media.tenor.com/q5ULalgC8K0AAAAi/anime-teacher.gif";
-const typedStory = ref("");
-let typingTimer = null;
-
-const firstProjectStory =
-  "Hello, student! I'm your virtual teacher. Let me tell you about the very first project this developer ever built... It was a small Python calculator — a tiny script with a few if-else blocks. It was messy, it had bugs, but it ran. That little `print('Hello, World')` was the moment the developer knew: code was the path. From that humble calculator, they went on to build expert systems, mobile apps, and now AI models. Remember — every great developer starts with a single line. ✨";
-
-function startTyping() {
-  if (typingTimer) {
-    clearInterval(typingTimer);
-    typingTimer = null;
-  }
-  typedStory.value = "";
-  let i = 0;
-  typingTimer = setInterval(() => {
-    i++;
-    typedStory.value = firstProjectStory.slice(0, i);
-    if (i >= firstProjectStory.length && typingTimer) {
-      clearInterval(typingTimer);
-      typingTimer = null;
-    }
-  }, 28);
-}
-
-function replayStory() {
-  startTyping();
-}
-
-function onAvatarError(e) {
-  if (e && e.target) {
-    e.target.style.display = "none";
-  }
-}
-
-onMounted(() => {
-  startTyping();
-});
-onUnmounted(() => {
-  if (typingTimer) clearInterval(typingTimer);
-});
+const animeTeacherUrl = "/frieren.gif.mp4";
 
 // ── Home: Date Checker ────────────────────────────────────────────
 const dateOutput = ref("");
@@ -920,7 +883,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-.first-project-avatar img {
+.first-project-avatar video {
   width: 110px;
   height: 110px;
   border-radius: 50%;
@@ -993,32 +956,7 @@ body {
   font-size: 14px;
   line-height: 1.55;
   color: #222;
-  min-height: 64px;
-  white-space: pre-wrap;
-}
-.first-project-text .caret {
-  display: inline-block;
-  color: #1220e2;
-  font-weight: 700;
-  animation: blink 0.8s steps(2, start) infinite;
-  margin-left: 1px;
-}
-.first-project-replay {
-  margin-top: 8px;
-  background: #1220e2;
-  color: #fff;
-  border: none;
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-family: "DM Sans", sans-serif;
-  font-weight: 500;
-  transition: opacity 0.2s, transform 0.15s;
-}
-.first-project-replay:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
+  margin: 0;
 }
 @keyframes fadeInUp {
   from {
@@ -1039,11 +977,6 @@ body {
   50% {
     opacity: 1;
     transform: scale(1.08);
-  }
-}
-@keyframes blink {
-  to {
-    visibility: hidden;
   }
 }
 
@@ -1493,9 +1426,6 @@ body {
   }
   .bubble-tail {
     display: none;
-  }
-  .first-project-replay {
-    align-self: center;
   }
 }
 @media (max-width: 480px) {

@@ -77,52 +77,42 @@ Removed the freelancer + game-jam entries; added academic + self-study entries:
 
 ---
 
-# Second Pass — Avatar + Home Section Overhaul
+# Second Pass — Frieren Virtual Teacher Video Avatar
 
 ## Overview
-Two visual additions to the portfolio:
-1. **`port-avatar`** — Replaced the static "PAL" gradient blob in the portfolio hero with a circular **anime-teacher** illustration. The avatar is a framed portrait of an anime-style teacher character with a soft glow, representing the developer's virtual mentor/guide concept.
-2. **`home-section` — "First Project" virtual teacher** — Added a new component at the top of the home section: a "Virtual Teacher" card that introduces the developer's very first project. The card shows the same anime-teacher image next to a dialogue-style narrative that types itself out, telling the story of the developer's first piece of code.
+Replaced the static anime-teacher image and the long typed-out story in the home section's "First Project" card with a **looping local video** (`frieren.gif.mp4`) that does the explaining. Frieren is the anime teacher — the video is the avatar, and a short, single-line caption introduces the developer's first project. The video autoplays, loops, and is muted so the user doesn't have to interact with it.
 
-The concept: a virtual anime teacher is "telling" / narrating the developer's origin story — the first project they ever built.
+## Files Touched
+- `public/frieren.gif.mp4` — moved from repo root to `public/` so Vite serves it at `/frieren.gif.mp4`
+- `src/App.vue` — template, script, and style for the first-project card
+- `document.md` — this section
 
 ## Specific Changes
 
-### A. `port-avatar` (around line 146 in the original layout)
-- **Before:** A static `div.port-avatar` with text "PAL" on a blue gradient.
-- **After:** Same circular slot, but now displays an `<img>` of an anime teacher character. Kept the same dimensions and border style for layout consistency.
-- **Image source:** An anime-teacher illustration (e.g. from a free public anime CDN). Uses a fallback if the image fails to load.
+### 1. Asset location
+- **Before:** `frieren.gif.mp4` sat in the repo root and was not served by Vite.
+- **After:** Moved to `public/frieren.gif.mp4`. Reachable as `/frieren.gif.mp4` in the running app.
 
-### B. New `first-project` block in `#home`
-- **Location:** Inserted at the very top of `home-section`, above the bouncing title.
-- **Structure:**
-  - Outer card with a soft border + glow
-  - Left side: anime teacher avatar (same image as the portfolio hero)
-  - Right side: a "speech bubble" containing the developer's first-project story
-  - The story types itself out character-by-character (typing animation) when the page loads
-  - Has a "▶ Replay" button to re-trigger the animation
-- **Content of the story (told by the virtual anime teacher):**
-  > "Hello! I'm your virtual teacher. Let me tell you about the very first project this developer ever built… It was a simple program — a small calculator in Python. It was messy, it had bugs, but it ran. That little `print('Hello, World')` was the moment the developer knew — code was the path. From that tiny calculator, they went on to build expert systems, mobile apps, and now AI models. Every great developer starts with a single line."
+### 2. `first-project-card` content
+- **Avatar:** `<img>` was replaced with a `<video>` element that uses `/frieren.gif.mp4` as its source. The video is `autoplay`, `muted`, `loop`, and `playsinline` so it starts immediately, repeats forever, and works on mobile.
+- **Bubble copy:** The long, character-by-character typed story was removed. Replaced with a **single short line** that introduces the developer's first project — the video itself does the "explaining" visually:
+  > "My first project? A tiny Python calculator. From one script to expert systems, mobile apps, and AI models — every developer starts with a single line."
+- **Replay button:** Removed (no longer needed — the video loops on its own).
 
-### C. New CSS
-Added a new style block for:
-- `.first-project-card` — the outer card
-- `.first-project-avatar` — the anime teacher portrait
-- `.first-project-bubble` — the dialogue speech bubble
-- `.first-project-text` — the typing-text area
-- `.first-project-replay` — the replay button
-- Keyframe animations:
-  - `blink` — for the typing cursor
-  - `fadeInUp` — entrance animation for the card
-  - `avatarGlow` — soft pulsing glow around the anime avatar
-- A "responsive" override: on small screens the card stacks vertically (avatar on top, bubble below).
+### 3. Script logic
+- **Removed:** `typedStory`, `firstProjectStory`, `startTyping`, `replayStory`, typing timer, and the `onMounted(() => startTyping())` call.
+- **Kept:** `animeTeacherUrl` constant (now points at the local video) and `onAvatarError` (used by the portfolio hero's `<img>` fallback).
+- **The video element** doesn't need Vue-controlled state — the browser handles autoplay + loop natively.
 
-## Files Touched
-- `src/App.vue` — template, script, and style sections
-- `document.md` — this new section appended
+### 4. CSS
+- **Kept:** the outer card layout, the avatar slot, the glow + tag, the speech bubble, the bubble tail, the entrance animation, and the responsive mobile override.
+- **Updated:** `.first-project-avatar img` rule renamed to `.first-project-avatar video` so the video fills the round slot the same way the image did.
+- **Removed:** the typing-caret and replay-button styles (no longer used).
 
 ## Implementation Notes
-- Typing animation is implemented in pure Vue (no new libraries) using `setInterval` and a reactive `typedText` ref.
-- The avatar image uses a free-to-use anime illustration URL with an `onerror` fallback to a CSS gradient placeholder, so the page never shows a broken image.
-- The card is added to the existing `home-section` so it lives above the bouncing title but does not interfere with the existing date-checker / Tic Tac Toe / profile blocks.
+- The video is referenced as a relative URL `/frieren.gif.mp4`. Vite serves anything in `public/` at the site root, so the path works in dev and in the built bundle.
+- `muted` is required for `autoplay` to work in all modern browsers (Chrome/Safari/Firefox autoplay policy).
+- `playsinline` prevents iOS Safari from forcing fullscreen on autoplay.
+- If the video file ever fails to load, the round slot still shows the blue gradient background (the `<video>` element's CSS background), so the page never looks broken.
+
 
