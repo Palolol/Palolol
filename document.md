@@ -146,5 +146,23 @@ Move the asset out of `public/` (which Vite copies verbatim with no path rewriti
   4. Contact card ghost label text
 - No CSS, structure, or copy changes — just the email.
 
+## Fifth Pass — Telegram Contact Link
+
+### What changed
+Added `https://t.me/palolol` as a second contact channel so visitors can message you on Telegram in addition to email.
+
+- **Navbar (desktop):** new ghost-style "✈️ Telegram" link placed before the "Hire Me" CTA, so it's visible on every page.
+- **Mobile menu:** "✈️ Message on Telegram" link, full width, below the "Hire Me" CTA.
+- **Contact card (portfolio section):** new "💬 Telegram" outline button (Telegram-blue border) sitting next to the "Send a message" email button.
+
+### Telegram URL note
+Telegram `t.me/` URLs do not include the `@` symbol in the path — the `@` is only used as a display prefix inside the app. So `@palolol` becomes `https://t.me/palolol`. The link opens in a new tab (`target="_blank"`, `rel="noopener noreferrer"`) so the user doesn't lose the portfolio.
+
+### CSS additions
+- `.nav-tg` — ghost-style navbar link (subtle border, soft hover with the brand-blue tint)
+- `.nav-tg.mobile-tg` — full-width mobile variant
+- `.btn-telegram` / `.btn-telegram:hover` — outline button using Telegram's brand blue `#2aabee`
+
+
 
 

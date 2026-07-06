@@ -21,6 +21,14 @@
             >
           </li>
         </ul>
+        <a
+          href="https://t.me/palolol"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-tg"
+          aria-label="Message on Telegram"
+          >✈️ Telegram</a
+        >
         <a href="mailto:palolol1165@gmail.com" class="nav-cta">Hire Me</a>
         <button
           class="hamburger"
@@ -47,6 +55,13 @@
         </ul>
         <a href="mailto:palolol1165@gmail.com" class="nav-cta mobile-cta"
           >Hire Me</a
+        >
+        <a
+          href="https://t.me/palolol"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-tg mobile-tg"
+          >✈️ Message on Telegram</a
         >
       </div>
     </nav>
@@ -263,6 +278,13 @@
         <div class="contact-btns">
           <a href="mailto:palolol1165@gmail.com" class="btn-primary"
             >Send a message</a
+          >
+          <a
+            href="https://t.me/palolol"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-telegram"
+            >💬 Telegram</a
           >
           <span class="btn-ghost">palolol1165@gmail.com</span>
         </div>
@@ -568,6 +590,33 @@ body {
 .nav-cta:hover {
   opacity: 0.85;
   transform: translateY(-1px);
+}
+.nav-tg {
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background 0.2s;
+}
+.nav-tg:hover {
+  color: #fff;
+  border-color: rgba(18, 32, 226, 0.6);
+  background: rgba(18, 32, 226, 0.18);
+}
+.nav-tg.mobile-tg {
+  margin-top: 0.4rem;
+  text-align: center;
+  display: block;
+  border-color: rgba(18, 32, 226, 0.35);
+  background: rgba(18, 32, 226, 0.12);
+  color: #c8d2ff;
 }
 .hamburger {
   display: none;
@@ -1344,6 +1393,25 @@ body {
 }
 .btn-primary:hover {
   opacity: 0.85;
+}
+.btn-telegram {
+  background: transparent;
+  color: #fff;
+  border: 0.5px solid #2aabee;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.btn-telegram:hover {
+  background: rgba(42, 171, 238, 0.18);
+  border-color: #2aabee;
 }
 .btn-ghost {
   background: transparent;
