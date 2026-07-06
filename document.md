@@ -135,4 +135,16 @@ Move the asset out of `public/` (which Vite copies verbatim with no path rewriti
 - `src/assets/frieren.gif.mp4` — moved from `public/`.
 - `src/App.vue` — added `import animeTeacherUrl from "./assets/frieren.gif.mp4"`; removed the hard-coded string.
 
+## Fourth Pass — Email Update
+
+### What changed
+- Replaced the placeholder email `palolol@email.com` with the real address `palolol1165@gmail.com`.
+- Touched in 4 places in `src/App.vue` (all were the same string, replaced with `replace_all`):
+  1. Navbar "Hire Me" button `href`
+  2. Mobile menu "Hire Me" button `href`
+  3. Contact card "Send a message" button `href`
+  4. Contact card ghost label text
+- No CSS, structure, or copy changes — just the email.
+
+
 

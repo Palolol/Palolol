@@ -21,7 +21,7 @@
             >
           </li>
         </ul>
-        <a href="mailto:palolol@email.com" class="nav-cta">Hire Me</a>
+        <a href="mailto:palolol1165@gmail.com" class="nav-cta">Hire Me</a>
         <button
           class="hamburger"
           @click="menuOpen = !menuOpen"
@@ -45,7 +45,7 @@
             </a>
           </li>
         </ul>
-        <a href="mailto:palolol@email.com" class="nav-cta mobile-cta"
+        <a href="mailto:palolol1165@gmail.com" class="nav-cta mobile-cta"
           >Hire Me</a
         >
       </div>
@@ -261,10 +261,10 @@
           Open to AI/ML research collaborations and student projects
         </div>
         <div class="contact-btns">
-          <a href="mailto:palolol@email.com" class="btn-primary"
+          <a href="mailto:palolol1165@gmail.com" class="btn-primary"
             >Send a message</a
           >
-          <span class="btn-ghost">palolol@email.com</span>
+          <span class="btn-ghost">palolol1165@gmail.com</span>
         </div>
       </div>
 
