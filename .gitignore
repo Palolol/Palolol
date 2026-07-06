@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local screenshots (not part of the portfolio)
+Screenshot*.png
