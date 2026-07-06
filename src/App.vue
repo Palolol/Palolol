@@ -201,7 +201,7 @@
       <!-- Stats -->
       <div class="stats-row">
         <div class="stat-card">
-          <div class="stat-num">12</div>
+          <div class="stat-num">5+</div>
           <div class="stat-lbl">Projects</div>
         </div>
         <div class="stat-card">
@@ -209,7 +209,7 @@
           <div class="stat-lbl">Years Exp</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">06</div>
+          <div class="stat-num">1</div>
           <div class="stat-lbl">Models Trained</div>
         </div>
         <div class="stat-card">

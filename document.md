@@ -163,6 +163,16 @@ Telegram `t.me/` URLs do not include the `@` symbol in the path — the `@` is o
 - `.nav-tg.mobile-tg` — full-width mobile variant
 - `.btn-telegram` / `.btn-telegram:hover` — outline button using Telegram's brand blue `#2aabee`
 
+## Sixth Pass — Stats Update
+
+### What changed
+Two stats in the portfolio hero row were adjusted to be more honest about where the developer is right now:
+- **Projects:** `12` → `5+`
+- **Models Trained:** `06` → `1`
+
+The "Years Exp: 3+" and "Research Focus: AI/ML" cards were left unchanged.
+
+
 
 
 
