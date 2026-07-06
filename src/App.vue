@@ -55,6 +55,32 @@
          HOME SECTION
     ══════════════════════════════════════════ -->
     <section id="home" class="home-section">
+      <!-- Virtual Teacher — First Project Story -->
+      <div class="first-project-card">
+        <div class="first-project-avatar">
+          <img
+            :src="animeTeacherUrl"
+            alt="Anime virtual teacher"
+            @error="onAvatarError"
+          />
+          <div class="avatar-glow"></div>
+          <div class="avatar-tag">Virtual Teacher</div>
+        </div>
+        <div class="first-project-bubble">
+          <div class="bubble-tail"></div>
+          <div class="bubble-title">
+            <span class="bubble-icon">🎓</span>
+            <span>My First Project — as told by your virtual teacher</span>
+          </div>
+          <div class="first-project-text">
+            <span>{{ typedStory }}</span><span class="caret">|</span>
+          </div>
+          <button class="first-project-replay" @click="replayStory">
+            ▶ Replay story
+          </button>
+        </div>
+      </div>
+
       <!-- Bouncing Title -->
       <h1 class="bouncing-title">
         <span
@@ -144,7 +170,14 @@
           <span class="pill">🧠 Deep Learning</span>
           <span class="pill">🐍 Python</span>
         </div>
-        <div class="port-avatar">PAL</div>
+        <div class="port-avatar">
+          <img
+            :src="animeTeacherUrl"
+            alt="Anime virtual teacher"
+            class="port-avatar-img"
+            @error="onAvatarError"
+          />
+        </div>
       </div>
 
       <!-- Stats -->
@@ -295,6 +328,49 @@ onUnmounted(() => {
 
 // ── Home: Bouncing title ──────────────────────────────────────────
 const titleLetters = ["P", "A", "L", "O", "L", "O", "L"];
+
+// ── Home: Virtual Teacher — First Project Story ───────────────────
+const animeTeacherUrl =
+  "https://media.tenor.com/q5ULalgC8K0AAAAi/anime-teacher.gif";
+const typedStory = ref("");
+let typingTimer = null;
+
+const firstProjectStory =
+  "Hello, student! I'm your virtual teacher. Let me tell you about the very first project this developer ever built... It was a small Python calculator — a tiny script with a few if-else blocks. It was messy, it had bugs, but it ran. That little `print('Hello, World')` was the moment the developer knew: code was the path. From that humble calculator, they went on to build expert systems, mobile apps, and now AI models. Remember — every great developer starts with a single line. ✨";
+
+function startTyping() {
+  if (typingTimer) {
+    clearInterval(typingTimer);
+    typingTimer = null;
+  }
+  typedStory.value = "";
+  let i = 0;
+  typingTimer = setInterval(() => {
+    i++;
+    typedStory.value = firstProjectStory.slice(0, i);
+    if (i >= firstProjectStory.length && typingTimer) {
+      clearInterval(typingTimer);
+      typingTimer = null;
+    }
+  }, 28);
+}
+
+function replayStory() {
+  startTyping();
+}
+
+function onAvatarError(e) {
+  if (e && e.target) {
+    e.target.style.display = "none";
+  }
+}
+
+onMounted(() => {
+  startTyping();
+});
+onUnmounted(() => {
+  if (typingTimer) clearInterval(typingTimer);
+});
 
 // ── Home: Date Checker ────────────────────────────────────────────
 const dateOutput = ref("");
@@ -815,6 +891,163 @@ body {
 }
 
 /* ══════════════════════════════════════════
+   FIRST PROJECT — VIRTUAL TEACHER
+══════════════════════════════════════════ */
+.first-project-card {
+  width: min(90%, 720px);
+  margin: 0 auto 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 0.5px solid rgba(18, 32, 226, 0.25);
+  border-radius: 18px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  position: relative;
+  z-index: 5;
+  animation: fadeInUp 0.7s ease both;
+  font-family: "DM Sans", sans-serif;
+}
+.first-project-avatar {
+  position: relative;
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.first-project-avatar img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1220e2;
+  box-shadow: 0 6px 18px rgba(18, 32, 226, 0.4);
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, #1220e2, #7b93ff);
+}
+.avatar-glow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(18, 32, 226, 0.5) 0%,
+    transparent 70%
+  );
+  animation: avatarGlow 2.4s ease-in-out infinite;
+  z-index: 1;
+}
+.avatar-tag {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1220e2;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 10px;
+  white-space: nowrap;
+  z-index: 3;
+  font-weight: 500;
+}
+.first-project-bubble {
+  flex: 1;
+  position: relative;
+  background: #f7f8ff;
+  border: 1px solid rgba(18, 32, 226, 0.2);
+  border-radius: 14px;
+  padding: 0.9rem 1rem 0.8rem;
+  min-height: 110px;
+}
+.bubble-tail {
+  position: absolute;
+  left: -8px;
+  top: 24px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 10px solid #f7f8ff;
+}
+.bubble-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1220e2;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bubble-icon {
+  font-size: 15px;
+}
+.first-project-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #222;
+  min-height: 64px;
+  white-space: pre-wrap;
+}
+.first-project-text .caret {
+  display: inline-block;
+  color: #1220e2;
+  font-weight: 700;
+  animation: blink 0.8s steps(2, start) infinite;
+  margin-left: 1px;
+}
+.first-project-replay {
+  margin-top: 8px;
+  background: #1220e2;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.first-project-replay:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes avatarGlow {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* ══════════════════════════════════════════
    PORTFOLIO SECTION
 ══════════════════════════════════════════ */
 .port-section {
@@ -910,13 +1143,18 @@ body {
   height: 160px;
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   background: linear-gradient(135deg, #1220e2, #7b93ff);
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Bebas Neue", cursive;
-  font-size: 52px;
-  color: #fff;
-  border: 3px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 28px rgba(18, 32, 226, 0.35);
+}
+.port-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .sec-label {
   font-size: 11px;
@@ -1233,7 +1471,6 @@ body {
   .port-avatar {
     width: 100px;
     height: 100px;
-    font-size: 32px;
     right: 1rem;
   }
   .stats-row {
@@ -1244,6 +1481,21 @@ body {
   }
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .first-project-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+  .first-project-avatar {
+    margin-bottom: 0.5rem;
+  }
+  .bubble-tail {
+    display: none;
+  }
+  .first-project-replay {
+    align-self: center;
   }
 }
 @media (max-width: 480px) {

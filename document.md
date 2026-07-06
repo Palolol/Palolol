@@ -74,3 +74,55 @@ Removed the freelancer + game-jam entries; added academic + self-study entries:
 - Footer text `Palolol © 2025 — All vibes reserved` — unchanged
 - Responsive media queries — unchanged
 - File structure, dependencies, build config — unchanged
+
+---
+
+# Second Pass — Avatar + Home Section Overhaul
+
+## Overview
+Two visual additions to the portfolio:
+1. **`port-avatar`** — Replaced the static "PAL" gradient blob in the portfolio hero with a circular **anime-teacher** illustration. The avatar is a framed portrait of an anime-style teacher character with a soft glow, representing the developer's virtual mentor/guide concept.
+2. **`home-section` — "First Project" virtual teacher** — Added a new component at the top of the home section: a "Virtual Teacher" card that introduces the developer's very first project. The card shows the same anime-teacher image next to a dialogue-style narrative that types itself out, telling the story of the developer's first piece of code.
+
+The concept: a virtual anime teacher is "telling" / narrating the developer's origin story — the first project they ever built.
+
+## Specific Changes
+
+### A. `port-avatar` (around line 146 in the original layout)
+- **Before:** A static `div.port-avatar` with text "PAL" on a blue gradient.
+- **After:** Same circular slot, but now displays an `<img>` of an anime teacher character. Kept the same dimensions and border style for layout consistency.
+- **Image source:** An anime-teacher illustration (e.g. from a free public anime CDN). Uses a fallback if the image fails to load.
+
+### B. New `first-project` block in `#home`
+- **Location:** Inserted at the very top of `home-section`, above the bouncing title.
+- **Structure:**
+  - Outer card with a soft border + glow
+  - Left side: anime teacher avatar (same image as the portfolio hero)
+  - Right side: a "speech bubble" containing the developer's first-project story
+  - The story types itself out character-by-character (typing animation) when the page loads
+  - Has a "▶ Replay" button to re-trigger the animation
+- **Content of the story (told by the virtual anime teacher):**
+  > "Hello! I'm your virtual teacher. Let me tell you about the very first project this developer ever built… It was a simple program — a small calculator in Python. It was messy, it had bugs, but it ran. That little `print('Hello, World')` was the moment the developer knew — code was the path. From that tiny calculator, they went on to build expert systems, mobile apps, and now AI models. Every great developer starts with a single line."
+
+### C. New CSS
+Added a new style block for:
+- `.first-project-card` — the outer card
+- `.first-project-avatar` — the anime teacher portrait
+- `.first-project-bubble` — the dialogue speech bubble
+- `.first-project-text` — the typing-text area
+- `.first-project-replay` — the replay button
+- Keyframe animations:
+  - `blink` — for the typing cursor
+  - `fadeInUp` — entrance animation for the card
+  - `avatarGlow` — soft pulsing glow around the anime avatar
+- A "responsive" override: on small screens the card stacks vertically (avatar on top, bubble below).
+
+## Files Touched
+- `src/App.vue` — template, script, and style sections
+- `document.md` — this new section appended
+
+## Implementation Notes
+- Typing animation is implemented in pure Vue (no new libraries) using `setInterval` and a reactive `typedText` ref.
+- The avatar image uses a free-to-use anime illustration URL with an `onerror` fallback to a CSS gradient placeholder, so the page never shows a broken image.
+- The card is added to the existing `home-section` so it lives above the bouncing title but does not interfere with the existing date-checker / Tic Tac Toe / profile blocks.
+
