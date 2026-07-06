@@ -83,26 +83,31 @@ Removed the freelancer + game-jam entries; added academic + self-study entries:
 Replaced the static anime-teacher image and the long typed-out story in the home section's "First Project" card with a **looping local video** (`frieren.gif.mp4`) that does the explaining. Frieren is the anime teacher — the video is the avatar, and a short, single-line caption introduces the developer's first project. The video autoplays, loops, and is muted so the user doesn't have to interact with it.
 
 ## Files Touched
-- `public/frieren.gif.mp4` — moved from repo root to `public/` so Vite serves it at `/frieren.gif.mp4`
+- `src/assets/frieren.gif.mp4` — moved from repo root → `public/` → `src/assets/`. Living in `src/assets/` lets Vite bundle it with the correct `base` path for GitHub Pages.
 - `src/App.vue` — template, script, and style for the first-project card
 - `document.md` — this section
 
 ## Specific Changes
 
 ### 1. Asset location
-- **Before:** `frieren.gif.mp4` sat in the repo root and was not served by Vite.
-- **After:** Moved to `public/frieren.gif.mp4`. Reachable as `/frieren.gif.mp4` in the running app.
+- **Original:** `frieren.gif.mp4` at the repo root (not served by Vite at all).
+- **First move:** `public/frieren.gif.mp4` — Vite serves `public/*` at the site root, so the path worked locally but **broke on GitHub Pages** because the site is served from `/Palolol/` (Vite `base: "/Palolol/"`) and `/frieren.gif.mp4` resolved to `palolol.github.io/frieren.gif.mp4` (404).
+- **Final move:** `src/assets/frieren.gif.mp4`, imported in the script as:
+  ```js
+  import animeTeacherUrl from "./assets/frieren.gif.mp4";
+  ```
+  Vite hashes the filename and rewrites the path with the configured `base`, so the deployed URL becomes `palolol.github.io/Palolol/assets/frieren-XXXX.mp4`.
 
 ### 2. `first-project-card` content
-- **Avatar:** `<img>` was replaced with a `<video>` element that uses `/frieren.gif.mp4` as its source. The video is `autoplay`, `muted`, `loop`, and `playsinline` so it starts immediately, repeats forever, and works on mobile.
+- **Avatar:** `<img>` was replaced with a `<video>` element bound to `animeTeacherUrl`. The video is `autoplay`, `muted`, `loop`, and `playsinline` so it starts immediately, repeats forever, and works on mobile.
 - **Bubble copy:** The long, character-by-character typed story was removed. Replaced with a **single short line** that introduces the developer's first project — the video itself does the "explaining" visually:
   > "My first project? A tiny Python calculator. From one script to expert systems, mobile apps, and AI models — every developer starts with a single line."
 - **Replay button:** Removed (no longer needed — the video loops on its own).
 
 ### 3. Script logic
 - **Removed:** `typedStory`, `firstProjectStory`, `startTyping`, `replayStory`, typing timer, and the `onMounted(() => startTyping())` call.
-- **Kept:** `animeTeacherUrl` constant (now points at the local video) and `onAvatarError` (used by the portfolio hero's `<img>` fallback).
-- **The video element** doesn't need Vue-controlled state — the browser handles autoplay + loop natively.
+- **Removed:** `onAvatarError` (no `<img>` left in the template).
+- **Replaced:** the static `const animeTeacherUrl = "/frieren.gif.mp4"` with `import animeTeacherUrl from "./assets/frieren.gif.mp4"`. The import is a top-level statement (must appear above any code that uses it).
 
 ### 4. CSS
 - **Kept:** the outer card layout, the avatar slot, the glow + tag, the speech bubble, the bubble tail, the entrance animation, and the responsive mobile override.
@@ -110,9 +115,24 @@ Replaced the static anime-teacher image and the long typed-out story in the home
 - **Removed:** the typing-caret and replay-button styles (no longer used).
 
 ## Implementation Notes
-- The video is referenced as a relative URL `/frieren.gif.mp4`. Vite serves anything in `public/` at the site root, so the path works in dev and in the built bundle.
+- The video is imported via Vite's asset handling, so the final URL is rewritten with the configured `base` (here `/Palolol/`). This is what fixes the GitHub-Pages deployment.
 - `muted` is required for `autoplay` to work in all modern browsers (Chrome/Safari/Firefox autoplay policy).
 - `playsinline` prevents iOS Safari from forcing fullscreen on autoplay.
 - If the video file ever fails to load, the round slot still shows the blue gradient background (the `<video>` element's CSS background), so the page never looks broken.
+
+## Third Pass — GitHub Pages Base Path Fix
+
+### The bug
+First-pass deployment to GitHub Pages showed the home first-project card and the portfolio hero `port-avatar` as **empty circles** with no video. The page loaded fine; only the video was missing.
+
+### Root cause
+Vite was configured with `base: "/Palolol/"` (required so the deployed bundle loads assets from `/Palolol/...` instead of `/...`). But `animeTeacherUrl` was hard-coded to `"/frieren.gif.mp4"`. At build time, Vite copies the file from `public/` to the site root as `frieren.gif.mp4`, but the runtime URL is **not** rewritten through `base`. So the browser requested `https://palolol.github.io/frieren.gif.mp4` → 404 → no video.
+
+### The fix
+Move the asset out of `public/` (which Vite copies verbatim with no path rewriting) and into `src/assets/` (which Vite imports as a module). Imported asset URLs go through Vite's path-rewriting pipeline, so the final deployed URL becomes `https://palolol.github.io/Palolol/assets/frieren-[hash].mp4` — the correct location for the site.
+
+### Files changed
+- `src/assets/frieren.gif.mp4` — moved from `public/`.
+- `src/App.vue` — added `import animeTeacherUrl from "./assets/frieren.gif.mp4"`; removed the hard-coded string.
 
 

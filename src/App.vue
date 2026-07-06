@@ -275,6 +275,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
+import animeTeacherUrl from "./assets/frieren.gif.mp4";
 
 // ── Navbar ────────────────────────────────────────────────────────
 const isScrolled = ref(false);
@@ -333,7 +334,8 @@ onUnmounted(() => {
 const titleLetters = ["P", "A", "L", "O", "L", "O", "L"];
 
 // ── Home: Virtual Teacher — First Project Story ───────────────────
-const animeTeacherUrl = "/frieren.gif.mp4";
+// animeTeacherUrl is imported above so Vite bundles it with the correct
+// base path (e.g. /Palolol/assets/frieren-XXXX.mp4) for GitHub Pages.
 
 // ── Home: Date Checker ────────────────────────────────────────────
 const dateOutput = ref("");
