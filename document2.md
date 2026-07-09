@@ -1,7 +1,7 @@
 # README Redesign & WakaTime Self-Hosting — Change Documentation
 
 ## Overview
-Seven passes to the GitHub profile, README, and supporting workflows:
+Eight passes to the GitHub profile, README, and supporting workflows:
 
 1. **README.md redesign** — replaced the boilerplate Vue 3 + Vite template with an animated, badge-rich, multi-section developer profile that matches the AI/ML student identity established in `document.md`.
 2. **Snake animation workflow** — added a daily snake SVG generator (`Platane/snk@v3`) pushing to an `output` branch that the README reads from.
@@ -10,6 +10,7 @@ Seven passes to the GitHub profile, README, and supporting workflows:
 5. **WakaTime push-rejection fix** — after Pass 4, the workflow's `git push` was rejected because the `output` branch already had a commit on the remote. Switched to `git push --force` (safe because the `output` branch is a workflow artifact, not history).
 6. **Self-hosting GitHub Stats / Top Languages / Trophies** — same third-party-down issue. Replaced the broken Vercel services with a new self-hosted `github-stats.yml` workflow that pulls from `api.github.com`. Replaced trophies with a static "Achievements" table since the trophy service is permanently dead (402).
 7. **Worktree cleanup fix** — discovered that the Pass 5/6 workflows were reporting `success` but never actually writing files. Root cause: `|| true` masking real failures in the worktree fallback pattern. Replaced with an explicit precondition cleanup that's idempotent. Also rewrote the snake workflow (was using the wrong action — `ghaction-github-pages` for a non-pages branch).
+8. **Snake output path fix** — the snake workflow was telling `Platane/snk@v3` to write to wrong file names (made-up ones) instead of the names from the action's own documentation. Fixed by using the documented output paths and adding a diagnostic step that lists all generated SVGs.
 
 ---
 
@@ -481,9 +482,75 @@ The WakaTime workflow ran multiple times and reported `success` while producing 
 
 ---
 
+## Pass 8: Snake Workflow Output Path Fix
+
+After the Pass 7 cleanup, the snake workflow ran and reported `success` (or `failure` with a clear error) but the user reported it still failed with:
+
+```
+Run git config user.name "github-actions[bot]"
+Error: Could not find github-contribution-grid-snake-dark.svg anywhere in the repo
+```
+
+### Root cause
+The snake workflow was telling `Platane/snk@v3` to write to:
+```yaml
+outputs: |
+  dist/github-contribution-grid-snake-dark.svg
+  dist/github-contribution-grid-snake.svg
+```
+
+But the action's [official documentation](https://github.com/Platane/snk) shows the correct paths are:
+```yaml
+outputs: |
+  dist/github-snake-dark.svg?palette=github-dark
+  dist/github-snake.svg
+```
+
+The action writes files **verbatim** at the paths declared in `outputs:`. With the wrong names, the files were either:
+- Written somewhere unexpected that our `find` step couldn't locate, or
+- Never written at all (the action may have failed silently on unknown output paths)
+
+The README references `github-contribution-grid-snake-dark.svg` (the old name I picked), but the action was told to write to that exact path. So the `find` should have worked — unless the action wrote a *different* file with a different name to `dist/`, or wrote nothing.
+
+Looking at the action's GitHub repository source, the action takes the `outputs` paths as **literal destination paths**, so the wrong names would produce files with those wrong names somewhere. But in v3, the action also requires a specific file extension and may not support all custom names.
+
+### The fix
+Two changes in `snake.yml`:
+
+1. **Use the documented output paths** (from the action's README):
+   ```yaml
+   outputs: |
+     dist/github-snake-dark.svg?palette=github-dark
+     dist/github-snake.svg
+   ```
+
+2. **Add a diagnostic step** that lists every SVG in the repo after `Platane/snk` runs. This makes future failures self-explanatory:
+   ```bash
+   echo "=== Files in dist/ ==="
+   ls -la dist/ 2>/dev/null || echo "no dist/ directory"
+   echo "=== All SVGs in repo (excluding .git) ==="
+   find . -name "*.svg" -not -path "./.git/*" ...
+   ```
+
+3. **Hard-code the source path** to `dist/github-snake-dark.svg` (no more `find` guessing) so the error message tells you exactly what's missing.
+
+The README still references the same final filenames (`github-contribution-grid-snake-dark.svg`), so no README change is needed — the workflow's `cp` step renames the file from `dist/github-snake-dark.svg` to the README-expected name on the way to the `output` branch.
+
+### Lesson
+
+**Always use the exact paths from an action's official documentation.** Don't invent file names. The action may not validate them and could fail silently. When a third-party action's docs show specific output paths, copy them verbatim.
+
+### Typing SVG note (recap from Pass 6)
+
+The user's question about "typing svg" was clarified in Pass 6: the service is alive and returns valid SVG. If it ever stops working, the same self-host pattern could be used to render a typing animation as an SVG locally — but that's overkill for a service that's currently working.
+
+---
+
 ## Commits in this session
 
 ```
+5c105dd  Fix snake workflow: use correct Platane/snk output paths
+8244276  document2: record Pass 6 (self-host stats) and Pass 7 (worktree fix)
 c9622c8  Fix worktree cleanup in all three output-branch workflows
 f214b59  Self-host GitHub stats + remove dead services + drop setup note
 (pass 5) Fix WakaTime push: force-sync output branch + force-push
