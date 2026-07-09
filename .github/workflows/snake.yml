@@ -25,51 +25,54 @@ jobs:
         with:
           # Dark theme to match the README's tokyonight palette
           github_user_name: ${{ github.repository_owner }}
-          # Output directly into the worktree path (we'll create it
-          # before this step runs). Platane writes into "outputs" by
-          # default; we override with a custom arg.
-          args: --output-to-svg
+          # Use the EXACT output paths from Platane/snk's documentation.
+          # The action writes to these paths verbatim — the file name is
+          # significant. We then copy them to the final output branch
+          # with the names referenced by the README.
+          outputs: |
+            dist/github-snake-dark.svg?palette=github-dark
+            dist/github-snake.svg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Locate generated SVG
-        id: locate
+      - name: Show what Platane/snk produced
         run: |
           echo "=== Files in repo root ==="
           ls -la
           echo "=== Files in dist/ ==="
-          ls -la dist/ 2>/dev/null || echo "no dist/ dir"
-          echo "=== Files in github-contribution-grid-snake/ ==="
-          ls -la github-contribution-grid-snake/ 2>/dev/null || echo "no snake dir"
-          find . -name "*.svg" -not -path "./node_modules/*" -not -path "./public/*" -not -path "./src/*" 2>/dev/null
+          ls -la dist/ 2>/dev/null || echo "no dist/ directory"
+          echo "=== All SVGs in repo (excluding .git) ==="
+          find . -name "*.svg" -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./public/*" -not -path "./src/*" 2>/dev/null
 
       - name: Push SVG to output branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Find the snake SVG regardless of where Platane/snk dropped it
-          SNAKE_DARK=$(find . -name "github-contribution-grid-snake-dark.svg" -not -path "./.git/*" | head -1)
-          SNAKE_LIGHT=$(find . -name "github-contribution-grid-snake.svg" -not -path "./.git/*" | head -1)
+          # Platane/snk produces files at the paths declared in 'outputs:'.
+          # We told it 'dist/github-snake-dark.svg' and 'dist/github-snake.svg'.
+          SNAKE_DARK="dist/github-snake-dark.svg"
+          SNAKE_LIGHT="dist/github-snake.svg"
 
-          if [ -z "$SNAKE_DARK" ]; then
-            echo "::error::Could not find github-contribution-grid-snake-dark.svg anywhere in the repo"
+          if [ ! -f "$SNAKE_DARK" ]; then
+            echo "::error::Could not find $SNAKE_DARK in the repo"
+            echo "::error::This means Platane/snk@v3 didn't produce the expected file."
+            echo "::error::Check the 'Show what Platane/snk produced' step above for the actual file paths."
             exit 1
           fi
 
-          echo "Found dark SVG at: $SNAKE_DARK"
-          echo "Found light SVG at: ${SNAKE_LIGHT:-none}"
+          echo "Found dark SVG at: $SNAKE_DARK ($(stat -c %s "$SNAKE_DARK") bytes)"
+          echo "Found light SVG at: $SNAKE_LIGHT ($(stat -c %s "$SNAKE_LIGHT" 2>/dev/null || echo MISSING) bytes)"
 
           WORKTREE_DIR="${GITHUB_WORKSPACE}/.snake-worktree"
 
-          # Clean up any leftover worktree from a previous run.
+          # Precondition cleanup (idempotent — runs the same way every time).
           if git worktree list | grep -q "$WORKTREE_DIR"; then
             echo "Removing leftover worktree"
             git worktree remove "$WORKTREE_DIR" --force
           fi
           rm -rf "$WORKTREE_DIR"
 
-          # Delete stale local 'output' branch if it exists.
           if git show-ref --verify --quiet refs/heads/output; then
             echo "Deleting stale local 'output' branch"
             git branch -D output 2>/dev/null || true
@@ -77,14 +80,15 @@ jobs:
 
           git worktree add -B output "$WORKTREE_DIR"
 
+          # Copy to the names the README expects.
           cp "$SNAKE_DARK" "$WORKTREE_DIR/github-contribution-grid-snake-dark.svg"
-          if [ -n "$SNAKE_LIGHT" ]; then
+          if [ -f "$SNAKE_LIGHT" ]; then
             cp "$SNAKE_LIGHT" "$WORKTREE_DIR/github-contribution-grid-snake.svg"
           fi
 
           cd "$WORKTREE_DIR"
           git add github-contribution-grid-snake-dark.svg
-          if [ -n "$SNAKE_LIGHT" ]; then
+          if [ -f "github-contribution-grid-snake.svg" ]; then
             git add github-contribution-grid-snake.svg
           fi
           if git diff --cached --quiet; then
