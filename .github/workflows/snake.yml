@@ -10,29 +10,88 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Required to push the generated SVG back to the repo
+      contents: write
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate snake SVG
+      - name: Generate snake SVG via Platane/snk
+        id: snk
         uses: Platane/snk@v3
         with:
           # Dark theme to match the README's tokyonight palette
           github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-contribution-grid-snake-dark.svg
-            dist/github-contribution-grid-snake.svg
+          # Output directly into the worktree path (we'll create it
+          # before this step runs). Platane writes into "outputs" by
+          # default; we override with a custom arg.
+          args: --output-to-svg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Push generated SVG to output branch
-        uses: crazy-max/ghaction-github-pages@v3
-        with:
-          target_branch: output
-          build_dir: dist
-          keep_files: true
-          fqdn: ${{ secrets.FQDN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Locate generated SVG
+        id: locate
+        run: |
+          echo "=== Files in repo root ==="
+          ls -la
+          echo "=== Files in dist/ ==="
+          ls -la dist/ 2>/dev/null || echo "no dist/ dir"
+          echo "=== Files in github-contribution-grid-snake/ ==="
+          ls -la github-contribution-grid-snake/ 2>/dev/null || echo "no snake dir"
+          find . -name "*.svg" -not -path "./node_modules/*" -not -path "./public/*" -not -path "./src/*" 2>/dev/null
+
+      - name: Push SVG to output branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Find the snake SVG regardless of where Platane/snk dropped it
+          SNAKE_DARK=$(find . -name "github-contribution-grid-snake-dark.svg" -not -path "./.git/*" | head -1)
+          SNAKE_LIGHT=$(find . -name "github-contribution-grid-snake.svg" -not -path "./.git/*" | head -1)
+
+          if [ -z "$SNAKE_DARK" ]; then
+            echo "::error::Could not find github-contribution-grid-snake-dark.svg anywhere in the repo"
+            exit 1
+          fi
+
+          echo "Found dark SVG at: $SNAKE_DARK"
+          echo "Found light SVG at: ${SNAKE_LIGHT:-none}"
+
+          WORKTREE_DIR="${GITHUB_WORKSPACE}/.snake-worktree"
+
+          # Clean up any leftover worktree from a previous run.
+          if git worktree list | grep -q "$WORKTREE_DIR"; then
+            echo "Removing leftover worktree"
+            git worktree remove "$WORKTREE_DIR" --force
+          fi
+          rm -rf "$WORKTREE_DIR"
+
+          # Delete stale local 'output' branch if it exists.
+          if git show-ref --verify --quiet refs/heads/output; then
+            echo "Deleting stale local 'output' branch"
+            git branch -D output 2>/dev/null || true
+          fi
+
+          git worktree add -B output "$WORKTREE_DIR"
+
+          cp "$SNAKE_DARK" "$WORKTREE_DIR/github-contribution-grid-snake-dark.svg"
+          if [ -n "$SNAKE_LIGHT" ]; then
+            cp "$SNAKE_LIGHT" "$WORKTREE_DIR/github-contribution-grid-snake.svg"
+          fi
+
+          cd "$WORKTREE_DIR"
+          git add github-contribution-grid-snake-dark.svg
+          if [ -n "$SNAKE_LIGHT" ]; then
+            git add github-contribution-grid-snake.svg
+          fi
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update snake animation"
+            git push --force origin output
+          fi
+          cd "${GITHUB_WORKSPACE}"
+          git worktree remove "$WORKTREE_DIR" --force

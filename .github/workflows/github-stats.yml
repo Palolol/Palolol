@@ -150,13 +150,22 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           WORKTREE_DIR="${GITHUB_WORKSPACE}/.github-stats-worktree"
+
+          # Clean up any leftover worktree from a previous run.
+          if git worktree list | grep -q "$WORKTREE_DIR"; then
+            echo "Removing leftover worktree"
+            git worktree remove "$WORKTREE_DIR" --force
+          fi
           rm -rf "$WORKTREE_DIR"
-          git worktree add -B output "$WORKTREE_DIR" || {
-            echo "Worktree add failed; retrying after force-syncing output"
+
+          # Delete stale local 'output' branch if it exists (only safe
+          # when not checked out — we just removed the worktree above).
+          if git show-ref --verify --quiet refs/heads/output; then
+            echo "Deleting stale local 'output' branch"
             git branch -D output 2>/dev/null || true
-            git fetch origin output || true
-            git worktree add -B output "$WORKTREE_DIR"
-          }
+          fi
+
+          git worktree add -B output "$WORKTREE_DIR"
 
           cp out/github-stats.svg "$WORKTREE_DIR/github-stats.svg"
           cp out/top-langs.svg   "$WORKTREE_DIR/top-langs.svg"

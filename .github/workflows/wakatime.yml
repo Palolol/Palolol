@@ -103,15 +103,30 @@ jobs:
           git rev-parse --show-toplevel
 
           WORKTREE_DIR="${GITHUB_WORKSPACE}/.wakatime-output-worktree"
+
+          # Clean up any leftover worktree from a previous run.
+          # 'git worktree remove' errors if the worktree doesn't exist,
+          # which is fine — we don't want to abort the run for that.
+          if git worktree list | grep -q "$WORKTREE_DIR"; then
+            echo "Removing leftover worktree"
+            git worktree remove "$WORKTREE_DIR" --force
+          fi
           rm -rf "$WORKTREE_DIR"
-          git worktree add -B output "$WORKTREE_DIR" || {
-            # If 'output' branch already exists on the remote, the worktree
-            # add can fail or land on stale refs. Force-resync it first.
-            echo "Worktree add failed; retrying after force-syncing output"
+
+          # If a local 'output' branch exists but is NOT checked out in
+          # any worktree, delete it so 'git worktree add -B' can recreate.
+          # If it IS checked out, this fails silently (|| true) and we
+          # just have to deal with the existing worktree (which we just
+          # removed above).
+          if git show-ref --verify --quiet refs/heads/output; then
+            echo "Deleting stale local 'output' branch"
             git branch -D output 2>/dev/null || true
-            git fetch origin output || true
-            git worktree add -B output "$WORKTREE_DIR"
-          }
+          fi
+
+          # 'git worktree add -B' creates the local branch if it doesn't
+          # exist, or resets it to the new HEAD if it does. Now that
+          # we've cleaned up, this should always succeed.
+          git worktree add -B output "$WORKTREE_DIR"
 
           cp out/wakatime-stats.svg "$WORKTREE_DIR/wakatime-stats.svg"
           cd "$WORKTREE_DIR"
