@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+  <style>
+    .bg { fill: #0d1117; }
+    .border { stroke: #00d9ff; stroke-width: 1; fill: none; }
+    .title { fill: #00d9ff; font: 700 18px 'Segoe UI', sans-serif; }
+    .label { fill: #8b949e; font: 12px 'Segoe UI', sans-serif; }
+    .value { fill: #ffffff; font: 700 20px 'Segoe UI', sans-serif; }
+    .accent { fill: #ff00aa; font: 700 20px 'Segoe UI', sans-serif; }
+  </style>
+  <rect class="bg" width="495" height="195" rx="8"/>
+  <rect class="border" x="0.5" y="0.5" width="494" height="194" rx="8"/>
+  <text class="title" x="20" y="32">GitHub Stats · @Palolol</text>
+  <text class="label" x="20"  y="70">Public repos</text>
+  <text class="value" x="20"  y="95">10</text>
+  <text class="label" x="160" y="70">Total stars</text>
+  <text class="value" x="160" y="95">1</text>
+  <text class="label" x="290" y="70">Followers</text>
+  <text class="value" x="290" y="95">0</text>
+  <text class="label" x="20"  y="135">Following</text>
+  <text class="value" x="20"  y="160">0</text>
+  <text class="label" x="160" y="135">Joined</text>
+  <text class="value" x="160" y="160">2023-12-05</text>
+  <text class="label" x="290" y="135">Public</text>
+  <text class="accent" x="290" y="160">★</text>
+</svg>
