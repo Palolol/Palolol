@@ -168,19 +168,19 @@ status: ✅ Live
 
 <div align="center">
 
-<!-- GitHub Stats Card (animated border via service) -->
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=Palolol&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d9ff&icon_color=ff00aa&text_color=ffffff&count_private=true&include_all_commits=true" alt="GitHub Stats"/>
+<!-- Self-hosted stats (github-readme-stats vercel deployment is paused) -->
+<img height="195em" src="https://raw.githubusercontent.com/Palolol/Palolol/output/github-stats.svg" alt="GitHub Stats"/>
 &nbsp;&nbsp;
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Palolol&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d9ff&text_color=ffffff&langs_count=8" alt="Top Languages"/>
+<img height="195em" src="https://raw.githubusercontent.com/Palolol/Palolol/output/top-langs.svg" alt="Top Languages"/>
 
-<br/>
+<br/><br/>
 
-<!-- Streak stats — animated -->
+<!-- Streak stats (herokuapp service still works) -->
 <img src="https://github-readme-streak-stats.herokuapp.com?user=Palolol&theme=tokyonight&hide_border=true&background=0d1117&ring=00d9ff&fire=ff00aa&currStreakLabel=00d9ff" alt="Streak Stats"/>
 
 <br/><br/>
 
-<!-- Contribution Graph (animated) -->
+<!-- Contribution Graph (vercel service still works) -->
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=Palolol&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=00d9ff&line=ff00aa&point=ffffff&area=true&area_color=00d9ff33" alt="Activity Graph" width="95%"/>
 
 </div>
@@ -197,11 +197,20 @@ status: ✅ Live
 
 ---
 
-## 🏆 Trophies
+## 🏆 Achievements
 
 <div align="center">
 
-<img src="https://github-profile-trophy.vercel.app/?username=Palolol&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&column=4" alt="Trophies"/>
+| | Achievement | Status |
+|:-:|:---|:---:|
+| 🐍 | First Python script | ✅ |
+| 🍅 | Tomato Expert System shipped | ✅ |
+| 📱 | Mobile app in production | ✅ |
+| 🤖 | First ML model trained | ✅ |
+| 🧠 | Portfolio v2 deployed | ✅ |
+| 🎓 | University AI course complete | ✅ |
+| 🌐 | Custom domain portfolio | 🔄 |
+| 📚 | Research paper published | 🎯 |
 
 </div>
 
@@ -212,8 +221,6 @@ status: ✅ Live
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/Palolol/Palolol/output/wakatime-stats.svg" alt="WakaTime Stats"/>
-
-> 📝 **Setup required once:** Add your WakaTime API key as a GitHub secret named `WAKATIME_API_KEY` ([Settings → Secrets → Actions](https://github.com/Palolol/Palolol/settings/secrets/actions)). Then trigger **Actions → Update WakaTime Stats → Run workflow**. The card will render forever after.
 
 </div>
 

@@ -1,0 +1,172 @@
+name: Update GitHub Stats
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: "0 */6 * * *"
+  workflow_dispatch:  # Allow manual trigger from the Actions tab
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      # Use a fine-grained token (or PAT) to avoid GitHub's stricter
+      # rate limits on unauthenticated requests. The auto-provided
+      # GITHUB_TOKEN works for this repo's public data.
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch GitHub stats and render cards
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USER: Palolol
+        run: |
+          mkdir -p out
+
+          # ──────────────────────────────────────────────────────────
+          # 1. User profile
+          # ──────────────────────────────────────────────────────────
+          user_json=$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/${GH_USER}")
+          public_repos=$(echo "$user_json" | python3 -c "import json,sys; print(json.load(sys.stdin).get('public_repos',0))")
+          followers=$(echo "$user_json"    | python3 -c "import json,sys; print(json.load(sys.stdin).get('followers',0))")
+          following=$(echo "$user_json"    | python3 -c "import json,sys; print(json.load(sys.stdin).get('following',0))")
+          created_at=$(echo "$user_json"   | python3 -c "import json,sys; print(json.load(sys.stdin).get('created_at','')[:10])")
+          avatar_url=$(echo "$user_json"   | python3 -c "import json,sys; print(json.load(sys.stdin).get('avatar_url',''))")
+
+          # ──────────────────────────────────────────────────────────
+          # 2. Total stars across all repos
+          # ──────────────────────────────────────────────────────────
+          repos_json=$(curl -s -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/users/${GH_USER}/repos?per_page=100&sort=updated")
+          total_stars=$(echo "$repos_json" | python3 -c "
+          import json,sys
+          repos=json.load(sys.stdin)
+          print(sum(r.get('stargazers_count',0) for r in repos))
+          ")
+
+          # ──────────────────────────────────────────────────────────
+          # 3. Top languages by repo count (proxy for what was used)
+          # ──────────────────────────────────────────────────────────
+          lang_counts=$(echo "$repos_json" | python3 -c "
+          import json,sys,collections
+          repos=json.load(sys.stdin)
+          c=collections.Counter()
+          for r in repos:
+              lang=r.get('language')
+              if lang: c[lang]+=1
+          for lang,n in c.most_common(6):
+              print(f'{lang} {n}')
+          ")
+
+          # ──────────────────────────────────────────────────────────
+          # 4. Render STATS card
+          # ──────────────────────────────────────────────────────────
+          cat > out/github-stats.svg <<SVG
+          <svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+            <style>
+              .bg { fill: #0d1117; }
+              .border { stroke: #00d9ff; stroke-width: 1; fill: none; }
+              .title { fill: #00d9ff; font: 700 18px 'Segoe UI', sans-serif; }
+              .label { fill: #8b949e; font: 12px 'Segoe UI', sans-serif; }
+              .value { fill: #ffffff; font: 700 20px 'Segoe UI', sans-serif; }
+              .accent { fill: #ff00aa; font: 700 20px 'Segoe UI', sans-serif; }
+            </style>
+            <rect class="bg" width="495" height="195" rx="8"/>
+            <rect class="border" x="0.5" y="0.5" width="494" height="194" rx="8"/>
+            <text class="title" x="20" y="32">GitHub Stats · @${GH_USER}</text>
+            <text class="label" x="20"  y="70">Public repos</text>
+            <text class="value" x="20"  y="95">${public_repos}</text>
+            <text class="label" x="160" y="70">Total stars</text>
+            <text class="value" x="160" y="95">${total_stars}</text>
+            <text class="label" x="290" y="70">Followers</text>
+            <text class="value" x="290" y="95">${followers}</text>
+            <text class="label" x="20"  y="135">Following</text>
+            <text class="value" x="20"  y="160">${following}</text>
+            <text class="label" x="160" y="135">Joined</text>
+            <text class="value" x="160" y="160">${created_at}</text>
+            <text class="label" x="290" y="135">Public</text>
+            <text class="accent" x="290" y="160">★</text>
+          </svg>
+          SVG
+
+          # ──────────────────────────────────────────────────────────
+          # 5. Render TOP LANGUAGES card (horizontal bars)
+          # ──────────────────────────────────────────────────────────
+          python3 - <<PY > out/top-langs.svg
+          import textwrap
+          lines = """${lang_counts}""".strip().splitlines()
+          items = [l.rsplit(' ',1) for l in lines if l.strip()]
+          if not items:
+              items = [("—", "0")]
+          max_n = max(int(n) for _,n in items)
+          bar_w_max = 280
+          x0, y0 = 20, 55
+          row_h = 22
+          rows = ""
+          for i,(lang,n) in enumerate(items[:6]):
+              y = y0 + i*row_h
+              w = int(bar_w_max * int(n) / max_n) if max_n else 0
+              rows += f'<text class="label" x="{x0}" y="{y+12}">{lang}</text>'
+              rows += f'<rect class="bar-bg" x="{x0+90}" y="{y+2}" width="{bar_w_max}" height="14" rx="3"/>'
+              rows += f'<rect class="bar"    x="{x0+90}" y="{y+2}" width="{w}"          height="14" rx="3"/>'
+              rows += f'<text class="count"  x="{x0+90+bar_w_max+10}" y="{y+12}">{n}</text>'
+          print(textwrap.dedent(f"""
+            <svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+              <style>
+                .bg {{ fill: #0d1117; }}
+                .border {{ stroke: #00d9ff; stroke-width: 1; fill: none; }}
+                .title {{ fill: #00d9ff; font: 700 18px 'Segoe UI', sans-serif; }}
+                .label {{ fill: #ffffff; font: 600 13px 'Segoe UI', sans-serif; }}
+                .count {{ fill: #8b949e; font: 12px 'Segoe UI', sans-serif; }}
+                .bar {{ fill: #ff00aa; }}
+                .bar-bg {{ fill: #1f2937; }}
+              </style>
+              <rect class="bg" width="495" height="195" rx="8"/>
+              <rect class="border" x="0.5" y="0.5" width="494" height="194" rx="8"/>
+              <text class="title" x="20" y="32">Top Languages</text>
+              {rows}
+            </svg>
+          """).strip())
+          PY
+
+          echo "=== Stats SVG ==="
+          head -c 400 out/github-stats.svg
+          echo ""
+          echo "=== Langs SVG ==="
+          head -c 400 out/top-langs.svg
+
+      - name: Push to output branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          WORKTREE_DIR="${GITHUB_WORKSPACE}/.github-stats-worktree"
+          rm -rf "$WORKTREE_DIR"
+          git worktree add -B output "$WORKTREE_DIR" || {
+            echo "Worktree add failed; retrying after force-syncing output"
+            git branch -D output 2>/dev/null || true
+            git fetch origin output || true
+            git worktree add -B output "$WORKTREE_DIR"
+          }
+
+          cp out/github-stats.svg "$WORKTREE_DIR/github-stats.svg"
+          cp out/top-langs.svg   "$WORKTREE_DIR/top-langs.svg"
+          cd "$WORKTREE_DIR"
+          git add github-stats.svg top-langs.svg
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update GitHub stats and top languages"
+            git push --force origin output
+          fi
+          cd "${GITHUB_WORKSPACE}"
+          git worktree remove "$WORKTREE_DIR" --force
