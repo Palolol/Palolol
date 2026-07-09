@@ -11,8 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write  # Required to push to the output branch
+    defaults:
+      run:
+        # Force every step to run inside the checked-out repo, so git
+        # commands always have a valid working tree.
+        working-directory: ${{ github.workspace }}
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Generate WakaTime stats SVG
         env:
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
@@ -58,13 +66,7 @@ jobs:
           cat stats/values.sh
 
       - name: Render SVG card
-        env:
-          TOTAL: ${{ steps.gen.outputs.TOTAL }}
-          DAILY: ${{ steps.gen.outputs.DAILY }}
-          TOP: ${{ steps.gen.outputs.TOP }}
         run: |
-          # Fall back to reading the file because GitHub Actions can't
-          # easily export the env vars set inside the previous step.
           source stats/values.sh
           mkdir -p out
           cat > out/wakatime-stats.svg <<SVG
@@ -95,10 +97,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # The runner's CWD is the repo (actions/checkout put us there).
-          # We use a worktree rooted INSIDE the repo (not in `..`) so that
-          # the parent git directory is reachable.
-          WORKTREE_DIR="$(pwd)/.wakatime-output-worktree"
+          # Sanity check: confirm we really are in the repo before worktree ops.
+          echo "CWD: $(pwd)"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          git rev-parse --show-toplevel
+
+          WORKTREE_DIR="${GITHUB_WORKSPACE}/.wakatime-output-worktree"
           rm -rf "$WORKTREE_DIR"
           git worktree add -B output "$WORKTREE_DIR"
 
@@ -111,5 +115,5 @@ jobs:
             git commit -m "Update WakaTime stats"
             git push origin output
           fi
-          cd -
+          cd "${GITHUB_WORKSPACE}"
           git worktree remove "$WORKTREE_DIR" --force
