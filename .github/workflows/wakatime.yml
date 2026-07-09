@@ -135,6 +135,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Update WakaTime stats"
+            git branch -f output HEAD   
             # Force-push: this branch is owned by the workflow and only
             # ever holds the latest SVG. Force is intentional and safe.
             git push --force origin output

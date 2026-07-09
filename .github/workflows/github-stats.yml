@@ -179,6 +179,7 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Update GitHub stats and top languages"
+            git branch -f output HEAD  
             git push --force origin output
           fi
           cd "${GITHUB_WORKSPACE}"
