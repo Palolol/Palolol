@@ -1,7 +1,7 @@
 # README Redesign & WakaTime Self-Hosting — Change Documentation
 
 ## Overview
-Eight passes to the GitHub profile, README, and supporting workflows:
+Nine passes to the GitHub profile, README, and supporting workflows:
 
 1. **README.md redesign** — replaced the boilerplate Vue 3 + Vite template with an animated, badge-rich, multi-section developer profile that matches the AI/ML student identity established in `document.md`.
 2. **Snake animation workflow** — added a daily snake SVG generator (`Platane/snk@v3`) pushing to an `output` branch that the README reads from.
@@ -11,6 +11,7 @@ Eight passes to the GitHub profile, README, and supporting workflows:
 6. **Self-hosting GitHub Stats / Top Languages / Trophies** — same third-party-down issue. Replaced the broken Vercel services with a new self-hosted `github-stats.yml` workflow that pulls from `api.github.com`. Replaced trophies with a static "Achievements" table since the trophy service is permanently dead (402).
 7. **Worktree cleanup fix** — discovered that the Pass 5/6 workflows were reporting `success` but never actually writing files. Root cause: `|| true` masking real failures in the worktree fallback pattern. Replaced with an explicit precondition cleanup that's idempotent. Also rewrote the snake workflow (was using the wrong action — `ghaction-github-pages` for a non-pages branch).
 8. **Snake output path fix** — the snake workflow was telling `Platane/snk@v3` to write to wrong file names (made-up ones) instead of the names from the action's own documentation. Fixed by using the documented output paths and adding a diagnostic step that lists all generated SVGs.
+9. **Workflow isolation fix (the big one)** — discovered that all three workflows were wiping each other's output. `git worktree add -B output` starts the new branch from `main` (not from the existing `output` branch), so each push was clobbering the other workflows' files. Fixed by fetching the existing `output` branch and using `git worktree add origin/output` as the starting point.
 
 ---
 
@@ -546,9 +547,84 @@ The user's question about "typing svg" was clarified in Pass 6: the service is a
 
 ---
 
+## Pass 9: Workflow Isolation (the silent destruction bug)
+
+After all the per-workflow fixes, the user reported that the **WakaTime card and Typing SVG were broken again**, and the snake workflow was succeeding. The root cause turned out to be a much bigger problem than any single workflow.
+
+### The bug
+
+The output branch at this point in time contained:
+- `github-contribution-grid-snake-dark.svg` (18 KB)
+- `github-contribution-grid-snake.svg` (18 KB)
+- And the inherited files from main
+
+But it was **missing**:
+- `wakatime-stats.svg`
+- `github-stats.svg`
+- `top-langs.svg`
+
+The previous WakaTime and GitHub-stats workflow runs had all reported `success`. So where were their files?
+
+### Root cause
+
+All three workflows were using `git worktree add -B output <dir>`. The `-B` flag tells git to create a new local branch named `output`, **starting from HEAD** (which is `main` in this case). The worktree therefore contained **all the files from main, but none of the files the previous workflows had pushed to `output`**.
+
+When the workflow then ran `git push --force origin output`, it overwrote the entire remote `output` branch with just main + the workflow's own SVG.
+
+**The destruction cycle:**
+1. Snake workflow runs first → pushes snake SVGs, wipes wakatime + stats
+2. WakaTime workflow runs → pushes wakatime SVG, wipes snake + stats
+3. GitHub-stats workflow runs → pushes stats SVGs, wipes snake + wakatime
+4. User opens README → only one card works (the one that ran most recently)
+
+The `success` status was technically true — the workflow did what it was told. But the workflow was being told to destroy other workflows' work, and it was doing so happily.
+
+### The fix
+
+Replace `git worktree add -B output <dir>` with:
+```bash
+git fetch origin output
+git worktree add "$WORKTREE_DIR" origin/output
+```
+
+This starts the worktree from the **existing remote `output` branch**, so the worktree already contains all the other workflows' files. The workflow then adds/overwrites its own SVG and force-pushes — preserving everything else.
+
+For the **first run** (when `output` doesn't exist yet), the `fetch` would fail, so I wrapped it: `git fetch origin output || true`. The first run starts from main, creates `output` with the workflow's own files, and subsequent runs pick up the rest.
+
+### Applied to all three workflows
+
+The same pattern was applied to `snake.yml`, `wakatime.yml`, and `github-stats.yml`. After the fix:
+- Snake workflow preserves wakatime + stats
+- WakaTime workflow preserves snake + stats
+- GitHub-stats workflow preserves snake + wakatime
+
+### Typing SVG clarification
+
+The user reported "Error Fetching Resource" on the typing SVG. The server was actually returning valid SVG (HTTP 200, ~3.5KB) for the original URL with emojis. The error was almost certainly from GitHub's image proxy (camo.githubusercontent.com) having trouble with the multi-byte UTF-8 characters in the URL (👋🤖✨).
+
+Fix: removed the emojis from the typing-svg URL. Plain ASCII is more reliably handled by camo. The animation still works the same way — just without the emoji decorations on each line.
+
+If the typing SVG ever becomes truly broken, the same self-host pattern could be used: a Python script generating a static SVG with SMIL animations, pushed to the `output` branch, and referenced by the README. But that's overkill for a service that is otherwise working.
+
+### Lessons
+
+1. **Force-pushes are dangerous in multi-writer scenarios.** If multiple workflows force-push to the same branch, they will trample each other. Either:
+   - Use a merge-friendly pattern (each workflow fetches, then commits and pushes non-force), OR
+   - Use separate branches per workflow, OR
+   - Make each workflow start from the existing branch tip (as we did)
+
+2. **"Success" status is not the same as "did what you wanted."** GitHub reports the workflow exit code. A workflow that successfully destroys the work of other workflows still reports `success`. Always verify the actual artifact is in the expected place.
+
+3. **GitHub's image proxy (camo) is sensitive to special characters in URLs.** Emojis, certain punctuation, and other multi-byte UTF-8 characters can cause "Error Fetching Resource" in the browser even when the source URL works fine. Keep image URLs plain ASCII when possible.
+
+4. **Workflow debug logs are the only reliable source of truth.** Don't trust "success" — read the actual log output. The Pass 7 fix added diagnostic steps (ls, find) that make future failures much easier to diagnose.
+
+---
+
 ## Commits in this session
 
 ```
+3caac6d  Fix workflow isolation: each push was wiping the others' files
 5c105dd  Fix snake workflow: use correct Platane/snk output paths
 8244276  document2: record Pass 6 (self-host stats) and Pass 7 (worktree fix)
 c9622c8  Fix worktree cleanup in all three output-branch workflows
