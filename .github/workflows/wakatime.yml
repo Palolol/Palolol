@@ -104,7 +104,14 @@ jobs:
 
           WORKTREE_DIR="${GITHUB_WORKSPACE}/.wakatime-output-worktree"
           rm -rf "$WORKTREE_DIR"
-          git worktree add -B output "$WORKTREE_DIR"
+          git worktree add -B output "$WORKTREE_DIR" || {
+            # If 'output' branch already exists on the remote, the worktree
+            # add can fail or land on stale refs. Force-resync it first.
+            echo "Worktree add failed; retrying after force-syncing output"
+            git branch -D output 2>/dev/null || true
+            git fetch origin output || true
+            git worktree add -B output "$WORKTREE_DIR"
+          }
 
           cp out/wakatime-stats.svg "$WORKTREE_DIR/wakatime-stats.svg"
           cd "$WORKTREE_DIR"
@@ -113,7 +120,9 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Update WakaTime stats"
-            git push origin output
+            # Force-push: this branch is owned by the workflow and only
+            # ever holds the latest SVG. Force is intentional and safe.
+            git push --force origin output
           fi
           cd "${GITHUB_WORKSPACE}"
           git worktree remove "$WORKTREE_DIR" --force
