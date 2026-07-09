@@ -114,19 +114,19 @@ jobs:
           rm -rf "$WORKTREE_DIR"
 
           # If a local 'output' branch exists but is NOT checked out in
-          # any worktree, delete it so 'git worktree add -B' can recreate.
-          # If it IS checked out, this fails silently (|| true) and we
-          # just have to deal with the existing worktree (which we just
-          # removed above).
+          # any worktree, delete it so 'git worktree add' can recreate.
           if git show-ref --verify --quiet refs/heads/output; then
             echo "Deleting stale local 'output' branch"
             git branch -D output 2>/dev/null || true
           fi
 
-          # 'git worktree add -B' creates the local branch if it doesn't
-          # exist, or resets it to the new HEAD if it does. Now that
-          # we've cleaned up, this should always succeed.
-          git worktree add -B output "$WORKTREE_DIR"
+          # CRITICAL: start the worktree from the EXISTING remote output
+          # branch, not from HEAD. This preserves files written by other
+          # workflows (snake, github-stats). If we use 'git worktree add
+          # -B output', the worktree starts from main and overwrites
+          # everything the other workflows pushed.
+          git fetch origin output
+          git worktree add "$WORKTREE_DIR" origin/output
 
           cp out/wakatime-stats.svg "$WORKTREE_DIR/wakatime-stats.svg"
           cd "$WORKTREE_DIR"

@@ -78,7 +78,12 @@ jobs:
             git branch -D output 2>/dev/null || true
           fi
 
-          git worktree add -B output "$WORKTREE_DIR"
+          # CRITICAL: start the worktree from the EXISTING remote output
+          # branch, not from HEAD. This preserves files written by other
+          # workflows (wakatime, github-stats). Otherwise the snake push
+          # wipes out the other workflow outputs.
+          git fetch origin output
+          git worktree add "$WORKTREE_DIR" origin/output
 
           # Copy to the names the README expects.
           cp "$SNAKE_DARK" "$WORKTREE_DIR/github-contribution-grid-snake-dark.svg"

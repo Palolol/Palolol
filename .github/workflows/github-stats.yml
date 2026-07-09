@@ -165,7 +165,11 @@ jobs:
             git branch -D output 2>/dev/null || true
           fi
 
-          git worktree add -B output "$WORKTREE_DIR"
+          # CRITICAL: start the worktree from the EXISTING remote output
+          # branch, not from HEAD. This preserves files written by other
+          # workflows (snake, wakatime).
+          git fetch origin output
+          git worktree add "$WORKTREE_DIR" origin/output
 
           cp out/github-stats.svg "$WORKTREE_DIR/github-stats.svg"
           cp out/top-langs.svg   "$WORKTREE_DIR/top-langs.svg"
