@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+  <style>
+    .bg { fill: #0d1117; }
+    .border { stroke: #00d9ff; stroke-width: 1; fill: none; }
+    .title { fill: #00d9ff; font: 700 18px 'Segoe UI', sans-serif; }
+    .label { fill: #ffffff; font: 600 14px 'Segoe UI', sans-serif; }
+    .value { fill: #ff00aa; font: 700 22px 'Segoe UI', sans-serif; }
+    .muted { fill: #8b949e; font: 12px 'Segoe UI', sans-serif; }
+  </style>
+  <rect class="bg" width="495" height="195" rx="8"/>
+  <rect class="border" x="0.5" y="0.5" width="494" height="194" rx="8"/>
+  <text class="title" x="20" y="32">WakaTime · Last 7 Days</text>
+  <text class="muted" x="20" y="55">Total coding time</text>
+  <text class="value" x="20" y="85">0s</text>
+  <text class="muted" x="20" y="115">Daily average</text>
+  <text class="value" x="20" y="145">0s</text>
+  <text class="muted" x="20" y="175">Top language: —</text>
+</svg>
