@@ -95,13 +95,21 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Save the SVG to a temp worktree on the output branch
-          git worktree add -B output ../wakatime-output
-          mkdir -p ../wakatime-output
-          cp out/wakatime-stats.svg ../wakatime-output/wakatime-stats.svg
-          cd ../wakatime-output
+          # The runner's CWD is the repo (actions/checkout put us there).
+          # We use a worktree rooted INSIDE the repo (not in `..`) so that
+          # the parent git directory is reachable.
+          WORKTREE_DIR="$(pwd)/.wakatime-output-worktree"
+          rm -rf "$WORKTREE_DIR"
+          git worktree add -B output "$WORKTREE_DIR"
+
+          cp out/wakatime-stats.svg "$WORKTREE_DIR/wakatime-stats.svg"
+          cd "$WORKTREE_DIR"
           git add wakatime-stats.svg
-          git commit -m "Update WakaTime stats" || echo "No changes to commit"
-          git push origin output
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update WakaTime stats"
+            git push origin output
+          fi
           cd -
-          git worktree remove ../wakatime-output --force
+          git worktree remove "$WORKTREE_DIR" --force
