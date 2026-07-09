@@ -1,0 +1,107 @@
+name: Update WakaTime Stats
+
+on:
+  schedule:
+    # Run every day at 00:00 UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch:  # Allow manual trigger from the Actions tab
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to push to the output branch
+
+    steps:
+      - name: Generate WakaTime stats SVG
+        env:
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+        run: |
+          mkdir -p stats
+          # Fetch the last 7 days of WakaTime stats for user Palolol
+          curl -s -H "Authorization: Bearer ${WAKATIME_API_KEY}" \
+            "https://wakatime.com/api/v1/users/Palolol/stats/last_7_days" \
+            -o stats/last_7_days.json
+
+          echo "=== Raw WakaTime response (first 500 chars) ==="
+          head -c 500 stats/last_7_days.json
+          echo ""
+
+          # Extract fields with python (jq may not be installed)
+          python3 - <<'PY' > stats/values.sh
+          import json, pathlib
+          data = json.loads(pathlib.Path("stats/last_7_days.json").read_text()).get("data", {})
+          total = data.get("total_seconds", 0)
+          daily = data.get("daily_average", 0)
+
+          def fmt(secs):
+              secs = int(secs or 0)
+              h, rem = divmod(secs, 3600)
+              m, s = divmod(rem, 60)
+              if h:
+                  return f"{h}h {m}m"
+              if m:
+                  return f"{m}m {s}s"
+              return f"{s}s"
+
+          langs = data.get("languages", []) or []
+          top = langs[0]["name"] if langs else "—"
+
+          def esc(v):
+              return str(v).replace('"', '\\"').replace('$', '\\$')
+
+          print(f'TOTAL="{esc(fmt(total))}"')
+          print(f'DAILY="{esc(fmt(daily))}"')
+          print(f'TOP="{esc(top)}"')
+          print(f'LANG_COUNT={len(langs)}')
+          PY
+          cat stats/values.sh
+
+      - name: Render SVG card
+        env:
+          TOTAL: ${{ steps.gen.outputs.TOTAL }}
+          DAILY: ${{ steps.gen.outputs.DAILY }}
+          TOP: ${{ steps.gen.outputs.TOP }}
+        run: |
+          # Fall back to reading the file because GitHub Actions can't
+          # easily export the env vars set inside the previous step.
+          source stats/values.sh
+          mkdir -p out
+          cat > out/wakatime-stats.svg <<SVG
+          <svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
+            <style>
+              .bg { fill: #0d1117; }
+              .border { stroke: #00d9ff; stroke-width: 1; fill: none; }
+              .title { fill: #00d9ff; font: 700 18px 'Segoe UI', sans-serif; }
+              .label { fill: #ffffff; font: 600 14px 'Segoe UI', sans-serif; }
+              .value { fill: #ff00aa; font: 700 22px 'Segoe UI', sans-serif; }
+              .muted { fill: #8b949e; font: 12px 'Segoe UI', sans-serif; }
+            </style>
+            <rect class="bg" width="495" height="195" rx="8"/>
+            <rect class="border" x="0.5" y="0.5" width="494" height="194" rx="8"/>
+            <text class="title" x="20" y="32">WakaTime · Last 7 Days</text>
+            <text class="muted" x="20" y="55">Total coding time</text>
+            <text class="value" x="20" y="85">${TOTAL}</text>
+            <text class="muted" x="20" y="115">Daily average</text>
+            <text class="value" x="20" y="145">${DAILY}</text>
+            <text class="muted" x="20" y="175">Top language: ${TOP}</text>
+          </svg>
+          SVG
+          echo "=== Generated SVG ==="
+          cat out/wakatime-stats.svg
+
+      - name: Push to output branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Save the SVG to a temp worktree on the output branch
+          git worktree add -B output ../wakatime-output
+          mkdir -p ../wakatime-output
+          cp out/wakatime-stats.svg ../wakatime-output/wakatime-stats.svg
+          cd ../wakatime-output
+          git add wakatime-stats.svg
+          git commit -m "Update WakaTime stats" || echo "No changes to commit"
+          git push origin output
+          cd -
+          git worktree remove ../wakatime-output --force

@@ -211,7 +211,9 @@ status: ✅ Live
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api/wakatime?username=Palolol&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00d9ff&text_color=ffffff" alt="WakaTime Stats"/>
+<img src="https://raw.githubusercontent.com/Palolol/Palolol/output/wakatime-stats.svg" alt="WakaTime Stats"/>
+
+> 📝 **Setup required once:** Add your WakaTime API key as a GitHub secret named `WAKATIME_API_KEY` ([Settings → Secrets → Actions](https://github.com/Palolol/Palolol/settings/secrets/actions)). Then trigger **Actions → Update WakaTime Stats → Run workflow**. The card will render forever after.
 
 </div>
 
