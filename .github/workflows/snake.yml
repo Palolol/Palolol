@@ -1,0 +1,38 @@
+name: Generate Snake Animation
+
+on:
+  schedule:
+    # Run every 24 hours at 00:00 UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch:  # Allow manual trigger from the Actions tab
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to push the generated SVG back to the repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate snake SVG
+        uses: Platane/snk@v3
+        with:
+          # Dark theme to match the README's tokyonight palette
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake-dark.svg
+            dist/github-contribution-grid-snake.svg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push generated SVG to output branch
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: output
+          build_dir: dist
+          keep_files: true
+          fqdn: ${{ secrets.FQDN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
