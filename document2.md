@@ -1,7 +1,7 @@
 # README Redesign & WakaTime Self-Hosting — Change Documentation
 
 ## Overview
-Nine passes to the GitHub profile, README, and supporting workflows:
+Ten passes to the GitHub profile, README, and supporting workflows:
 
 1. **README.md redesign** — replaced the boilerplate Vue 3 + Vite template with an animated, badge-rich, multi-section developer profile that matches the AI/ML student identity established in `document.md`.
 2. **Snake animation workflow** — added a daily snake SVG generator (`Platane/snk@v3`) pushing to an `output` branch that the README reads from.
@@ -12,6 +12,7 @@ Nine passes to the GitHub profile, README, and supporting workflows:
 7. **Worktree cleanup fix** — discovered that the Pass 5/6 workflows were reporting `success` but never actually writing files. Root cause: `|| true` masking real failures in the worktree fallback pattern. Replaced with an explicit precondition cleanup that's idempotent. Also rewrote the snake workflow (was using the wrong action — `ghaction-github-pages` for a non-pages branch).
 8. **Snake output path fix** — the snake workflow was telling `Platane/snk@v3` to write to wrong file names (made-up ones) instead of the names from the action's own documentation. Fixed by using the documented output paths and adding a diagnostic step that lists all generated SVGs.
 9. **Workflow isolation fix (the big one)** — discovered that all three workflows were wiping each other's output. `git worktree add -B output` starts the new branch from `main` (not from the existing `output` branch), so each push was clobbering the other workflows' files. Fixed by fetching the existing `output` branch and using `git worktree add origin/output` as the starting point.
+10. **Detached HEAD push fix (the final fix)** — after the Pass 9 fix, the push step started failing with `error: src refspec output does not match any`. The worktree was created as a detached HEAD (not on a branch), so the new commit had no local `output` ref to push from. Fixed with `git branch -f output HEAD` before the push, which forces the local `output` branch to point at the new commit.
 
 ---
 
@@ -621,9 +622,99 @@ If the typing SVG ever becomes truly broken, the same self-host pattern could be
 
 ---
 
+## Pass 10: Detached HEAD Push Fix (the user did this one)
+
+After the Pass 9 fix was deployed, the WakaTime workflow's push step showed:
+
+```
+Run git config user.name "github-actions[bot]"
+CWD: /home/runner/work/Palolol/Palolol
+GITHUB_WORKSPACE: /home/runner/work/Palolol/Palolol
+/home/runner/work/Palolol/Palolol
+From https://github.com/Palolol/Palolol
+ * branch            output     -> FETCH_HEAD
+ * [new branch]      output     -> origin/output
+Preparing worktree (detached HEAD d7c9dd1)
+HEAD is now at d7c9dd1 Update snake animation
+[detached HEAD 991682e] Update WakaTime stats
+ 1 file changed, 18 insertions(+)
+ create mode 100644 wakatime-stats.svg
+error: src refspec output does not match any
+error: failed to push some refs to [url]
+```
+
+### Root cause
+
+The key line: **`Preparing worktree (detached HEAD d7c9dd1)`**.
+
+The Pass 9 command `git worktree add <dir> origin/output` was supposed to create a worktree on a branch named `output` tracking the remote. But git created it as a **detached HEAD** at commit `d7c9dd1` instead.
+
+A detached HEAD is a working state where the current commit isn't on any named branch. When the workflow then committed `Update WakaTime stats` as `991682e`, that commit existed in the worktree's history but was **not on any local `output` branch**.
+
+When the script then ran `git push --force origin output`, git looked for a local ref named `output` to push — and found nothing. Hence the error: `error: src refspec output does not match any`.
+
+The commit was created successfully (you can see `1 file changed, 18 insertions(+), create mode 100644 wakatime-stats.svg`) — it just couldn't be pushed because there was no local branch pointing to it.
+
+### The fix
+
+The user fixed this themselves by adding one line to the push step in both `wakatime.yml` and `github-stats.yml` (and `snake.yml` for consistency):
+
+```bash
+cd "$WORKTREE_DIR"
+git add wakatime-stats.svg
+git commit -m "Update WakaTime stats"
+git branch -f output HEAD     # ← NEW LINE
+git push --force origin output
+```
+
+`git branch -f output HEAD` does two things:
+- The `-f` flag forces the move even if the local `output` branch already exists
+- `HEAD` is shorthand for the current commit (the one with `Update WakaTime stats`)
+
+After this line, a local `output` branch exists and points at the new commit. The subsequent `git push --force origin output` can now find the local ref and push it.
+
+### Why this happens with `git worktree add origin/output`
+
+The `git worktree add <dir> <commit-ish>` form of the command (where `<commit-ish>` is a remote ref like `origin/output`) creates the worktree in **detached HEAD** state by default. This is git's safety mechanism — it doesn't want to silently create a new local branch from a remote ref without you explicitly asking.
+
+To avoid the detached HEAD in the first place, the command would need to be:
+
+```bash
+git worktree add -B output <dir> origin/output
+```
+
+…which explicitly creates (or resets) a local branch named `output`. **But** that brings back the Pass 9 problem: `-B` starts the branch from `origin/output`'s tip, and if the worktree is then committed to, the new commit goes onto the local `output` branch — which is what we want. The `-B output <dir> origin/output` form is actually the correct form for this use case, and avoids the detached HEAD entirely.
+
+The Pass 9 fix was close but not quite right. The complete correct fix is:
+- Use `git worktree add -B output <dir> origin/output` (not `git worktree add <dir> origin/output`)
+- OR keep `git worktree add <dir> origin/output` and add `git branch -f output HEAD` before the push
+
+Either approach works. The user chose the second.
+
+### Lesson
+
+**`git worktree add` with a remote ref creates a detached HEAD by default.** This is git's default safety behavior. When you want to add new commits in the worktree and push them back, you need to either:
+1. Use `git worktree add -B <branch>` to explicitly create a local branch
+2. Add `git branch -f <branch> HEAD` after committing in the worktree
+
+Without one of these, your commits are stranded on a detached HEAD that nothing tracks.
+
+### Final state
+
+After Pass 10, all three workflows (`wakatime.yml`, `github-stats.yml`, `snake.yml`) work correctly. The `output` branch contains all four SVGs and they all render in the README:
+- `wakatime-stats.svg`
+- `github-stats.svg`
+- `top-langs.svg`
+- `github-contribution-grid-snake-dark.svg`
+- `github-contribution-grid-snake.svg`
+
+---
+
 ## Commits in this session
 
 ```
+(user-fixed)  Add `git branch -f output HEAD` before push in all three workflows
+3e7608e  document2: record Pass 9 (workflow isolation fix)
 3caac6d  Fix workflow isolation: each push was wiping the others' files
 5c105dd  Fix snake workflow: use correct Platane/snk output paths
 8244276  document2: record Pass 6 (self-host stats) and Pass 7 (worktree fix)
