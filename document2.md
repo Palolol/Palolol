@@ -1,13 +1,15 @@
 # README Redesign & WakaTime Self-Hosting — Change Documentation
 
 ## Overview
-Five passes to the GitHub profile, README, and supporting workflows:
+Seven passes to the GitHub profile, README, and supporting workflows:
 
 1. **README.md redesign** — replaced the boilerplate Vue 3 + Vite template with an animated, badge-rich, multi-section developer profile that matches the AI/ML student identity established in `document.md`.
 2. **Snake animation workflow** — added a daily snake SVG generator (`Platane/snk@v3`) pushing to an `output` branch that the README reads from.
 3. **WakaTime card self-hosting** — discovered the original `github-readme-stats` WakaTime endpoint was returning 503 (`DEPLOYMENT_PAUSED`) and every other community WakaTime card service was dead. Replaced it with a self-hosted GitHub Action that renders the stats SVG locally.
 4. **WakaTime workflow bugfixes** — the workflow had no explicit `actions/checkout` and steps were running in the runner's home directory, not the repo. Fixed with an explicit checkout + job-level `defaults.run.working-directory` + `${GITHUB_WORKSPACE}` instead of `$(pwd)`.
 5. **WakaTime push-rejection fix** — after Pass 4, the workflow's `git push` was rejected because the `output` branch already had a commit on the remote. Switched to `git push --force` (safe because the `output` branch is a workflow artifact, not history).
+6. **Self-hosting GitHub Stats / Top Languages / Trophies** — same third-party-down issue. Replaced the broken Vercel services with a new self-hosted `github-stats.yml` workflow that pulls from `api.github.com`. Replaced trophies with a static "Achievements" table since the trophy service is permanently dead (402).
+7. **Worktree cleanup fix** — discovered that the Pass 5/6 workflows were reporting `success` but never actually writing files. Root cause: `|| true` masking real failures in the worktree fallback pattern. Replaced with an explicit precondition cleanup that's idempotent. Also rewrote the snake workflow (was using the wrong action — `ghaction-github-pages` for a non-pages branch).
 
 ---
 
@@ -359,10 +361,133 @@ Two changes in the push step:
 
 ---
 
+## Pass 6: Self-hosting GitHub Stats, Top Languages, and Trophies
+
+The user reported three more broken cards in the README: GitHub Stats, Top Languages, and Trophies. Same root cause as WakaTime — third-party card services are dying.
+
+### Service status (as of this pass)
+
+| Service | Status | Resolution |
+|---|---|---|
+| `readme-typing-svg.demolab.com` | ✅ 200 | Kept (works) |
+| `komarev.com/ghpvc` | ✅ 200 | Kept (works) |
+| `img.shields.io` | ✅ 200 | Kept (works) |
+| `capsule-render.vercel.app` | ✅ 200 | Kept (works) |
+| `github-readme-streak-stats.herokuapp.com` | ✅ 200 | Kept (works) |
+| `github-readme-activity-graph.vercel.app` | ✅ 200 | Kept (works) |
+| `github-readme-stats.vercel.app` (stats + top-langs) | ❌ 503 DEPLOYMENT_PAUSED | Replaced with self-hosted |
+| `github-profile-trophy.vercel.app` | ❌ 402 DEPLOYMENT_DISABLED | Replaced with static table |
+
+### New file: `.github/workflows/github-stats.yml`
+
+Same self-hosted pattern as the WakaTime workflow:
+- Runs every 6 hours + manual dispatch
+- Fetches the GitHub user's profile + repos from `api.github.com` (authenticated with `GITHUB_TOKEN`)
+- Renders two SVGs:
+  - `github-stats.svg` — public repos, total stars (summed across all repos), followers, following, join date
+  - `top-langs.svg` — horizontal bar chart of the top 6 languages by repo count
+- Pushes both to the `output` branch with `--force`
+
+### README changes
+
+- GitHub Stats image now reads from `raw.githubusercontent.com/.../output/github-stats.svg`
+- Top Languages image now reads from `raw.githubusercontent.com/.../output/top-langs.svg`
+- Streak Stats (herokuapp — still alive) unchanged
+- Activity Graph (different Vercel deployment — still alive) unchanged
+- Trophies section replaced with a static "Achievements" table (since `github-profile-trophy` is dead AND the 402 payment-required error makes it a permanent dead end)
+- Removed the WakaTime "Setup required once" blockquote — the user has it set up by now and the note was no longer useful
+
+### Decision rule
+**Keep a third-party service if** it returns 200 AND it's not on Vercel (Vercel free-tier deployments have been pausing en masse). **Replace with self-hosted if** it's a Vercel deployment showing 402/503, or any service that has no clear long-term funding.
+
+---
+
+## Pass 7: Workflow Cleanup Fix (Subtle Worktree Bug)
+
+After deploying the Pass 5/6 workflows, the WakaTime card was still empty in the README even though the workflow run showed `success`. Same issue affected the snake animation (it had never produced a file at all) and the new GitHub stats workflow.
+
+### The bug
+The fallback pattern in the previous fix had a subtle race condition:
+```bash
+git worktree add -B output "$WORKTREE_DIR" || {
+  echo "Worktree add failed; retrying after force-syncing output"
+  git branch -D output 2>/dev/null || true   # ← fails silently
+  git fetch origin output || true
+  git worktree add -B output "$WORKTREE_DIR"
+}
+```
+
+`git worktree add -B output` fails when a local `output` branch already exists. The fallback tried to delete it with `git branch -D output`, but `git branch -D` **also fails when the branch is checked out in a worktree** — which is the case we're trying to recover from. With `|| true`, the script silently continued:
+
+1. `cp out/wakatime-stats.svg "$WORKTREE_DIR/wakatime-stats.svg"` — `$WORKTREE_DIR` doesn't exist, file goes nowhere
+2. `cd "$WORKTREE_DIR"` — cd to non-existent dir
+3. `git add wakatime-stats.svg` — no file to add
+4. `git diff --cached --quiet` — quiet returns 0 (no diff)
+5. `echo "No changes to commit"` — exits the if-block
+6. Script completes, step reports `success`
+
+The workflow always reported success but never wrote a file. This is the worst kind of failure: silent.
+
+### The fix
+
+Replaced the fallback-or-die pattern with an **explicit precondition cleanup** that runs every time, idempotently:
+
+```bash
+# 1. Remove leftover worktree from a previous run (if any)
+if git worktree list | grep -q "$WORKTREE_DIR"; then
+  git worktree remove "$WORKTREE_DIR" --force
+fi
+rm -rf "$WORKTREE_DIR"
+
+# 2. Delete stale local 'output' branch (now safe — no worktree using it)
+if git show-ref --verify --quiet refs/heads/output; then
+  git branch -D output 2>/dev/null || true
+fi
+
+# 3. Create fresh worktree (this always succeeds now)
+git worktree add -B output "$WORKTREE_DIR"
+
+# ... copy files, commit, push --force ...
+```
+
+This is a **precondition pattern instead of a fallback pattern**. It runs the same cleanup every time, so the workflow is idempotent: re-running after any failure leaves the repo in the same state as a clean first run.
+
+### Snake workflow rewrite
+
+The snake workflow was also broken from Pass 2. It used `crazy-max/ghaction-github-pages@v3` to push to the `output` branch, but that action is designed for **GitHub Pages deployment** (it touches `gh-pages` branches and CNAME files), not for pushing to arbitrary branches. The push silently failed.
+
+The snake workflow was rewritten to use the same worktree+force-push pattern as the other two. It also added a `find` step to locate the snake SVG regardless of where `Platane/snk@v3` drops it, since the action's default output location has changed across versions.
+
+### Typing SVG status (clarification)
+
+The user asked about the typing SVG ("what about typing svg"). It was tested as part of the third-party-service audit in Pass 6 and returns **HTTP 200 with valid SVG** from `readme-typing-svg.demolab.com`. The service is fine and was left in place. If the user is seeing it render as broken in their README, it's likely:
+- A browser cache issue (hard refresh with `Ctrl+Shift+R` / `Cmd+Shift+R`)
+- A GitHub image proxy cache issue (try a different browser or wait a few minutes)
+- An issue with the specific lines in the URL (try a shorter test URL)
+
+No action needed for the typing SVG.
+
+### Key lesson
+
+**`|| true` in shell scripts hides failures.** It's tempting to use `|| true` everywhere to make scripts "robust", but it turns hard failures into silent ones. Better: use explicit `if` checks with clear log messages, so every branch of the script has an observable outcome.
+
+The right way to handle "this command might fail" is:
+- If the failure is expected: check the precondition first (`if`, `[ -f ... ]`, etc.)
+- If the failure is unexpected: let it fail loudly so the workflow reports `failure` and the run is visible
+
+### One more lesson: GitHub's "success" status is not always real
+
+The WakaTime workflow ran multiple times and reported `success` while producing no output. GitHub's UI shows "✅" but the actual work never happened. The lesson: **always verify the artifact is in the expected place after a workflow run** — `curl` the output URL or check the `output` branch in the GitHub UI.
+
+---
+
 ## Commits in this session
 
 ```
+c9622c8  Fix worktree cleanup in all three output-branch workflows
+f214b59  Self-host GitHub stats + remove dead services + drop setup note
 (pass 5) Fix WakaTime push: force-sync output branch + force-push
+e870b97  (this commit)
 4c345dd  Fix WakaTime workflow: explicit checkout + working-directory defaults
 0cc9504  Fix wakaTime workflow push: use worktree inside repo, not in ..
 413bd0e  Self-host WakaTime stats card (third-party services down)
