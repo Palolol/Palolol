@@ -23,16 +23,42 @@
 
 ## 🧬 អំពីខ្ញុំ
 
-```ascii
-   ╔══════════════════════════════════════════╗
-   ║                                          ║
-   ║    🎓  និស្សិតសាកលវិទ្យាល័យ · AI/ML  🤖    ║
-   ║    🐍  Python · C++ · Vue.js             ║
-   ║    🧠  កំពុងបង្កើតម៉ូដែលលើកុំព្យូទ័រយួរដៃ       ║
-   ║    🍅  បានបង្កើតប្រព័ន្ធជំនាញផ្លែប៉េមូតាតូ     ║
-   ║                                          ║
-   ╚══════════════════════════════════════════╝
-```
+<div class="profile-card">
+  <div class="emoji-line">🎓 <span>និស្សិតសាកលវិទ្យាល័យ · AI/ML</span> 🤖</div>
+  <div class="emoji-line">🐍 <span>Python · C++ · Vue.js</span></div>
+  <div class="emoji-line">🧠 <span>កំពុងបង្កើតម៉ូដែលលើកុំព្យូទ័រយួរដៃ</span></div>
+  <div class="emoji-line">🍅 <span>បានបង្កើតប្រព័ន្ធជំនាញផ្លែប៉េងប៉ោះ</span></div>
+</div>
+
+<style>
+  .profile-card {
+    background: #1e1e2e; /* Sleek dark background */
+    color: #cdd6f4;
+    border: 2px solid #cba6f7; /* Elegant pastel border */
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 400px;
+    margin: 20px auto;
+    font-family: 'Kantumruuy Pro', 'Inter', sans-serif;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+  .emoji-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .emoji-line:last-child {
+    margin-bottom: 0;
+  }
+  /* Responsive text sizing for smaller mobile screens */
+  @media (max-width: 400px) {
+    .profile-card { margin: 10px; padding: 16px; }
+    .emoji-line { font-size: 0.9rem; }
+  }
+</style>
 
 <div align="center">
 
