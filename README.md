@@ -21,7 +21,7 @@
 
 ---
 
-<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+Khmer&weight=700&size=24&duration=1&pause=1000000&color=ffffff&center=true&width=350&height=40&lines=🧬+អំពីខ្ញុំ" />
+<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+Khmer&size=24&color=FFFFFF&center=true&width=400&lines=%E1%9E%A2%E1%9F%86%E1%9E%96%E1%9E%B8%E1%9E%81%E1%9F%92%E1%9E%89%E1%9E%BB%E1%9F%86" />
 
 <div align="center">
 
@@ -262,9 +262,6 @@ status: ✅ កំពុងដំណើរការ
 
 <div align="center">
 
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+Khmer&weight=700&size=20&duration=1&pause=999999&color=FFFFFF&center=true&vCenter=true&width=700&height=60&lines=💫+%22អ្នកអភិវឌ្ឍន៍នីមួយៗចាប់ផ្តើមជាមួយបន្ទាត់កូដតែមួយ។%22+💫" alt="Khmer Quote"/>
-</div>
 
 <!-- FOOTER WAVE -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:ff00aa,100:9d00ff&height=180&section=footer&text=Thanks%20for%20visiting!%20🚀&fontSize=28&fontColor=ffffff&fontAlignY=70&desc=Palolol%20©%202025%20—%20All%20vibes%20reserved&descSize=14&descAlignY=90&descColor=ffffffaa" alt="Footer Wave"/>
