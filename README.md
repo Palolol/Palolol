@@ -6,7 +6,7 @@
 <br/>
 
 <!-- TYPING ANIMATION -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=800&color=00D9FF&center=true&vCenter=true&multiline=true&width=700&height=100&lines=Hey%2C%20I%27m%20Palolol;College%20Student%20%26%20AI%2FML%20Builder;Welcome%20to%20my%20GitHub%20corner" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=800&color=00D9FF&center=true&vCenter=true&multiline=true&width=700&height=100&lines=%E1%9E%9F%1F%87%2C%20%E1%9E%9C%1F%89%E1%9E%BB%E1%9F%86%20Palolol;%E1%9E%93%E1%9E%B7%E1%9E%9F%E1%9F%8B%E1%9E%B7%E1%9E%8F%E1%9E%80%E1%9E%9B%E1%9E%9C%E1%9E%B7%E1%9E%91%E1%9F%92%E1%9E%99%E1%9E%B6%E1%9E%9B%E1%9F%90%E1%9E%99%20%26%20%E1%9E%A2%E1%9F%92%E1%9E%93%E1%9E%80%E1%9E%9A%E1%9E%9A%20AI%2FML;%E1%9E%9F%E1%9E%B6%E1%9E%98%E1%9E%82%E1%9E%92%E1%9E%93%E1%9E%9A%E1%9E%AC%E1%9E%87%E1%9E%B6%E1%9E%93%20%E1%9E%80%E1%9E%B6%E1%9E%9A%E1%9E%9A%20GitHub%20%E1%9E%9A%E1%9E%94%E1%9E%B9%E1%9E%BB%E1%9F%86%E1%9E%9C" alt="Typing SVG" />
 
 <br/>
 
@@ -21,32 +21,32 @@
 
 ---
 
-## 🧬 About Me
+## 🧬 អំពីខ្ញុំ
 
 ```ascii
    ╔══════════════════════════════════════════╗
    ║                                          ║
-   ║    🎓  College Student · AI/ML  🤖      ║
+   ║    🎓  និស្សិតសាកលវិទ្យាល័យ · AI/ML  🤖      ║
    ║    🐍  Python · C++ · Vue.js            ║
-   ║    🧠  Building models on a laptop       ║
-   ║    🍅  Built a Tomato Expert System     ║
+   ║    🧠  កំពុងបង្កើតម៉ូដែលលើកុំព្យូទ័រយួរដៃ       ║
+   ║    🍅  បានបង្កើតប្រព័ន្ធជំនាញផ្លែប៉េមូតាតូ     ║
    ║                                          ║
    ╚══════════════════════════════════════════╝
 ```
 
 <div align="center">
 
-| 🌱 **Currently Learning** | 🛠️ **Building** | 🎯 **Goal** |
+| 🌱 **កំពុងរៀន** | 🛠️ **កំពុងសាងសង់** | 🎯 **គោលដៅ** |
 |:---:|:---:|:---:|
-| Deep Learning & LLMs | AI/ML Models | AI Research |
-| Computer Vision | Expert Systems | Open Source |
-| Mobile Dev (Flutter) | Portfolio Projects | Impact |
+| Deep Learning & LLMs | ម៉ូដែល AI/ML | ការស្រាវជ្រាវ AI |
+| Computer Vision | ប្រព័ន្ធជំនាញ | ប្រភពបើកចំហ |
+| Mobile Dev (Flutter) | គម្រោងផតហ្វូលីយ៉ូ | ផលប៉ះពាល់ |
 
 </div>
 
 ---
 
-## ⚡ Animated Tech Stack
+## ⚡ បច្ចេកវិទ្យាដែលប្រើ (ជាមួយចលនា)
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=ffd43b&labelColor=0d1117" alt="Python"/>
@@ -73,7 +73,7 @@
 
 ---
 
-## 🎬 Featured Animated Showcase
+## 🎬 ការបង្ហាញពិសេសជាមួយចលនា
 
 <div align="center">
 
@@ -82,7 +82,7 @@
 
 <br/>
 
-### ✨ *Live preview — straight from my build* ✨
+### ✨ *ការមើលផ្ទាល់ — មកពីការសាងសង់របស់ខ្ញុំ* ✨
 
 </div>
 
@@ -93,39 +93,39 @@
 }
 </style>
 
-> 🔗 **Asset source:** [Steam UGC mirror](https://images.steamusercontent.com/ugc/799867431808682621/1B94857CB0F1F3ADFDC3FF8D6027DD448F565ED9/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false) — mirrored locally as `download.gif` for fast GitHub rendering.
+> 🔗 **ប្រភពទ្រព្យសម្បត្តិ:** [Steam UGC mirror](https://images.steamusercontent.com/ugc/799867431808682621/1B94857CB0F1F3ADFDC3FF8D6027DD448F565ED9/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false) — ឆ្លុះក្នុងស្រុកជា `download.gif` សម្រាប់ការបង្ហាញ GitHub លឿន។
 
 ---
 
-## 🚀 Featured Projects
+## 🚀 គម្រោងពិសេសៗ
 
 <table align="center">
 <tr>
 <td width="50%" valign="top">
 
-### 🍅 Tomato Diagnosis Expert System
-**University AI Course · 2023**
+### 🍅 ប្រព័ន្ធជំនាញធ្វើរោគវិនិច្ឆ័យប៉េមូតាតូ
+**វគ្គសិក្សា AI របស់សាកលវិទ្យាល័យ · 2023**
 
-An expert system that diagnoses tomato plant diseases from symptoms and rules.
+ប្រព័ន្ធជំនាញដែលធ្វើរោគវិនិច្ឆ័យជំងឺរុក្ខជាតិប៉េមូតាតូពីរោគសញ្ញានិងច្បាប់។
 
 ```yaml
 stack: [Python, Prolog]
-type:   Rule-based Expert System
-status: ✅ Complete
+type:   ប្រព័ន្ធជំនាញផ្អែកលើច្បាប់
+status: ✅ បានបញ្ចប់
 ```
 
 </td>
 <td width="50%" valign="top">
 
-### 📱 Mobile Food Delivery
-**University Project · 2023–2024**
+### 📱 ការដឹកជញ្ជូនអាហារតាមទូរស័ព្ទ
+**គម្រោងសាកលវិទ្យាល័យ · 2023–2024**
 
-Full-stack mobile food ordering & delivery app.
+កម្មវិធីទូរស័ព្ទបញ្ជាទិញនិងដឹកជញ្ជូនអាហារពេញលេញ។
 
 ```yaml
 stack: [Flutter, Dart, Firebase]
-type:   Mobile App
-status: ✅ Complete
+type:   កម្មវិធីទូរស័ព្ទ
+status: ✅ បានបញ្ចប់
 ```
 
 </td>
@@ -133,29 +133,29 @@ status: ✅ Complete
 <tr>
 <td width="50%" valign="top">
 
-### 🧠 Laptop AI Models
-**Self-Study · 2024–Present**
+### 🧠 ម៉ូដែល AI លើកុំព្យូទ័រយួរដៃ
+**សិក្សាដោយខ្លួនឯង · 2024–បច្ចុប្បន្ន**
 
-A personal collection of ML/DL models — image classification, NLP, experiments — all trained locally.
+បណ្តុំផ្ទាល់ខ្លួននៃម៉ូដែល ML/DL — ការចាត់ថ្នាក់រូបភាព, NLP, ការពិសោធន៍ — ទាំងអស់បង្វឹកក្នុងស្រុក។
 
 ```yaml
 stack: [Python, PyTorch, TF, Jupyter]
-type:   ML / DL Experiments
-status: 🔄 Ongoing
+type:   ការពិសោធន៍ ML / DL
+status: 🔄 កំពុងដំណើរការ
 ```
 
 </td>
 <td width="50%" valign="top">
 
-### 🌐 Portfolio v2 (this site!)
-**Current Project · 2025**
+### 🌐 ផតហ្វូលីយ៉ូ v2 (គេហទំព័រនេះ!)
+**គម្រោងបច្ចុប្បន្ន · 2025**
 
-The Vue 3 portfolio you're looking at right now.
+ផតហ្វូលីយ៉ូ Vue 3 ដែលអ្នកកំពុងមើលឥឡូវនេះ។
 
 ```yaml
 stack: [Vue.js, CSS, JS]
-type:   Portfolio
-status: ✅ Live
+type:   ផតហ្វូលីយ៉ូ
+status: ✅ កំពុងដំណើរការ
 ```
 
 </td>
@@ -164,77 +164,77 @@ status: ✅ Live
 
 ---
 
-## 📊 GitHub Stats — Live
+## 📊 ស្ថិតិ GitHub — ផ្ទាល់
 
 <div align="center">
 
 <!-- Self-hosted stats (github-readme-stats vercel deployment is paused) -->
-<img height="195em" src="https://raw.githubusercontent.com/Palolol/Palolol/output/github-stats.svg" alt="GitHub Stats"/>
+<img height="195em" src="https://raw.githubusercontent.com/Palolol/Palolol/output/github-stats.svg" alt="ស្ថិតិ GitHub"/>
 &nbsp;&nbsp;
-<img height="195em" src="https://raw.githubusercontent.com/Palolol/Palolol/output/top-langs.svg" alt="Top Languages"/>
+<img height="195em" src="https://raw.githubusercontent.com/Palolol/Palolol/output/top-langs.svg" alt="ភាសាកំពូល"/>
 
 <br/><br/>
 
 <!-- Streak stats (herokuapp service still works) -->
-<img src="https://github-readme-streak-stats.herokuapp.com?user=Palolol&theme=tokyonight&hide_border=true&background=0d1117&ring=00d9ff&fire=ff00aa&currStreakLabel=00d9ff" alt="Streak Stats"/>
+<img src="https://github-readme-streak-stats.herokuapp.com?user=Palolol&theme=tokyonight&hide_border=true&background=0d1117&ring=00d9ff&fire=ff00aa&currStreakLabel=00d9ff" alt="ស្ថិតិជាប់គ្នា"/>
 
 <br/><br/>
 
 <!-- Contribution Graph (vercel service still works) -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=Palolol&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=00d9ff&line=ff00aa&point=ffffff&area=true&area_color=00d9ff33" alt="Activity Graph" width="95%"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Palolol&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=00d9ff&line=ff00aa&point=ffffff&area=true&area_color=00d9ff33" alt="ក្រាហ្វិកសកម្មភាព" width="95%"/>
 
 </div>
 
 ---
 
-## 🐍 Contribution Snake — Animated
+## 🐍 ពស់ចូលរួម — មានចលនា
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Palolol/Palolol/output/github-contribution-grid-snake-dark.svg" alt="Snake animation" width="95%"/>
+<img src="https://raw.githubusercontent.com/Palolol/Palolol/output/github-contribution-grid-snake-dark.svg" alt="ចលនាពស់" width="95%"/>
 
 </div>
 
 ---
 
-## 🏆 Achievements
+## 🏆 សមិទ្ធិផល
 
 <div align="center">
 
-| | Achievement | Status |
+| | សមិទ្ធិផល | ស្ថានភាព |
 |:-:|:---|:---:|
-| 🐍 | First Python script | ✅ |
-| 🍅 | Tomato Expert System shipped | ✅ |
-| 📱 | Mobile app in production | ✅ |
-| 🤖 | First ML model trained | ✅ |
-| 🧠 | Portfolio v2 deployed | ✅ |
-| 🎓 | University AI course complete | ✅ |
-| 🌐 | Custom domain portfolio | 🔄 |
-| 📚 | Research paper published | 🎯 |
+| 🐍 | ស្គ្រីប Python ដំបូង | ✅ |
+| 🍅 | បានដាក់ឱ្យដំណើរការប្រព័ន្ធជំនាញប៉េមូតាតូ | ✅ |
+| 📱 | កម្មវិធីទូរស័ព្ទកំពុងផលិត | ✅ |
+| 🤖 | បានបង្វឹកម៉ូដែល ML ដំបូង | ✅ |
+| 🧠 | បានដាក់ឱ្យដំណើរការផតហ្វូលីយ៉ូ v2 | ✅ |
+| 🎓 | វគ្គសិក្សា AI របស់សាកលវិទ្យាល័យបានបញ្ចប់ | ✅ |
+| 🌐 | ផតហ្វូលីយ៉ូដែនផ្ទាល់ខ្លួន | 🔄 |
+| 📚 | បានបោះពុម្ពក្រដាសស្រាវជ្រាវ | 🎯 |
 
 </div>
 
 ---
 
-## 📈 WakaTime — Live Coding Stats
+## 📈 WakaTime — ស្ថិតិសរសេរកូដផ្ទាល់
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/Palolol/Palolol/output/wakatime-stats.svg" alt="WakaTime Stats"/>
+<img src="https://raw.githubusercontent.com/Palolol/Palolol/output/wakatime-stats.svg" alt="ស្ថិតិ WakaTime"/>
 
 </div>
 
 ---
 
-## 🎧 Now Playing / Currently Vibing
+## 🎧 កំពុងលេងឥឡូវ / កំពុងរីករាយ
 
 ```text
-🎵 Lo-fi beats & the hum of a laptop fan training a model
+🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 
 ---
 
-## 📫 Let's Connect
+## 📫 តោះភ្ជាប់ទាក់ទង
 
 <div align="center">
 
@@ -258,9 +258,9 @@ status: ✅ Live
 
 <div align="center">
 
-### 💫 *"Every developer starts with a single line of code."* 💫
+### 💫 *"អ្នកអភិវឌ្ឍន៍គេនីមួយៗចាប់ផ្តើមជាមួយបន្ទាត់កូដតែមួយ។"* 💫
 
 <!-- FOOTER WAVE -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:ff00aa,100:9d00ff&height=180&section=footer&text=Thanks%20for%20visiting!%20🚀&fontSize=28&fontColor=ffffff&fontAlignY=70&desc=Palolol%20©%202025%20—%20All%20vibes%20reserved&descSize=14&descAlignY=90&descColor=ffffffaa" alt="Footer Wave"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:ff00aa,100:9d00ff&height=180&section=footer&text=%E1%9E%9A%E1%9E%82%E1%9E%BB%E1%9E%A2%E1%9F%82%E1%9E%9C%20%E1%9E%9F%E1%9E%B6%E1%9E%98%20%E1%9E%80%E1%9E%B6%E1%9E%9A%20%E1%9E%9C%E1%9E%B8%E1%9E%9F%E1%9E%91%E1%9F%80%21%20%F0%9F%9A%80&fontSize=28&fontColor=ffffff&fontAlignY=70&desc=Palolol%20%C2%A9%202025%20%E2%80%94%20%E2%9E%A1%EF%B8%8F%20%E1%9E%9A%E1%9E%80%E1%9F%8B%E1%9E%9F%E1%9E%B6%E1%9F%92%E1%9E%92%E1%9F%81%E1%9E%9F%E1%9F%8B%E1%9E%9A%20%E1%9E%82%E1%9F%92%E1%9E%9A%E1%9E%91%E1%9F%8B%E1%9E%99%E1%9E%B6%E1%9E%84&descSize=14&descAlignY=90&descColor=ffffffaa" alt="Footer Wave"/>
 
 </div>
