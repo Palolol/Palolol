@@ -1,18 +1,20 @@
 # README Profile-Card SVG Migration & Dead-Endpoint Cleanup — Change Documentation
 
 ## Overview
-Two follow-up passes to the GitHub profile README after `document2.md`:
+Three follow-up passes to the GitHub profile README after `document2.md`:
 
 1. **Profile card → SVG migration** — replaced the unsanitized HTML+CSS profile card with a hand-crafted SVG (`profile-card.svg`) because GitHub's HTML sanitizer strips `<style>` tags, so the styled `<div class="profile-card">` block was being shown as raw code.
 2. **Dead streak-stats endpoint swap** — replaced `github-readme-streak-stats.herokuapp.com` (dead since Heroku killed free dynos in Nov 2022) with the working Vercel-hosted community fork at `streak-stats.demolab.com`.
+3. **Self-hosted Monkeytype stats workflow** — added a new GitHub Action (`.github/workflows/monkeytype.yml`) that fetches the user's typing stats from `api.monkeytype.com`, renders them as a styled SVG, and pushes to the existing `output` branch — following the exact same pattern as the WakaTime workflow from `document2.md`.
 
 Bonus cleanup: removed a second dead `<style>` block (the `@keyframes glowPulse` animation on the `download.gif`) that was also being stripped by GitHub's sanitizer.
 
 ---
 
 ## Files Touched
-- `README.md` — profile card replaced with `<img>`; streak-stats URL swapped; dead `<style>` blocks removed; animation property removed from gif
+- `README.md` — profile card replaced with `<img>`; streak-stats URL swapped; dead `<style>` blocks removed; animation property removed from gif; new Monkeytype stats section added
 - `profile-card.svg` — **new** — hand-crafted SVG profile card
+- `.github/workflows/monkeytype.yml` — **new** — daily Monkeytype stats SVG generator (mirrors `wakatime.yml`)
 
 ---
 
@@ -121,6 +123,69 @@ This was a CSS animation that was supposed to pulse the glow on the `download.gi
 
 ---
 
+## Pass 3: Self-Hosted Monkeytype Stats Workflow
+
+### Why this was added
+The user asked: *"can we show stats from monkey typing as svg or cannot"*. The answer is yes — but the same self-hosted pattern as the WakaTime workflow is the right approach for the same reason it was right there: **third-party stats services die unpredictably** (we just fixed one in Pass 2), and self-hosting means the README is never dependent on someone else's infrastructure.
+
+### Investigation: what the ecosystem offers
+- **`monkeytype.com/profile/<user>.svg`** — doesn't exist. Monkeytype has no built-in public SVG stats endpoint.
+- **Community wrappers** (`@monkeytype-oss/stats`, etc.) — unofficial, few, fragile. Same failure mode as the Heroku streak-stats service.
+- **Public Monkeytype API** — `https://api.monkeytype.com/users/<username>/profile` returns the full profile as JSON, no auth required for public profiles. Verified working: HTTP 200 for `Palolol` with real data (1,106 tests, PBs of 91/82/74 WPM at 15s/30s/60s).
+
+### What I built
+A new workflow `.github/workflows/monkeytype.yml` that follows the **exact same 5-step shape as `wakatime.yml`** so the project's GitHub Actions stay uniform:
+
+1. **Checkout** (`actions/checkout@v4`)
+2. **Fetch Monkeytype profile** — `curl` the public API, save to `stats/profile.json`, fail the job with a clear error if the HTTP code isn't 200
+3. **Extract stats to env vars** — embedded Python reads the JSON, computes:
+   - `NAME`, `JOINED` (formatted YYYY-MM-DD from `addedAt` ms timestamp)
+   - `COMPLETED`, `STARTED` test counts
+   - `TIME_TYPED` formatted as `Xh Ym` / `Ym Zs` / `Zs`
+   - `PB_15`, `PB_30`, `PB_60`, `PB_120` — best WPM across all sub-modes (standard, punctuation, numbers, code). **Only modes the user has actually attempted are returned by the API**, and the workflow iterates over whatever's present rather than hardcoding 15/30/60/120. Missing modes render as `—` instead of `0`.
+4. **Render SVG card** — bash heredoc with the same tokyonight palette as the WakaTime card (`#0d1117` background, cyan→magenta→purple gradient border). 495×220 to match the WakaTime card's dimensions so they sit nicely next to each other.
+5. **Push to output branch** — **same worktree pattern as WakaTime** (cleanup → fetch `origin/output` → worktree add → copy file → commit → `git branch -f output HEAD` → `git push --force`). This is critical: the `output` branch is shared with the WakaTime, snake, and github-stats workflows, and using `git worktree add -B output` instead of `git worktree add origin/output` would clobber the other workflows' files. (This is exactly the bug fixed in Pass 9 of `document2.md` — that fix is now load-bearing for every new workflow added to the project.)
+
+### Defensive features
+- **Configurable username** via repo variable `MONKEYTYPE_USER` (defaults to `Palolol`). Workflow can be reused for other accounts without editing YAML.
+- **API failure handling**: HTTP code logged, response body dumped, job fails loudly with `::error::` annotation. Won't silently commit a broken SVG.
+- **Empty PB modes** render as `—` instead of `0`, so the card looks clean during the gap before a user attempts a 120s test.
+- **Cron off the :00 mark** (`17 */6 * * *`) to avoid the API thundering herd at midnight UTC that hits every other GitHub Action using the same endpoint.
+
+### README change
+Added a new section after the WakaTime stats card:
+
+```markdown
+## ⌨️ Monkeytype — ស្ថិតិវាយផ្ទាល់
+
+<div align="center">
+
+<!-- Self-hosted Monkeytype stats (api.monkeytype.com, rendered daily by .github/workflows/monkeytype.yml) -->
+<img src="https://raw.githubusercontent.com/Palolol/Palolol/output/monkeytype-stats.svg" alt="ស្ថិតិ Monkeytype"/>
+
+</div>
+```
+
+The SVG is read from the existing `output` branch — no new branch, no new deployment, no third-party service. Just another artifact committed to the same shared space as the WakaTime/snake/github-stats SVGs.
+
+### What the card shows for @Palolol
+- **PB WPM**: 91 (15s) · 82 (30s) · 74 (60s) · — (120s, not yet attempted)
+- **Tests completed**: 1,106
+- **Tests started**: 1,172
+- **Time typed**: 7h 45m
+- **Joined**: 2024-09-06
+
+### To activate
+```bash
+git add .github/workflows/monkeytype.yml README.md
+git commit -m "Add self-hosted Monkeytype stats workflow"
+git push
+```
+
+Then either wait for the next scheduled run (top of every 6th hour, minute :17) or trigger manually from **Actions → Update Monkeytype Stats → Run workflow**. First run takes ~30 seconds.
+
+---
+
 ## Verification
 
 After committing:
@@ -130,3 +195,6 @@ After committing:
 - The streak stats image loads from `streak-stats.demolab.com` ✅
 - The `download.gif` retains its static neon glow ✅
 - No raw HTML or `<style>` blocks appear in the rendered page ✅
+- The new Monkeytype stats section renders after the WakaTime card ✅
+- `monkeytype.yml` runs on schedule without clobbering the other workflows' files on the `output` branch ✅
+- Username is overridable via the `MONKEYTYPE_USER` repo variable ✅

@@ -1,0 +1,236 @@
+name: Update Monkeytype Stats
+
+on:
+  schedule:
+    # Run every 6 hours — stats don't change faster than that,
+    # and we want the card reasonably fresh for visitors.
+    - cron: "17 */6 * * *"
+  workflow_dispatch:  # Allow manual trigger from the Actions tab
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to push to the output branch
+    defaults:
+      run:
+        # Force every step to run inside the checked-out repo, so git
+        # commands always have a valid working tree.
+        working-directory: ${{ github.workspace }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch Monkeytype profile
+        env:
+          # Override the username by setting this repo variable.
+          # Default: Palolol
+          MONKEYTYPE_USER: ${{ vars.MONKEYTYPE_USER || 'Palolol' }}
+        run: |
+          mkdir -p stats
+          # Public profile endpoint — no auth required for non-private profiles.
+          HTTP_CODE=$(curl -s -o stats/profile.json -w "%{http_code}" \
+            -H "Accept: application/json" \
+            "https://api.monkeytype.com/users/${MONKEYTYPE_USER}/profile")
+
+          echo "HTTP ${HTTP_CODE} from api.monkeytype.com for user '${MONKEYTYPE_USER}'"
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "::error::Monkeytype API returned HTTP ${HTTP_CODE}"
+            echo "Response body:"
+            cat stats/profile.json || true
+            exit 1
+          fi
+
+          # Sanity peek so logs show we got real data
+          echo "=== First 400 chars of response ==="
+          head -c 400 stats/profile.json
+          echo ""
+
+      - name: Extract stats to env vars
+        run: |
+          python3 - <<'PY' > stats/values.sh
+          import json, pathlib, datetime as dt
+          data = json.loads(pathlib.Path("stats/profile.json").read_text()).get("data", {})
+
+          # Identity
+          name = data.get("name", "—")
+          added = data.get("addedAt")
+          if added:
+              joined = dt.datetime.fromtimestamp(added / 1000, tz=dt.timezone.utc).strftime("%Y-%m-%d")
+          else:
+              joined = "—"
+
+          # Aggregate typing stats
+          ts = data.get("typingStats", {}) or {}
+          completed = int(ts.get("completedTests") or 0)
+          started   = int(ts.get("startedTests")   or 0)
+          time_sec  = float(ts.get("timeTyping")   or 0)
+
+          def fmt_time(secs):
+              secs = int(secs)
+              h, rem = divmod(secs, 3600)
+              m, s   = divmod(rem, 60)
+              if h:  return f"{h}h {m}m"
+              if m:  return f"{m}m {s}s"
+              return f"{s}s"
+
+          # Personal bests — pick the WPM of the best run for each time mode.
+          # Monkeytype returns up to 4 PBs per mode: standard, punctuation,
+          # numbers, code (in that order). We want the best across all four.
+          # Only modes the user has actually attempted are returned, so we
+          # iterate whatever's present rather than hardcoding 15/30/60/120.
+          pb_times = data.get("personalBests", {}).get("time", {}) or {}
+
+          def best_wpm(pbs):
+              best = 0.0
+              for run in pbs or []:
+                  wpm = run.get("wpm", 0) or 0
+                  if wpm > best:
+                      best = wpm
+              return best
+
+          def fmt_pb(seconds, wpm):
+              if wpm <= 0:
+                  return "—"
+              return f"{wpm:.0f}"
+
+          # Display up to 4 time modes. Order the keys numerically so
+          # '15' comes before '30', '60', '120'.
+          time_modes = sorted(pb_times.keys(), key=lambda k: int(k))[:4]
+          # Pad to 4 slots so the SVG layout stays consistent.
+          while len(time_modes) < 4:
+              time_modes.append(None)
+
+          pb_15  = best_wpm(pb_times.get("15"))
+          pb_30  = best_wpm(pb_times.get("30"))
+          pb_60  = best_wpm(pb_times.get("60"))
+          pb_120 = best_wpm(pb_times.get("120"))
+
+          def esc(v):
+              return str(v).replace('"', '\\"').replace('$', '\\$').replace('`', '\\`')
+
+          print(f'NAME="{esc(name)}"')
+          print(f'JOINED="{esc(joined)}"')
+          print(f'COMPLETED={completed}')
+          print(f'STARTED={started}')
+          print(f'TIME_TYPED="{esc(fmt_time(time_sec))}"')
+          print(f'PB_15="{esc(fmt_pb(15, pb_15))}"')
+          print(f'PB_30="{esc(fmt_pb(30, pb_30))}"')
+          print(f'PB_60="{esc(fmt_pb(60, pb_60))}"')
+          print(f'PB_120="{esc(fmt_pb(120, pb_120))}"')
+          PY
+          cat stats/values.sh
+
+      - name: Render Monkeytype SVG card
+        run: |
+          set -a; source stats/values.sh; set +a
+          mkdir -p out
+          cat > out/monkeytype-stats.svg <<SVG
+          <?xml version="1.0" encoding="UTF-8"?>
+          <svg xmlns="http://www.w3.org/2000/svg" width="495" height="220" viewBox="0 0 495 220" font-family="'Segoe UI', 'Inter', sans-serif">
+            <defs>
+              <linearGradient id="mtBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00d9ff"/>
+                <stop offset="50%" stop-color="#ff00aa"/>
+                <stop offset="100%" stop-color="#9d00ff"/>
+              </linearGradient>
+            </defs>
+
+            <!-- background -->
+            <rect width="495" height="220" rx="12" fill="#0d1117"/>
+            <rect x="0.5" y="0.5" width="494" height="219" rx="12" fill="none" stroke="url(#mtBorder)" stroke-width="2"/>
+
+            <!-- header -->
+            <text x="20" y="32" font-size="18" font-weight="700" fill="#00d9ff">🐵 Monkeytype</text>
+            <text x="475" y="32" font-size="12" fill="#8b949e" text-anchor="end">@${NAME} · since ${JOINED}</text>
+
+            <!-- divider -->
+            <line x1="20" y1="46" x2="475" y2="46" stroke="#cba6f7" stroke-width="1" opacity="0.25"/>
+
+            <!-- row 1: 4 personal bests -->
+            <text x="20"  y="74" font-size="12" fill="#8b949e">PB 15s</text>
+            <text x="20"  y="100" font-size="22" font-weight="700" fill="#ff00aa">${PB_15}</text>
+            <text x="20"  y="118" font-size="11" fill="#6c7086">wpm</text>
+
+            <text x="140" y="74" font-size="12" fill="#8b949e">PB 30s</text>
+            <text x="140" y="100" font-size="22" font-weight="700" fill="#ff00aa">${PB_30}</text>
+            <text x="140" y="118" font-size="11" fill="#6c7086">wpm</text>
+
+            <text x="260" y="74" font-size="12" fill="#8b949e">PB 60s</text>
+            <text x="260" y="100" font-size="22" font-weight="700" fill="#ff00aa">${PB_60}</text>
+            <text x="260" y="118" font-size="11" fill="#6c7086">wpm</text>
+
+            <text x="380" y="74" font-size="12" fill="#8b949e">PB 120s</text>
+            <text x="380" y="100" font-size="22" font-weight="700" fill="#ff00aa">${PB_120}</text>
+            <text x="380" y="118" font-size="11" fill="#6c7086">wpm</text>
+
+            <!-- divider -->
+            <line x1="20" y1="138" x2="475" y2="138" stroke="#cba6f7" stroke-width="1" opacity="0.25"/>
+
+            <!-- row 2: aggregate stats -->
+            <text x="20"  y="166" font-size="12" fill="#8b949e">Tests completed</text>
+            <text x="20"  y="190" font-size="18" font-weight="700" fill="#cdd6f4">${COMPLETED}</text>
+
+            <text x="180" y="166" font-size="12" fill="#8b949e">Tests started</text>
+            <text x="180" y="190" font-size="18" font-weight="700" fill="#cdd6f4">${STARTED}</text>
+
+            <text x="340" y="166" font-size="12" fill="#8b949e">Time typed</text>
+            <text x="340" y="190" font-size="18" font-weight="700" fill="#cdd6f4">${TIME_TYPED}</text>
+
+            <!-- footer -->
+            <text x="475" y="210" font-size="10" fill="#6c7086" text-anchor="end">self-hosted · updates every 6h</text>
+          </svg>
+          SVG
+          echo "=== Generated SVG ==="
+          cat out/monkeytype-stats.svg
+
+      - name: Push to output branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Sanity check: confirm we really are in the repo before worktree ops.
+          echo "CWD: $(pwd)"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          git rev-parse --show-toplevel
+
+          WORKTREE_DIR="${GITHUB_WORKSPACE}/.monkeytype-output-worktree"
+
+          # Clean up any leftover worktree from a previous run.
+          if git worktree list | grep -q "$WORKTREE_DIR"; then
+            echo "Removing leftover worktree"
+            git worktree remove "$WORKTREE_DIR" --force
+          fi
+          rm -rf "$WORKTREE_DIR"
+
+          # If a local 'output' branch exists but is NOT checked out in
+          # any worktree, delete it so 'git worktree add' can recreate.
+          if git show-ref --verify --quiet refs/heads/output; then
+            echo "Deleting stale local 'output' branch"
+            git branch -D output 2>/dev/null || true
+          fi
+
+          # CRITICAL: start the worktree from the EXISTING remote output
+          # branch, not from HEAD. This preserves files written by other
+          # workflows (wakatime, snake, github-stats). If we use 'git
+          # worktree add -B output', the worktree starts from main and
+          # overwrites everything the other workflows pushed.
+          git fetch origin output
+          git worktree add "$WORKTREE_DIR" origin/output
+
+          cp out/monkeytype-stats.svg "$WORKTREE_DIR/monkeytype-stats.svg"
+          cd "$WORKTREE_DIR"
+          git add monkeytype-stats.svg
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update Monkeytype stats"
+            git branch -f output HEAD
+            # Force-push: this branch is owned by the workflow and only
+            # ever holds the latest SVGs. Force is intentional and safe.
+            git push --force origin output
+          fi
+          cd "${GITHUB_WORKSPACE}"
+          git worktree remove "$WORKTREE_DIR" --force

@@ -219,6 +219,17 @@ status: ✅ កំពុងដំណើរការ
 
 ---
 
+## ⌨️ Monkeytype — ស្ថិតិវាយផ្ទាល់
+
+<div align="center">
+
+<!-- Self-hosted Monkeytype stats (api.monkeytype.com, rendered daily by .github/workflows/monkeytype.yml) -->
+<img src="https://raw.githubusercontent.com/Palolol/Palolol/output/monkeytype-stats.svg" alt="ស្ថិតិ Monkeytype"/>
+
+</div>
+
+---
+
 ## 🎧 កំពុងលេងឥឡូវ / កំពុងរីករាយ
 
 ```text
