@@ -20,7 +20,7 @@
 
 ---
 
-<img src="https://readme-typing-svg.demolab.com?font=Battambang&size=24&color=FFFFFF&center=true&width=400&lines=%E1%9E%A2%E1%9F%86%E1%9E%96%E1%9E%B8%E1%9E%81%E1%9F%92%E1%9E%89%E1%9E%BB%E1%9F%86" />
+<img src="https://readme-typing-svg.demolab.com?font=Battambang&weight=700&size=24&duration=1&pause=1000000&color=FFFFFF&width=400&x=0&lines=%E1%9E%A2%E1%9F%86%E1%9E%96%E1%9E%B8%E1%9E%81%E1%9F%92%E1%9E%89%E1%9E%BB%E1%9F%86" alt="អំពីខ្ញុំ" />
 
 <div align="center">
 
@@ -29,16 +29,14 @@
 
 <br/><br/>
 
-| | 🌱 **កំពុងរៀន** | 🛠️ **កំពុងសាងសង់** | 🎯 **គោលដៅ** |
-|:-:|:---|:---|:---|
-| 1 | Deep Learning & LLMs | ម៉ូដែល AI/ML | ការស្រាវជ្រាវ AI |
-| 2 | Computer Vision | ប្រព័ន្ធជំនាញ | ប្រភពបើកចំហ |
-| 3 | Mobile Dev (Flutter) | គម្រោងផតហ្វូលីយ៉ូ | ផលប៉ះពាល់ |
+<p align="center">
+  <img src="./assets/learning-table.svg" alt="Learning Table" width="900">
+</p>
 
 <p>
   <img src="https://img.shields.io/badge/🌱-Currently%20Learning-00d9ff?style=for-the-badge&labelColor=0d1117" alt="Currently Learning"/>
   <img src="https://img.shields.io/badge/🛠️-Currently%20Building-ff00aa?style=for-the-badge&labelColor=0d1117" alt="Currently Building"/>
-  <img src="https://img.shields.io/badge/🎯-Goal-AI%20Research-9d00ff?style=for-the-badge&labelColor=0d1117" alt="Goal"/>
+  <img src="https://img.shields.io/badge/🎯-Goal%20AI%20Research-9d00ff?style=for-the-badge&labelColor=0d1117" alt="Goal"/>
 </p>
 
 </div>
@@ -237,7 +235,9 @@ status: ✅ កំពុងដំណើរការ
 
 ---
 
-## 📫 តោះភ្ជាប់ទាក់ទង
+<p align="left">
+  <img src="https://readme-typing-svg.demolab.com?font=Battambang&weight=700&size=25&duration=1&pause=1000000&color=FFFFFF&vCenter=true&width=550&lines=%F0%9F%93%AB+%E1%9E%91%E1%9F%86%E1%9E%93%E1%9E%B6%E1%9E%80%E1%9F%8B%E1%9E%91%E1%9F%86%E1%9E%93%E1%9E%84%E1%9E%8F%E1%9E%B6%E1%9E%98" alt="ទំនាក់ទំនងតាម" />
+</p>
 
 <div align="center">
 
@@ -260,7 +260,7 @@ status: ✅ កំពុងដំណើរការ
 ---
 
 <div align="center">
-<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+Khmer&weight=700&size=20&duration=1&pause=1000000&color=FFFFFF&center=true&vCenter=true&width=900&lines=%F0%9F%92%AB+%22%E1%9E%A2%E1%9F%92%E1%9E%93%E1%9E%80%E1%9E%A2%E1%9E%97%E1%9E%B7%E1%9E%9C%E1%9E%8C%E1%9F%92%E1%9E%8D%E1%9E%93%E1%9F%8D%E1%9E%82%E1%9F%92%E1%9E%9A%E1%9E%94%E1%9F%8B%E1%9E%9A%E1%9E%BC%E1%9E%94%E1%9E%85%E1%9E%B6%E1%9E%94%E1%9F%8B%E1%9E%95%E1%9F%92%E1%9E%8F%E1%9E%BE%E1%9E%98%E1%9E%96%E1%9E%B8%E1%9E%94%E1%9E%93%E1%9F%92%E1%9E%91%E1%9E%B6%E1%9E%8F%E1%9F%8B%E1%9E%80%E1%9E%BC%E1%9E%8A%E1%9E%8F%E1%9F%82%E1%9E%98%E1%9E%BD%E1%9E%99%E1%9F%94%22+%F0%9F%92%AB" />
+<img src="https://readme-typing-svg.demolab.com?font=Battambang&weight=700&size=35&duration=1&pause=1000000&color=FFFFFF&center=true&vCenter=true&width=900&lines=%F0%9F%92%AB+%22%E1%9E%A2%E1%9F%92%E1%9E%93%E1%9E%80%E1%9E%A2%E1%9E%97%E1%9E%B7%E1%9E%9C%E1%9E%8C%E1%9F%92%E1%9E%8D%E1%9E%93%E1%9F%8D%E1%9E%82%E1%9F%92%E1%9E%9A%E1%9E%94%E1%9F%8B%E1%9E%9A%E1%9E%BC%E1%9E%94%E1%9E%85%E1%9E%B6%E1%9E%94%E1%9F%8B%E1%9E%95%E1%9F%92%E1%9E%8F%E1%9E%BE%E1%9E%98%E1%9E%96%E1%9E%B8%E1%9E%94%E1%9E%93%E1%9F%92%E1%9E%91%E1%9E%B6%E1%9E%8F%E1%9F%8B%E1%9E%80%E1%9E%BC%E1%9E%8A%E1%9E%8F%E1%9F%82%E1%9E%98%E1%9E%BD%E1%9E%99%E1%9F%94%22+%F0%9F%92%AB" />
 
 <!-- FOOTER WAVE -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:ff00aa,100:9d00ff&height=180&section=footer&text=Thanks%20for%20visiting!%20🚀&fontSize=28&fontColor=ffffff&fontAlignY=70&desc=Palolol%20©%202025%20—%20All%20vibes%20reserved&descSize=14&descAlignY=90&descColor=ffffffaa" alt="Footer Wave"/>

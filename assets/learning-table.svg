@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240">
+
+  <defs>
+    <style>
+      .title {
+        font-family: Battambang, "Noto Sans Khmer", sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+        fill: #ffffff;
+      }
+
+      .text {
+        font-family: Battambang, "Noto Sans Khmer", sans-serif;
+        font-size: 16px;
+        fill: #c9d1d9;
+      }
+
+      .num {
+        font-family: sans-serif;
+        font-size: 16px;
+        font-weight: bold;
+        fill: #58a6ff;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect
+    x="0"
+    y="0"
+    width="900"
+    height="240"
+    rx="14"
+    fill="#161b22"
+    stroke="#30363d"
+  />
+
+  <!-- Header Divider -->
+  <line
+    x1="20"
+    y1="55"
+    x2="880"
+    y2="55"
+    stroke="#30363d"
+  />
+
+  <!-- Headers -->
+  <text x="40" y="38" class="title">#</text>
+  <text x="90" y="38" class="title">🌱 កំពុងសិក្សា</text>
+  <text x="360" y="38" class="title">🛠️ កំពុងអភិវឌ្ឍ</text>
+  <text x="640" y="38" class="title">🎯 គោលដៅ</text>
+
+  <!-- Row 1 -->
+  <text x="42" y="95" class="num">1</text>
+  <text x="90" y="95" class="text">Deep Learning &amp; LLMs</text>
+  <text x="360" y="95" class="text">គម្រោង AI/ML</text>
+  <text x="640" y="95" class="text">ស្រាវជ្រាវផ្នែក AI</text>
+
+  <!-- Divider -->
+  <line
+    x1="20"
+    y1="110"
+    x2="880"
+    y2="110"
+    stroke="#30363d"
+  />
+
+  <!-- Row 2 -->
+  <text x="42" y="145" class="num">2</text>
+  <text x="90" y="145" class="text">Computer Vision</text>
+  <text x="360" y="145" class="text">ប្រព័ន្ធឆ្លាតវៃ</text>
+  <text x="640" y="145" class="text">Open Source</text>
+
+  <!-- Divider -->
+  <line
+    x1="20"
+    y1="160"
+    x2="880"
+    y2="160"
+    stroke="#30363d"
+  />
+
+  <!-- Row 3 -->
+  <text x="42" y="195" class="num">3</text>
+  <text x="90" y="195" class="text">Mobile Development (Flutter)</text>
+  <text x="360" y="195" class="text">Portfolio Project</text>
+  <text x="640" y="195" class="text">បង្កើតផលប៉ះពាល់</text>
+
+</svg>
