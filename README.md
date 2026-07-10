@@ -262,7 +262,7 @@ status: ✅ កំពុងដំណើរការ
 
 <div align="center">
 
-### 💫 *"អ្នកអភិវឌ្ឍន៍គេនីមួយៗចាប់ផ្តើមជាមួយបន្ទាត់កូដតែមួយ។"* 💫
+### 💫 <font face="Battambang">"អ្នកអភិវឌ្ឍន៍នីមួយៗចាប់ផ្តើមជាមួយបន្ទាត់កូដតែមួយ។"</font> 💫
 
 <!-- FOOTER WAVE -->
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:ff00aa,100:9d00ff&height=180&section=footer&text=Thanks%20for%20visiting!%20🚀&fontSize=28&fontColor=ffffff&fontAlignY=70&desc=Palolol%20©%202025%20—%20All%20vibes%20reserved&descSize=14&descAlignY=90&descColor=ffffffaa" alt="Footer Wave"/>
