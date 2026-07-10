@@ -21,7 +21,7 @@
 
 ---
 
-## 🧬 អំពីខ្ញុំ
+<img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+Khmer&weight=700&size=24&duration=1&pause=1000000&color=ffffff&center=true&width=350&height=40&lines=🧬+អំពីខ្ញុំ" />
 
 <div align="center">
 
