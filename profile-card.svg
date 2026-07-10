@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360" font-family="'Kantumruuy Pro', 'Inter', 'Segoe UI', Arial, sans-serif">
+  <!-- Definitions: gradients & filters -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1e2e"/>
+      <stop offset="100%" stop-color="#181825"/>
+    </linearGradient>
+    <linearGradient id="borderGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cba6f7"/>
+      <stop offset="50%" stop-color="#f5c2e7"/>
+      <stop offset="100%" stop-color="#94e2d5"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="4" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.45"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="textGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.8"/>
+      <feOffset dx="0" dy="0" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.25"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Card background with border -->
+  <rect x="4" y="4" width="472" height="352" rx="16" ry="16"
+        fill="url(#bgGradient)"
+        stroke="url(#borderGradient)"
+        stroke-width="2"
+        filter="url(#softShadow)"/>
+
+  <!-- Decorative corner accents -->
+  <circle cx="32" cy="32" r="3" fill="#cba6f7" opacity="0.6"/>
+  <circle cx="448" cy="32" r="3" fill="#94e2d5" opacity="0.6"/>
+  <circle cx="32" cy="328" r="3" fill="#f5c2e7" opacity="0.6"/>
+  <circle cx="448" cy="328" r="3" fill="#cba6f7" opacity="0.6"/>
+
+  <!-- Title accent bar -->
+  <rect x="24" y="22" width="4" height="22" rx="2" fill="#cba6f7"/>
+  <text x="40" y="40" font-size="13" font-weight="700" fill="#cba6f7" letter-spacing="2">
+    PALOLOL · PROFILE
+  </text>
+
+  <!-- Divider line -->
+  <line x1="24" y1="58" x2="456" y2="58" stroke="#cba6f7" stroke-width="1" opacity="0.25"/>
+
+  <!-- Emoji lines (each row: emoji + text + trailing emoji) -->
+  <!-- Row 1 -->
+  <text x="40" y="108" font-size="24" filter="url(#textGlow)">🎓</text>
+  <text x="80" y="108" font-size="16" fill="#cdd6f4" font-weight="500">និស្សិតសាកលវិទ្យាល័យ · AI/ML</text>
+  <text x="424" y="108" font-size="24" filter="url(#textGlow)">🤖</text>
+
+  <!-- Row 2 -->
+  <text x="40" y="160" font-size="24" filter="url(#textGlow)">🐍</text>
+  <text x="80" y="160" font-size="16" fill="#cdd6f4" font-weight="500">Python · C++ · Vue.js</text>
+  <text x="380" y="160" font-size="16" fill="#89b4fa" font-weight="600">⚡</text>
+
+  <!-- Row 3 -->
+  <text x="40" y="212" font-size="24" filter="url(#textGlow)">🧠</text>
+  <text x="80" y="212" font-size="16" fill="#cdd6f4" font-weight="500">កំពុងបង្កើតម៉ូដែលលើកុំព្យូទ័រយួរដៃ</text>
+  <text x="424" y="212" font-size="20" filter="url(#textGlow)">💻</text>
+
+  <!-- Row 4 -->
+  <text x="40" y="264" font-size="24" filter="url(#textGlow)">🍅</text>
+  <text x="80" y="264" font-size="16" fill="#cdd6f4" font-weight="500">បានបង្កើតប្រព័ន្ធជំនាញផ្លែប៉េងប៉ោះ</text>
+  <text x="416" y="264" font-size="20" filter="url(#textGlow)">✨</text>
+
+  <!-- Bottom divider -->
+  <line x1="24" y1="298" x2="456" y2="298" stroke="#cba6f7" stroke-width="1" opacity="0.25"/>
+
+  <!-- Footer status row -->
+  <circle cx="40" cy="328" r="4" fill="#a6e3a1">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="54" y="333" font-size="12" fill="#a6e3a1" font-weight="600" letter-spacing="1">AVAILABLE FOR COLLAB</text>
+  <text x="456" y="333" font-size="12" fill="#6c7086" text-anchor="end" font-weight="500">v2.0 · 2025</text>
+</svg>

@@ -23,50 +23,24 @@
 
 ## 🧬 អំពីខ្ញុំ
 
-<div class="profile-card">
-  <div class="emoji-line">🎓 <span>និស្សិតសាកលវិទ្យាល័យ · AI/ML</span> 🤖</div>
-  <div class="emoji-line">🐍 <span>Python · C++ · Vue.js</span></div>
-  <div class="emoji-line">🧠 <span>កំពុងបង្កើតម៉ូដែលលើកុំព្យូទ័រយួរដៃ</span></div>
-  <div class="emoji-line">🍅 <span>បានបង្កើតប្រព័ន្ធជំនាញផ្លែប៉េងប៉ោះ</span></div>
-</div>
-
-<style>
-  .profile-card {
-    background: #1e1e2e; /* Sleek dark background */
-    color: #cdd6f4;
-    border: 2px solid #cba6f7; /* Elegant pastel border */
-    border-radius: 12px;
-    padding: 24px;
-    max-width: 400px;
-    margin: 20px auto;
-    font-family: 'Kantumruuy Pro', 'Inter', sans-serif;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  }
-  .emoji-line {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  .emoji-line:last-child {
-    margin-bottom: 0;
-  }
-  /* Responsive text sizing for smaller mobile screens */
-  @media (max-width: 400px) {
-    .profile-card { margin: 10px; padding: 16px; }
-    .emoji-line { font-size: 0.9rem; }
-  }
-</style>
-
 <div align="center">
 
-| 🌱 **កំពុងរៀន** | 🛠️ **កំពុងសាងសង់** | 🎯 **គោលដៅ** |
-|:---:|:---:|:---:|
-| Deep Learning & LLMs | ម៉ូដែល AI/ML | ការស្រាវជ្រាវ AI |
-| Computer Vision | ប្រព័ន្ធជំនាញ | ប្រភពបើកចំហ |
-| Mobile Dev (Flutter) | គម្រោងផតហ្វូលីយ៉ូ | ផលប៉ះពាល់ |
+<!-- Profile card (rendered as SVG so GitHub's HTML sanitizer doesn't strip the styles) -->
+<img src="./profile-card.svg" alt="Palolol Profile Card" width="480"/>
+
+<br/><br/>
+
+| | 🌱 **កំពុងរៀន** | 🛠️ **កំពុងសាងសង់** | 🎯 **គោលដៅ** |
+|:-:|:---|:---|:---|
+| 1 | Deep Learning & LLMs | ម៉ូដែល AI/ML | ការស្រាវជ្រាវ AI |
+| 2 | Computer Vision | ប្រព័ន្ធជំនាញ | ប្រភពបើកចំហ |
+| 3 | Mobile Dev (Flutter) | គម្រោងផតហ្វូលីយ៉ូ | ផលប៉ះពាល់ |
+
+<p>
+  <img src="https://img.shields.io/badge/🌱-Currently%20Learning-00d9ff?style=for-the-badge&labelColor=0d1117" alt="Currently Learning"/>
+  <img src="https://img.shields.io/badge/🛠️-Currently%20Building-ff00aa?style=for-the-badge&labelColor=0d1117" alt="Currently Building"/>
+  <img src="https://img.shields.io/badge/🎯-Goal-AI%20Research-9d00ff?style=for-the-badge&labelColor=0d1117" alt="Goal"/>
+</p>
 
 </div>
 
@@ -104,20 +78,13 @@
 <div align="center">
 
 <!-- THE ANIMATED DOWNLOAD.GIF — referenced via the local file path so GitHub renders it inline -->
-<img src="./download.gif" alt="Animated Demo" width="540" style="border-radius: 14px; box-shadow: 0 0 40px #00d9ff88, 0 0 80px #ff00aa44; border: 2px solid #00d9ff; animation: glowPulse 2.5s ease-in-out infinite alternate;"/>
+<img src="./download.gif" alt="Animated Demo" width="540" style="border-radius: 14px; box-shadow: 0 0 40px #00d9ff88, 0 0 80px #ff00aa44; border: 2px solid #00d9ff;"/>
 
 <br/>
 
 ### ✨ *ការមើលផ្ទាល់ — មកពីការសាងសង់របស់ខ្ញុំ* ✨
 
 </div>
-
-<style>
-@keyframes glowPulse {
-  from { box-shadow: 0 0 30px #00d9ff66, 0 0 60px #ff00aa22; }
-  to   { box-shadow: 0 0 50px #00d9ffaa, 0 0 100px #ff00aa55; }
-}
-</style>
 
 > 🔗 **ប្រភពទ្រព្យសម្បត្តិ:** [Steam UGC mirror](https://images.steamusercontent.com/ugc/799867431808682621/1B94857CB0F1F3ADFDC3FF8D6027DD448F565ED9/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false) — ឆ្លុះក្នុងស្រុកជា `download.gif` សម្រាប់ការបង្ហាញ GitHub លឿន។
 
@@ -201,8 +168,8 @@ status: ✅ កំពុងដំណើរការ
 
 <br/><br/>
 
-<!-- Streak stats (herokuapp service still works) -->
-<img src="https://github-readme-streak-stats.herokuapp.com?user=Palolol&theme=tokyonight&hide_border=true&background=0d1117&ring=00d9ff&fire=ff00aa&currStreakLabel=00d9ff" alt="ស្ថិតិជាប់គ្នា"/>
+<!-- Streak stats (migrated from dead herokuapp endpoint to the Vercel-hosted demolab fork) -->
+<img src="https://streak-stats.demolab.com?user=Palolol&theme=tokyonight&hide_border=true&background=0d1117&ring=00d9ff&fire=ff00aa&currStreakLabel=00d9ff" alt="ស្ថិតិជាប់គ្នា"/>
 
 <br/><br/>
 
@@ -287,6 +254,6 @@ status: ✅ កំពុងដំណើរការ
 ### 💫 *"អ្នកអភិវឌ្ឍន៍គេនីមួយៗចាប់ផ្តើមជាមួយបន្ទាត់កូដតែមួយ។"* 💫
 
 <!-- FOOTER WAVE -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:ff00aa,100:9d00ff&height=180&section=footer&text=%E1%9E%9A%E1%9E%82%E1%9E%BB%E1%9E%A2%E1%9F%82%E1%9E%9C%20%E1%9E%9F%E1%9E%B6%E1%9E%98%20%E1%9E%80%E1%9E%B6%E1%9E%9A%20%E1%9E%9C%E1%9E%B8%E1%9E%9F%E1%9E%91%E1%9F%80%21%20%F0%9F%9A%80&fontSize=28&fontColor=ffffff&fontAlignY=70&desc=Palolol%20%C2%A9%202025%20%E2%80%94%20%E2%9E%A1%EF%B8%8F%20%E1%9E%9A%E1%9E%80%E1%9F%8B%E1%9E%9F%E1%9E%B6%E1%9F%92%E1%9E%92%E1%9F%81%E1%9E%9F%E1%9F%8B%E1%9E%9A%20%E1%9E%82%E1%9F%92%E1%9E%9A%E1%9E%91%E1%9F%8B%E1%9E%99%E1%9E%B6%E1%9E%84&descSize=14&descAlignY=90&descColor=ffffffaa" alt="Footer Wave"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:00d9ff,50:ff00aa,100:9d00ff&height=180&section=footer&text=Thanks%20for%20visiting!%20🚀&fontSize=28&fontColor=ffffff&fontAlignY=70&desc=Palolol%20©%202025%20—%20All%20vibes%20reserved&descSize=14&descAlignY=90&descColor=ffffffaa" alt="Footer Wave"/>
 
 </div>
