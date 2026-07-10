@@ -6,7 +6,7 @@
 <br/>
 
 <!-- TYPING ANIMATION -->
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=800&color=00D9FF&center=true&vCenter=true&multiline=true&width=700&height=100&lines=%E1%9E%9F%1F%87%2C%20%E1%9E%9C%1F%89%E1%9E%BB%E1%9F%86%20Palolol;%E1%9E%93%E1%9E%B7%E1%9E%9F%E1%9F%8B%E1%9E%B7%E1%9E%8F%E1%9E%80%E1%9E%9B%E1%9E%9C%E1%9E%B7%E1%9E%91%E1%9F%92%E1%9E%99%E1%9E%B6%E1%9E%9B%E1%9F%90%E1%9E%99%20%26%20%E1%9E%A2%E1%9F%92%E1%9E%93%E1%9E%80%E1%9E%9A%E1%9E%9A%20AI%2FML;%E1%9E%9F%E1%9E%B6%E1%9E%98%E1%9E%82%E1%9E%92%E1%9E%93%E1%9E%9A%E1%9E%AC%E1%9E%87%E1%9E%B6%E1%9E%93%20%E1%9E%80%E1%9E%B6%E1%9E%9A%E1%9E%9A%20GitHub%20%E1%9E%9A%E1%9E%94%E1%9E%B9%E1%9E%BB%E1%9F%86%E1%9E%9C" alt="Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&duration=3000&pause=800&color=00D9FF&center=true&vCenter=true&multiline=true&width=700&height=100&lines=Hey%2C%20I%27m%20Palolol;College%20Student%20%26%20AI%2FML%20Builder;Welcome%20to%20my%20GitHub%20corner" alt="Typing SVG" />
 
 <br/>
 
@@ -26,8 +26,8 @@
 ```ascii
    ╔══════════════════════════════════════════╗
    ║                                          ║
-   ║    🎓  និស្សិតសាកលវិទ្យាល័យ · AI/ML  🤖      ║
-   ║    🐍  Python · C++ · Vue.js            ║
+   ║    🎓  និស្សិតសាកលវិទ្យាល័យ · AI/ML  🤖    ║
+   ║    🐍  Python · C++ · Vue.js             ║
    ║    🧠  កំពុងបង្កើតម៉ូដែលលើកុំព្យូទ័រយួរដៃ       ║
    ║    🍅  បានបង្កើតប្រព័ន្ធជំនាញផ្លែប៉េមូតាតូ     ║
    ║                                          ║
