@@ -240,7 +240,7 @@ Loading latest video...
 ---
 
 <p align="left">
-  <img src="https://readme-typing-svg.demolab.com?font=Battambang&weight=700&size=25&duration=1&pause=1000000&color=FFFFFF&vCenter=true&width=550&lines=%F0%9F%93%AB+%E1%9E%91%E1%9F%86%E1%9E%93%E1%9E%B6%E1%9E%80%E1%9F%8B%E1%9E%91%E1%9F%86%E1%9E%93%E1%9E%84%E1%9E%8F%E1%9E%B6%E1%9E%98" alt="ទំនាក់ទំនងតាម" />
+  <img src="https://readme-typing-svg.demolab.com?font=Noto+Sans+Khmer&weight=700&size=25&duration=1&pause=1000000&color=FFFFFF&vCenter=true&width=550&lines=%F0%9F%93%AB+%E1%9E%91%E1%9F%86%E1%9E%93%E1%9E%B6%E1%9E%80%E1%9F%8B%E1%9E%91%E1%9F%86%E1%9E%93%E1%9E%84%E1%9E%8F%E1%9E%B6%E1%9E%98" alt="ទំនាក់ទំនងតាម" />
 </p>
 
 <div align="center">
