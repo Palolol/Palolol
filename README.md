@@ -233,8 +233,6 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<!-- This block is auto-managed by .github/workflows/youtube.yml. Do not edit by hand.
-     See YOUTUBE_SETUP.md for details. -->
 <a href="https://www.youtube.com/watch?v=-FWyTtrubTo&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
   <img src="https://img.youtube.com/vi/-FWyTtrubTo/maxresdefault.jpg" width="700" alt="Jaadugar: A Witch in Mongolia | “Mongolia Arc” PV">
 </a>
