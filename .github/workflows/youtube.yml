@@ -1,0 +1,58 @@
+# ---------------------------------------------------------------------------
+# Update README.md with the latest video from a YouTube playlist.
+#
+# Required secret:
+#   YOUTUBE_API_KEY   YouTube Data API v3 key
+#                     (Settings → Secrets and variables → Actions → New secret)
+# ---------------------------------------------------------------------------
+name: Update YouTube Playlist
+
+on:
+  # Fire every 6 hours, offset to minute :17 to avoid the global spike at
+  # exact hours (GitHub's cron has no jitter).
+  schedule:
+    - cron: "17 */6 * * *"
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+# Cancel an in-flight run if a new one is triggered (saves CI minutes).
+concurrency:
+  group: youtube-readme
+  cancel-in-progress: true
+
+# Required so the auto-commit step can push back to the repo.
+permissions:
+  contents: write
+
+jobs:
+  youtube:
+    name: Update README with latest playlist video
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: .github/scripts/requirements.txt
+
+      - name: Install dependencies
+        run: pip install -r .github/scripts/requirements.txt
+
+      - name: Run update script
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python .github/scripts/update_youtube.py
+
+      - name: Commit and push if README changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "📺 Update latest YouTube video"
+          commit_author: "GitHub Actions <actions@users.noreply.github.com>"
+          commit_user: "github-actions[bot]"
+          file_pattern: "README.md"
+          # If nothing changed, the action exits 0 with no commit — perfect.
