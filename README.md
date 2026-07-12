@@ -232,7 +232,11 @@ status: ✅ កំពុងដំណើរការ
 ```text
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
-
+<!-- YOUTUBE:START -->
+<!-- This block is auto-managed by .github/workflows/youtube.yml. Do not edit by hand.
+     See YOUTUBE_SETUP.md for details. -->
+Loading latest video...
+<!-- YOUTUBE:END -->
 ---
 
 <p align="left">
@@ -255,9 +259,7 @@ status: ✅ កំពុងដំណើរការ
 
 </div>
 <br/>
-<!-- YOUTUBE:START -->
-Loading latest video...
-<!-- YOUTUBE:END -->
+
 
 ---
 

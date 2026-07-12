@@ -25,3 +25,19 @@ dist-ssr
 
 # Local screenshots (not part of the portfolio)
 Screenshot*.png
+
+# ---------------------------------------------------------------------------
+# Markdown files
+#
+# By default, ignore every .md file. The four files below are explicitly
+# re-included (!) so they stay tracked. Any new .md file you create will
+# be ignored — to track it, add a `!<name>.md` line below.
+# ---------------------------------------------------------------------------
+*.md
+
+# ! re-include: docs that must stay in the repo
+!README.md
+!YOUTUBE_SETUP.md
+!apigoogle.md
+!document.md
+

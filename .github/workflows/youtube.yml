@@ -52,7 +52,10 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "📺 Update latest YouTube video"
+          # Identity used for the git commit.
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          # Display author shown on the commit (appears in the GitHub UI).
           commit_author: "GitHub Actions <actions@users.noreply.github.com>"
-          commit_user: "github-actions[bot]"
           file_pattern: "README.md"
           # If nothing changed, the action exits 0 with no commit — perfect.
