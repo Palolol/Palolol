@@ -256,8 +256,8 @@ status: ✅ កំពុងដំណើរការ
 </div>
 <br/>
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=-FWyTtrubTo&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/-FWyTtrubTo/maxresdefault.jpg" width="700" alt="Jaadugar: A Witch in Mongolia | “Mongolia Arc” PV">
+<a href="https://www.youtube.com/watch?v=AA9GMXHQhR8&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/AA9GMXHQhR8/maxresdefault.jpg" width="700" alt="Jaadugar: A Witch in Mongolia First Main PV |July 2026">
 </a>
 <!-- YOUTUBE:END -->
 
