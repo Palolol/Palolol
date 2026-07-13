@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=j9S_xbjIRgE&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/j9S_xbjIRgE/maxresdefault.jpg" width="700" alt="Islam : The Untold Story (Tom HOLLAND)">
+<a href="https://www.youtube.com/watch?v=BEu6UFgeLnQ&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/BEu6UFgeLnQ/maxresdefault.jpg" width="700" alt="Nippon Sangoku (日本三國) - Ending HD | Chikai (誓い)">
 </a>
 <!-- YOUTUBE:END -->
 
