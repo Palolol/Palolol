@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=BEu6UFgeLnQ&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/BEu6UFgeLnQ/maxresdefault.jpg" width="700" alt="Nippon Sangoku (日本三國) - Ending HD | Chikai (誓い)">
+<a href="https://www.youtube.com/watch?v=hpGwDhSyxhg&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/hpGwDhSyxhg/maxresdefault.jpg" width="700" alt="羊文学 Hitsujibungaku - ランナー (Runner) Lyrics 「日本語/Romaji Sub + English/Español Sub」">
 </a>
 <!-- YOUTUBE:END -->
 
