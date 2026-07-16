@@ -41,13 +41,13 @@
 
   <!-- row 2: aggregate stats -->
   <text x="20"  y="166" font-size="12" fill="#8b949e">Tests completed</text>
-  <text x="20"  y="190" font-size="18" font-weight="700" fill="#cdd6f4">1107</text>
+  <text x="20"  y="190" font-size="18" font-weight="700" fill="#cdd6f4">1113</text>
 
   <text x="180" y="166" font-size="12" fill="#8b949e">Tests started</text>
-  <text x="180" y="190" font-size="18" font-weight="700" fill="#cdd6f4">1173</text>
+  <text x="180" y="190" font-size="18" font-weight="700" fill="#cdd6f4">1179</text>
 
   <text x="340" y="166" font-size="12" fill="#8b949e">Time typed</text>
-  <text x="340" y="190" font-size="18" font-weight="700" fill="#cdd6f4">7h 47m</text>
+  <text x="340" y="190" font-size="18" font-weight="700" fill="#cdd6f4">7h 49m</text>
 
   <!-- footer -->
   <text x="475" y="210" font-size="10" fill="#6c7086" text-anchor="end">self-hosted · updates every 6h</text>
