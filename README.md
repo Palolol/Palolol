@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=WbR6muX14wo&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/WbR6muX14wo/maxresdefault.jpg" width="700" alt="Leina 「誓い」 Music Video">
+<a href="https://www.youtube.com/watch?v=aS2B6tJCdiE&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/aS2B6tJCdiE/maxresdefault.jpg" width="700" alt="Leina『うたたね - utatane』MV">
 </a>
 <!-- YOUTUBE:END -->
 
