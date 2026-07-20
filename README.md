@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=X30lLuRyFl4&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/X30lLuRyFl4/maxresdefault.jpg" width="700" alt="Leina 「恋に落ちるのは簡単で」 Official Music Video">
+<a href="https://www.youtube.com/watch?v=-8_ouVLPRC0&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/-8_ouVLPRC0/maxresdefault.jpg" width="700" alt="06. 喧嘩別れ-Leina 1st ALBUM『愛の産声、哀の鳴き声』Lyric Video">
 </a>
 <!-- YOUTUBE:END -->
 
