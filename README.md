@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=-8_ouVLPRC0&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/-8_ouVLPRC0/maxresdefault.jpg" width="700" alt="06. 喧嘩別れ-Leina 1st ALBUM『愛の産声、哀の鳴き声』Lyric Video">
+<a href="https://www.youtube.com/watch?v=TK8op8a0fbM&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/TK8op8a0fbM/maxresdefault.jpg" width="700" alt="ainoimiwo">
 </a>
 <!-- YOUTUBE:END -->
 
