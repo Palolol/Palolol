@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=TK8op8a0fbM&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/TK8op8a0fbM/maxresdefault.jpg" width="700" alt="ainoimiwo">
+<a href="https://www.youtube.com/watch?v=RzZm4pCPz2Q&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/RzZm4pCPz2Q/maxresdefault.jpg" width="700" alt="Leina 「Blue age」 Official Music Video">
 </a>
 <!-- YOUTUBE:END -->
 
