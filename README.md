@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=P3dXNarMeQ4&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/P3dXNarMeQ4/maxresdefault.jpg" width="700" alt="Leina「HAITE」MV">
+<a href="https://www.youtube.com/watch?v=VRzMKMRqPqs&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/VRzMKMRqPqs/maxresdefault.jpg" width="700" alt="01.Love circle -Leina 1st Album『愛の産声、哀の鳴き声』Lyric Video">
 </a>
 <!-- YOUTUBE:END -->
 
