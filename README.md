@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=8KPFz_2rObg&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/8KPFz_2rObg/maxresdefault.jpg" width="700" alt="00:01: ᴀ ᴊᴀᴘᴀɴᴇꜱᴇ ɪɴᴅɪᴇ ᴘᴏᴘ ᴘʟᴀʏʟɪꜱᴛ ᴛᴏ ꜱᴘᴇɴᴅ ᴛɪᴍᴇ ᴡɪᴛʜ ʏᴏᴜʀ ᴛʜᴏᴜɢʜᴛꜱ">
+<a href="https://www.youtube.com/watch?v=09HOPDkJPmk&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/09HOPDkJPmk/maxresdefault.jpg" width="700" alt="Change Your Mind [FULL STUDIO VERSION] - Steven Universe">
 </a>
 <!-- YOUTUBE:END -->
 
