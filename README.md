@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=u_TEmbIMu7Q&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/u_TEmbIMu7Q/maxresdefault.jpg" width="700" alt="うまれなおし-Umarenaoshi /あいりす。">
+<a href="https://www.youtube.com/watch?v=v2TQOq8Yoa8&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/v2TQOq8Yoa8/maxresdefault.jpg" width="700" alt="ハク。&quot; 一進 &quot; Official Music Video">
 </a>
 <!-- YOUTUBE:END -->
 
