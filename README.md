@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=4X5rxx1WE1w&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/4X5rxx1WE1w/maxresdefault.jpg" width="700" alt="Still Becoming">
+<a href="https://www.youtube.com/watch?v=LHoAF3vL8cI&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/LHoAF3vL8cI/maxresdefault.jpg" width="700" alt="milet「Hurricane」Lyric Video">
 </a>
 <!-- YOUTUBE:END -->
 
