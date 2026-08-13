@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=czT0CBsCLZo&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/czT0CBsCLZo/maxresdefault.jpg" width="700" alt="tears">
+<a href="https://www.youtube.com/watch?v=U07lH85sXF4&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/U07lH85sXF4/maxresdefault.jpg" width="700" alt="汐れいら / 味噌汁とバター 2023.12.27 1st one man live「だぶだぶでうぶうぶ」@Shibuya WWW">
 </a>
 <!-- YOUTUBE:END -->
 
