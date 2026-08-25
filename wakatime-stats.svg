@@ -11,8 +11,8 @@
   <rect class="border" x="0.5" y="0.5" width="494" height="194" rx="8"/>
   <text class="title" x="20" y="32">WakaTime · Last 7 Days</text>
   <text class="muted" x="20" y="55">Total coding time</text>
-  <text class="value" x="20" y="85">2h 3m</text>
+  <text class="value" x="20" y="85">32m 33s</text>
   <text class="muted" x="20" y="115">Daily average</text>
-  <text class="value" x="20" y="145">41m 1s</text>
-  <text class="muted" x="20" y="175">Top language: Markdown</text>
+  <text class="value" x="20" y="145">16m 17s</text>
+  <text class="muted" x="20" y="175">Top language: Python</text>
 </svg>
