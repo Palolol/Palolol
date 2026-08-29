@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=OHNswkU2xMU&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/OHNswkU2xMU/maxresdefault.jpg" width="700" alt="Perfect blue">
+<a href="https://www.youtube.com/watch?v=wkm1VOURcYk&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/wkm1VOURcYk/maxresdefault.jpg" width="700" alt="羊文学 &quot;ドラマ&quot;（Official Music Video）">
 </a>
 <!-- YOUTUBE:END -->
 
