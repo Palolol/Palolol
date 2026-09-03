@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=wkm1VOURcYk&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/wkm1VOURcYk/maxresdefault.jpg" width="700" alt="羊文学 &quot;ドラマ&quot;（Official Music Video）">
+<a href="https://www.youtube.com/watch?v=g06j6z4z1ig&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/g06j6z4z1ig/maxresdefault.jpg" width="700" alt="AURORA - All My Demons Greeting Me As A Friend (Flashback Tape)">
 </a>
 <!-- YOUTUBE:END -->
 
