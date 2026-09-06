@@ -142,6 +142,13 @@
             class="profile-image"
           />
           <p>Hi! My name is Palolol<br />This name is my game name</p>
+
+          <!-- Audio Control -->
+          <div v-if="audioError || !audioPlaying" class="audio-control" @click="toggleAudio">
+            <span v-if="audioError">🔇 Audio blocked - Click to enable</span>
+            <span v-else-if="!audioPlaying">▶️ Click to play audio</span>
+            <span v-else>🔊 Playing - Click to pause</span>
+          </div>
         </div>
 
         <!-- Date Checker -->
@@ -302,15 +309,28 @@ import songUrl from './assets/background.mp3';
 import { ref, onMounted, onUnmounted } from "vue";
 import animeTeacherUrl from "./assets/frieren.gif.mp4";
 
-onMounted(() => {
-    const audio = new Audio(songUrl);
-    audio.loop = true; // Remove if you don't want it to loop
-    audio.volume = 0.5; // Adjust volume (0.0 to 1.0) as needed
+// Audio state
+const audio = ref(null);
+const audioError = ref(false);
+const audioPlaying = ref(false);
 
-    // Attempt to play - handle autoplay restrictions gracefully
-    audio.play().catch(e => {
-      console.log('Autoplay prevented by browser - user interaction required');
-      // Optional: Show a mute/unmute button for user to enable audio
+onMounted(() => {
+    // Create audio element
+    audio.value = new Audio(songUrl);
+    audio.value.loop = true; // Remove if you don't want it to loop
+    audio.value.volume = 0.5; // Adjust volume (0.0 to 1.0) as needed
+
+    // Attempt to play - handle autoplay restrictions and other errors
+    audio.value.play().then(() => {
+      audioPlaying.value = true;
+      audioError.value = false;
+    }).catch(e => {
+      console.warn('Audio playback failed:', e);
+      audioError.value = true;
+      audioPlaying.value = false;
+
+      // Optional: You could show a UI element here to let user enable audio
+      // For example, display a "Click to enable audio" button
     });
   });
 // ── Navbar ────────────────────────────────────────────────────────
@@ -430,6 +450,25 @@ function restartGame() {
   cells.value = Array(9).fill(null);
   currentPlayer.value = "X";
   status.value = "It's X's turn.";
+}
+
+// Audio control
+function toggleAudio() {
+  if (!audio.value) return;
+
+  if (audioPlaying.value) {
+    audio.value.pause();
+    audioPlaying.value = false;
+  } else {
+    audio.value.play().then(() => {
+      audioPlaying.value = true;
+      audioError.value = false;
+    }).catch(e => {
+      console.warn('Audio playback failed:', e);
+      audioError.value = true;
+      audioPlaying.value = false;
+    });
+  }
 }
 
 // ── Portfolio data ────────────────────────────────────────────────
@@ -810,6 +849,36 @@ body {
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+}
+
+/* Audio Control Styles */
+.audio-control {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.audio-control:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.1);
+}
+
+.audio-control:active {
+  transform: scale(0.9);
 }
 @keyframes rainbow {
   0% {
