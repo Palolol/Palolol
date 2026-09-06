@@ -1,3 +1,4 @@
+
 <template>
   <div class="app-wrapper">
     <!-- ══════════════════════════════════════════
@@ -296,9 +297,22 @@
 </template>
 
 <script setup>
+
+import songUrl from './assets/background.mp3';
 import { ref, onMounted, onUnmounted } from "vue";
 import animeTeacherUrl from "./assets/frieren.gif.mp4";
 
+onMounted(() => {
+    const audio = new Audio(songUrl);
+    audio.loop = true; // Remove if you don't want it to loop
+    audio.volume = 0.5; // Adjust volume (0.0 to 1.0) as needed
+
+    // Attempt to play - handle autoplay restrictions gracefully
+    audio.play().catch(e => {
+      console.log('Autoplay prevented by browser - user interaction required');
+      // Optional: Show a mute/unmute button for user to enable audio
+    });
+  });
 // ── Navbar ────────────────────────────────────────────────────────
 const isScrolled = ref(false);
 const menuOpen = ref(false);
