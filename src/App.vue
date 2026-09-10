@@ -1,4 +1,3 @@
-
 <template>
   <div class="app-wrapper">
     <!-- ══════════════════════════════════════════
@@ -71,68 +70,78 @@
          HOME SECTION
     ══════════════════════════════════════════ -->
     <section id="home" class="home-section">
-      <!-- Virtual Teacher — First Project Story -->
-      <div class="first-project-card">
-        <div class="first-project-avatar">
-          <video
-            :src="animeTeacherUrl"
-            autoplay
-            muted
-            loop
-            playsinline
-          ></video>
-          <div class="avatar-glow"></div>
-          <div class="avatar-tag">Virtual Teacher</div>
+      <!-- YouTube background video container (for API control) -->
+      <div id="yt-background" class="bg-video"></div>
+
+      <!-- Content overlay -->
+      <div class="content">
+        <!-- Video mute/unmute button -->
+        <div class="video-mute-button" @click="toggleVideoMute">
+          <span v-if="isVideoMuted">🔊</span>
+          <span v-else>🔇</span>
         </div>
-        <div class="first-project-bubble">
-          <div class="bubble-tail"></div>
-          <div class="bubble-title">
-            <span class="bubble-icon">🎓</span>
-            <span>My First Project</span>
+        <!-- Virtual Teacher — First Project Story -->
+        <div class="first-project-card">
+          <div class="first-project-avatar">
+            <video
+              :src="animeTeacherUrl"
+              autoplay
+              muted
+              loop
+              playsinline
+            ></video>
+            <div class="avatar-glow"></div>
+            <div class="avatar-tag">Virtual Teacher</div>
           </div>
-          <p class="first-project-text">
-            My first project? A tiny Python calculator. From one script to
-            expert systems, mobile apps, and AI models — every developer starts
-            with a single line.
-          </p>
+          <div class="first-project-bubble">
+            <div class="bubble-tail"></div>
+            <div class="bubble-title">
+              <span class="bubble-icon">🎓</span>
+              <span>My First Project</span>
+            </div>
+            <p class="first-project-text">
+              My first project? A tiny Python calculator. From one script to
+              expert systems, mobile apps, and AI models — every developer
+              starts with a single line.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- Bouncing Title -->
-      <h1 class="bouncing-title">
-        <span
-          v-for="(letter, i) in titleLetters"
-          :key="i"
-          :style="{ animationDelay: i * 0.08 + 's' }"
-        >
-          {{ letter }}
-        </span>
-      </h1>
+        <!-- Bouncing Title -->
+        <h1 class="bouncing-title">
+          <span
+            v-for="(letter, i) in titleLetters"
+            :key="i"
+            :style="{ animationDelay: i * 0.08 + 's' }"
+          >
+            {{ letter }}
+          </span>
+        </h1>
 
-      <!-- Corner Images -->
-      <img
-        src="https://pbs.twimg.com/media/GfkGhe6asAArJ2l?format=jpg&name=large"
-        alt="Top Left"
-        class="corner-image top-left"
-      />
-      <img
-        src="https://pbs.twimg.com/media/GeMg0CGbMAEjAOp?format=jpg&name=large"
-        alt="Top Right"
-        class="corner-image top-right"
-      />
-      <img
-        src="https://pbs.twimg.com/media/Gckr_ZqXUAA7X3f?format=jpg&name=large"
-        alt="Bottom Left"
-        class="corner-image bottom-left"
-      />
-      <img
-        src="https://pbs.twimg.com/media/GfkGhe8aEAA0eQF?format=jpg&name=360x360"
-        alt="Bottom Right"
-        class="corner-image bottom-right"
-      />
+        <!-- Corner Images
+        <img
+          src="https://pbs.twimg.com/media/GfkGhe6asAArJ2l?format=jpg&name=large"
+          alt="Top Left"
+          class="corner-image top-left"
+        />
+        <img
+          src="https://pbs.twimg.com/media/GeMg0CGbMAEjAOp?format=jpg&name=large"
+          alt="Top Right"
+          class="corner-image top-right"
+        />
+        <img
+          src="https://pbs.twimg.com/media/Gckr_ZqXUAA7X3f?format=jpg&name=large"
+          alt="Bottom Left"
+          class="corner-image bottom-left"
+        />
+        <img
+          src="https://pbs.twimg.com/media/GfkGhe8aEAA0eQF?format=jpg&name=360x360"
+          alt="Bottom Right"
+          class="corner-image bottom-right"
+        /> -->
 
-      <!-- Main Container -->
-      <div class="rainbow-container">
+        <!-- Main Container -->
+        <!-- <div class="rainbow-container"> -->
         <!-- Profile -->
         <div class="profile">
           <h2>Palolol's Portfolio</h2>
@@ -144,19 +153,22 @@
           <p>Hi! My name is Palolol<br />This name is my game name</p>
 
           <!-- Audio Control -->
-          <div v-if="audioError || !audioPlaying" class="audio-control" @click="toggleAudio">
+          <div
+            v-if="audioError || !audioPlaying"
+            class="audio-control"
+            @click="toggleAudio"
+          >
             <span v-if="audioError">🔇 Audio blocked - Click to enable</span>
             <span v-else-if="!audioPlaying">▶️ Click to play audio</span>
             <span v-else>🔊 Playing - Click to pause</span>
           </div>
         </div>
 
-        <!-- Date Checker -->
+        <!-- Date Checker 
         <h2 class="section-h2">Check Today's Day and Date</h2>
         <button class="fun-btn" @click="displayDate">Check</button>
-        <p class="date-output">{{ dateOutput }}</p>
-
-        <!-- Tic Tac Toe -->
+        <p class="date-output">{{ dateOutput }}</p> -->
+        <!-- Tic Tac Toe 
         <h2 class="section-h2">Tic Tac Toe Game</h2>
         <div class="game-board">
           <div
@@ -170,6 +182,10 @@
         </div>
         <div class="game-status">{{ status }}</div>
         <button class="fun-btn" @click="restartGame">Restart Game</button>
+        -->
+        
+        
+        <!--  </div> -->
       </div>
     </section>
 
@@ -303,10 +319,9 @@
   </div>
 </template>
 
+<!-- import songUrl from './assets/background.mp3'; -->
 <script setup>
-
-import songUrl from './assets/background.mp3';
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
 import animeTeacherUrl from "./assets/frieren.gif.mp4";
 
 // Audio state
@@ -314,25 +329,34 @@ const audio = ref(null);
 const audioError = ref(false);
 const audioPlaying = ref(false);
 
-onMounted(() => {
-    // Create audio element
-    audio.value = new Audio(songUrl);
-    audio.value.loop = true; // Remove if you don't want it to loop
-    audio.value.volume = 0.5; // Adjust volume (0.0 to 1.0) as needed
+// Video state for YouTube background
+const isVideoMuted = ref(true);
+let ytPlayer = null;
+const YOUTUBE_VIDEO_ID = "98gTjFi7XaE"; // Change this to your YouTube video ID
 
-    // Attempt to play - handle autoplay restrictions and other errors
-    audio.value.play().then(() => {
-      audioPlaying.value = true;
-      audioError.value = false;
-    }).catch(e => {
-      console.warn('Audio playback failed:', e);
-      audioError.value = true;
-      audioPlaying.value = false;
+// Temporarily disable audio initialization since background.mp3 file was removed
+// onMounted(() => {
+//   // Create audio element
+//   audio.value = new Audio(songUrl);
+//   audio.value.loop = true; // Remove if you don't want it to loop
+//   audio.value.volume = 0.5; // Adjust volume (0.0 to 1.0) as needed
 
-      // Optional: You could show a UI element here to let user enable audio
-      // For example, display a "Click to enable audio" button
-    });
-  });
+//   // Attempt to play - handle autoplay restrictions and other errors
+//   audio.value
+//     .play()
+//     .then(() => {
+//       audioPlaying.value = true;
+//       audioError.value = false;
+//     })
+//     .catch((e) => {
+//       console.warn("Audio playback failed:", e);
+//       audioError.value = true;
+//       audioPlaying.value = false;
+
+//       // Optional: You could show a UI element here to let user enable audio
+//       // For example, display a "Click to enable audio" button
+//     });
+// });
 // ── Navbar ────────────────────────────────────────────────────────
 const isScrolled = ref(false);
 const menuOpen = ref(false);
@@ -381,9 +405,195 @@ onMounted(() => {
   window.addEventListener("scroll", checkSkillsVisible);
   setTimeout(() => checkSkillsVisible(), 400);
 });
+
+// Initialize YouTube background video player with debugging
+onMounted(() => {
+  console.log("[YouTube BG] Starting initialization...");
+
+  // Function to initialize YouTube player when ready
+  const initYouTubePlayer = () => {
+    console.log("[YouTube BG] API is ready, creating player...");
+
+    // Verify the container element exists
+    const container = document.getElementById("yt-background");
+    if (!container) {
+      console.error(
+        "[YouTube BG] ERROR: Container element #yt-background not found!",
+      );
+      return;
+    }
+
+    console.log("[YouTube BG] Container found:", container);
+
+    try {
+      ytPlayer = new YT.Player("yt-background", {
+        width: "100%",
+        height: "100%",
+        videoId: YOUTUBE_VIDEO_ID,
+        playerVars: {
+          autoplay: 1,
+          controls: 0,
+          showinfo: 0,
+          rel: 0,
+          modestbranding: 1,
+          loop: 1,
+          playlist: YOUTUBE_VIDEO_ID,
+        },
+        events: {
+          onReady: (event) => {
+            console.log("[YouTube BG] Player ready event");
+            event.target.mute(); // Start muted for autoplay
+            isVideoMuted.value = true;
+            console.log(
+              "[YouTube BG] Video started muted (autoplay compliant)",
+            );
+          },
+          onStateChange: (event) => {
+            switch (event.data) {
+              case YT.PlayerState.ENDED:
+                console.log("[YouTube BG] Video ended");
+                break;
+              case YT.PlayerState.PLAYING:
+                console.log("[YouTube BG] Video playing");
+                break;
+              case YT.PlayerState.PAUSED:
+                console.log("[YouTube BG] Video paused");
+                break;
+              case YT.PlayerState.BUFFERING:
+                console.log("[YouTube BG] Video buffering");
+                break;
+              case YT.PlayerState.CUED:
+                console.log("[YouTube BG] Video cued");
+                break;
+            }
+          },
+          onError: (event) => {
+            console.error("[YouTube BG] Player error:", event.data);
+            // Common error codes:
+            // 2: Invalid parameter
+            // 5: HTML5 error or video not found
+            // 100: Video not found
+            // 101/150: Embedding not allowed
+          },
+        },
+      });
+
+      console.log("[YouTube BG] Player instance created:", !!ytPlayer);
+    } catch (error) {
+      console.error("[YouTube BG] Failed to create player:", error);
+    }
+  };
+
+  // Load YouTube IFrame API with timeout protection
+  if (window.YT && window.YT.loaded) {
+    console.log("[YouTube BG] API already loaded");
+    initYouTubePlayer();
+  } else {
+    console.log("[YouTube BG] Loading YouTube IFrame API...");
+
+    // Check if we already inserted the script
+    let existingScript = document.querySelector(
+      'script[src="https://www.youtube.com/iframe_api"]',
+    );
+    if (existingScript) {
+      console.log("[YouTube BG] API script already inserted");
+    } else {
+      var tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      tag.async = true;
+
+      // Handle script load errors
+      tag.onerror = () => {
+        console.error("[YouTube BG] FAILED to load YouTube IFrame API");
+        showApiLoadError();
+      };
+
+      var firstScriptTag = document.getElementsByTagName("script")[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      console.log("[YouTube BG] API script inserted");
+    }
+
+    // Set the callback (will be called when API loads)
+    window.onYouTubeIframeAPIReady = () => {
+      console.log("[YouTube BG] YouTube IFrame API loaded");
+      initYouTubePlayer();
+    };
+
+    // Set timeout as fallback (in case API fails to load)
+    setTimeout(() => {
+      if (!window.YT || !window.YT.loaded) {
+        console.warn("[YouTube BG] YouTube API load timed out after 5 seconds");
+        showApiLoadError();
+      }
+    }, 5000);
+  }
+});
+
+// Show user-friendly error when API fails to load
+function showApiLoadError() {
+  // You could add a fallback image or message here
+  console.warn(
+    "[YouTube BG] YouTube API failed to load - checking for common issues",
+  );
+
+  // Log diagnostic information
+  console.log(
+    "%cYouTube Background Video Troubleshooting:",
+    "color: orange; font-weight: bold",
+  );
+  console.log("1. Check if ad blockers are blocking youtube.com");
+  console.log("2. Verify network access to youtube.com");
+  console.log("3. Check browser console for CORS or security errors");
+  console.log("4. Try a different browser or incognito mode");
+  console.log('5. Verify your video ID is correct: "', YOUTUBE_VIDEO_ID, '"');
+
+  // Optional: Show a visual indicator in the UI
+  const bgContainer = document.getElementById("yt-background");
+  if (bgContainer) {
+    bgContainer.style.backgroundColor = "#ffebee"; // Light red background
+    bgContainer.innerHTML = `
+      <div style="padding: 20px; text-align: center; color: #d32f2f; font-family: Arial;">
+        <div>⚠️ YouTube API Load Failed</div>
+        <div style="font-size: 14px; margin-top: 8px;">
+          Check console for details (F12 → Console)
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Player ready handler
+function onPlayerReady(event) {
+  event.target.mute(); // Start muted for autoplay
+  isVideoMuted.value = true;
+}
+
+// State change handler
+function onPlayerStateChange(event) {
+  if (event.data === YT.PlayerState.ENDED) {
+    // Video ended, restart if needed (looping handled by playerVars)
+  }
+}
+
+// Toggle video mute/unmute
+function toggleVideoMute() {
+  if (ytPlayer) {
+    const isMuted = ytPlayer.isMuted();
+    ytPlayer[isMuted ? "unMute" : "mute"]();
+    isVideoMuted.value = !isMuted;
+  }
+}
+
 onUnmounted(() => {
   window.removeEventListener("scroll", onScroll);
   window.removeEventListener("scroll", checkSkillsVisible);
+
+  // Clean up YouTube player
+  if (ytPlayer) {
+    ytPlayer.destroy();
+    ytPlayer = null;
+  }
+  console.log("[YouTube BG] Player cleaned up");
 });
 
 // ── Home: Bouncing title ──────────────────────────────────────────
@@ -460,14 +670,17 @@ function toggleAudio() {
     audio.value.pause();
     audioPlaying.value = false;
   } else {
-    audio.value.play().then(() => {
-      audioPlaying.value = true;
-      audioError.value = false;
-    }).catch(e => {
-      console.warn('Audio playback failed:', e);
-      audioError.value = true;
-      audioPlaying.value = false;
-    });
+    audio.value
+      .play()
+      .then(() => {
+        audioPlaying.value = true;
+        audioError.value = false;
+      })
+      .catch((e) => {
+        console.warn("Audio playback failed:", e);
+        audioError.value = true;
+        audioPlaying.value = false;
+      });
   }
 }
 
@@ -766,15 +979,34 @@ body {
    HOME SECTION
 ══════════════════════════════════════════ */
 .home-section {
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("https://media.npr.org/assets/img/2023/08/28/_36a8456_sy_nj_wide-8834a4249492d4821e770582082edbe89b89ea2e.jpg");
   background-color: #1220e2;
-  background-size: contain;
+  overflow: hidden;
   padding: 20px 1rem 60px;
 }
+.home-section .bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.home-section .content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .bouncing-title {
   margin: 0 0 8px;
   text-align: center;
@@ -784,7 +1016,7 @@ body {
 .bouncing-title span {
   display: inline-block;
   animation: bounce 0.3s ease infinite alternate;
-  font-size: 80px;
+  font-size: 60px;
   color: #1220e2;
   text-shadow:
     0 1px 0 #ccc,
@@ -880,6 +1112,35 @@ body {
 .audio-control:active {
   transform: scale(0.9);
 }
+
+/* Video Mute Button Styles */
+.video-mute-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.video-mute-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+.video-mute-button:active {
+  transform: scale(0.9);
+}
 @keyframes rainbow {
   0% {
     background-color: red;
@@ -908,8 +1169,6 @@ body {
 }
 .profile {
   text-align: center;
-  margin-top: 20px;
-  padding: 20px;
   color: white;
 }
 .profile h2 {
