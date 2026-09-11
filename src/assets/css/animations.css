@@ -1,0 +1,182 @@
+/* src/assets/css/animations.css */
+
+/* ══════════════════════════════════════════
+   BASE SCROLL ANIMATIONS
+══════════════════════════════════════════ */
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible { opacity: 1; }
+
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.fade-in-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scale-up {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scale-up.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ══════════════════════════════════════════
+   SECTION HEADER
+══════════════════════════════════════════ */
+.section-header {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.section-header.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.section-header::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.8s ease-out 0.3s !important;
+}
+.section-header.visible::after {
+  transform: scaleX(1);
+}
+
+/* ══════════════════════════════════════════
+   CASCADE
+══════════════════════════════════════════ */
+.cascade > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.cascade.visible > *:nth-child(1)  { transition-delay: 0.4s;  opacity: 1; transform: translateY(0); }
+.cascade.visible > *:nth-child(2)  { transition-delay: 0.55s; opacity: 1; transform: translateY(0); }
+.cascade.visible > *:nth-child(3)  { transition-delay: 0.70s; opacity: 1; transform: translateY(0); }
+.cascade.visible > *:nth-child(4)  { transition-delay: 0.85s; opacity: 1; transform: translateY(0); }
+.cascade.visible > *:nth-child(5)  { transition-delay: 1.00s; opacity: 1; transform: translateY(0); }
+.cascade.visible > *:nth-child(6)  { transition-delay: 1.15s; opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════
+   HERO CASCADE
+══════════════════════════════════════════ */
+.hero-cascade .port-tag,
+.hero-cascade .port-name,
+.hero-cascade .port-sub,
+.hero-cascade .port-pills,
+.hero-cascade .port-avatar {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.hero-cascade.visible .port-tag    { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+.hero-cascade.visible .port-name   { opacity: 1; transform: translateY(0); transition-delay: 0.3s; }
+.hero-cascade.visible .port-sub    { opacity: 1; transform: translateY(0); transition-delay: 0.5s; }
+.hero-cascade.visible .port-pills  { opacity: 1; transform: translateY(0); transition-delay: 0.7s; }
+.hero-cascade.visible .port-avatar { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.9s; }
+.hero-cascade .port-avatar         { transform: translateY(20px) scale(0.7); }
+
+.hero-cascade .port-pills .pill { opacity: 0; transform: scale(0.7); }
+.hero-cascade.visible .port-pills .pill { animation: pillPop 0.4s ease-out both; }
+.hero-cascade.visible .port-pills .pill:nth-child(1) { animation-delay: 0.75s; }
+.hero-cascade.visible .port-pills .pill:nth-child(2) { animation-delay: 0.83s; }
+.hero-cascade.visible .port-pills .pill:nth-child(3) { animation-delay: 0.91s; }
+.hero-cascade.visible .port-pills .pill:nth-child(4) { animation-delay: 0.99s; }
+.hero-cascade.visible .port-pills .pill:nth-child(5) { animation-delay: 1.07s; }
+
+@keyframes pillPop {
+  0%   { opacity: 0; transform: scale(0.7); }
+  60%  { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════
+   STATS POP
+══════════════════════════════════════════ */
+.stats-row.cascade > .stat-card {
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stats-row.cascade.visible > .stat-card { opacity: 1; transform: scale(1); }
+.stats-row.cascade.visible > .stat-card:nth-child(1) { transition-delay: 0.30s; }
+.stats-row.cascade.visible > .stat-card:nth-child(2) { transition-delay: 0.42s; }
+.stats-row.cascade.visible > .stat-card:nth-child(3) { transition-delay: 0.54s; }
+.stats-row.cascade.visible > .stat-card:nth-child(4) { transition-delay: 0.66s; }
+
+/* ══════════════════════════════════════════
+   CONTACT CASCADE
+══════════════════════════════════════════ */
+.contact-card.cascade .contact-title,
+.contact-card.cascade .contact-sub,
+.contact-card.cascade .contact-btns {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.contact-card.cascade.visible .contact-title { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+.contact-card.cascade.visible .contact-sub   { opacity: 1; transform: translateY(0); transition-delay: 0.4s; }
+.contact-card.cascade.visible .contact-btns  { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+.contact-card.cascade .contact-btns > * { opacity: 0; transform: scale(0.8); }
+.contact-card.cascade.visible .contact-btns > * { animation: btnPop 0.4s ease-out both; }
+.contact-card.cascade.visible .contact-btns > *:nth-child(1) { animation-delay: 0.7s; }
+.contact-card.cascade.visible .contact-btns > *:nth-child(2) { animation-delay: 0.82s; }
+.contact-card.cascade.visible .contact-btns > *:nth-child(3) { animation-delay: 0.94s; }
+
+@keyframes btnPop {
+  0%   { opacity: 0; transform: scale(0.8); }
+  70%  { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ══════════════════════════════════════════
+   NODE PULSE ANIMATION
+══════════════════════════════════════════ */
+@keyframes nodePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(18, 32, 226, 0.5); }
+  50%      { box-shadow: 0 0 0 12px rgba(18, 32, 226, 0); }
+}
+
+/* ══════════════════════════════════════════
+   SHIMMER LINE
+══════════════════════════════════════════ */
+@keyframes shimmerSlide {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ══════════════════════════════════════════
+   ACCESSIBILITY
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .fade-in, .fade-in-up, .fade-in-left,
+  .scale-up, .section-header, .cascade > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
