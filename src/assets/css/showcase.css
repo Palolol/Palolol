@@ -1,0 +1,315 @@
+/* src/assets/css/showcase.css */
+
+/* ══════════════════════════════════════════
+   SHOWCASE HEADER
+══════════════════════════════════════════ */
+.showcase-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+.showcase-header h3 {
+  font-family: system-ui, sans-serif;
+  font-size: 24px; font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+.showcase-header p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════
+   STICKY SHOWCASE
+══════════════════════════════════════════ */
+.showcase { position: relative; }
+
+.showcase-line {
+  position: absolute;
+  left: -1.5rem; top: 0;
+  width: 1.5rem; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.3;
+}
+
+.showcase-viewport {
+  position: sticky;
+  top: 82px;
+  height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.25rem;
+}
+
+/* Spacer becomes the scroll runway for each card */
+.showcase-spacer {
+  height: 100vh;
+  pointer-events: none;
+  position: relative;
+}
+
+/* ── ANCHOR POINT ──
+   Positioned at ~50% into the spacer to land you dead-center
+   of the "holding" phase. The negative top offset accounts for
+   the sticky navbar (62px) + a small buffer so scrollIntoView
+   lands cleanly. */
+.showcase-anchor {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+  /* This is the key: offset the scroll target above the anchor
+     so the sticky viewport is centered on the card */
+  scroll-margin-top: 100vh;
+}
+
+.showcase-progress {
+  position: absolute;
+  top: 8px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px;
+  z-index: 3;
+}
+.showcase-pip {
+  width: 24px; height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, width 0.3s ease;
+}
+.showcase-pip.active { background: var(--p-box); width: 32px; }
+.showcase-pip.past { background: rgba(238, 242, 246, 0.4); }
+
+.showcase-label {
+  position: absolute; top: 6px; left: 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+  z-index: 3;
+}
+.showcase-counter {
+  position: absolute; top: 6px; right: 0;
+  font-family: var(--p-mono);
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex; gap: 2px;
+  z-index: 3;
+}
+.showcase-counter span:first-child { color: #ffffff; font-weight: 500; }
+
+/* ── Card Stack ── */
+.showcase-stack {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  height: clamp(460px, 68vh, 500px);
+}
+.showcase-card {
+  position: absolute; inset: 0;
+  background: var(--p-box);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius-lg);
+  box-shadow: var(--p-shadow);
+  overflow: hidden;
+  will-change: transform, opacity;
+  color: var(--p-text);
+}
+.showcase-card.is-active {
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.45);
+}
+
+/* ── Card Content ── */
+.card-inner {
+  padding: 1.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.card-header {
+  display: flex; align-items: center; gap: 0.875rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--p-border);
+}
+.card-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  background: var(--p-outer);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+.card-head-text h4 {
+  font-family: system-ui, sans-serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--p-text);
+  margin: 0 0 2px;
+  letter-spacing: -0.01em;
+}
+.card-head-text p {
+  font-size: 13px;
+  color: var(--p-text-muted);
+  margin: 0;
+}
+.card-index {
+  margin-left: auto;
+  font-family: var(--p-mono);
+  font-size: 12px;
+  color: var(--p-text-soft);
+}
+
+/* ── Projects list ── */
+.projects-list {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  overflow: auto;
+}
+.project-item {
+  padding: 0.9rem;
+  background: #ffffff;
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-radius);
+  display: flex; flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.project-item:hover {
+  border-color: var(--p-outer);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.12);
+}
+.project-top { display: flex; align-items: center; gap: 8px; }
+.project-emoji { font-size: 20px; }
+.project-name {
+  font-size: 14px; font-weight: 600;
+  color: var(--p-text);
+}
+.project-desc {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--p-text-muted);
+  margin: 0;
+}
+.project-tags {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  margin-top: auto;
+}
+.project-tag {
+  font-family: var(--p-mono);
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--p-outer);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* ── Skills ── */
+.skills-list {
+  flex: 1;
+  display: flex; flex-direction: column;
+  gap: 0.9rem;
+  overflow: auto;
+}
+.skill-item { display: flex; flex-direction: column; gap: 6px; }
+.skill-meta {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.skill-name {
+  font-size: 14px; font-weight: 500;
+  color: var(--p-text);
+}
+.skill-pct {
+  font-family: var(--p-mono);
+  font-size: 12px;
+  color: var(--p-outer);
+  font-weight: 500;
+}
+.skill-track {
+  height: 5px;
+  background: var(--p-box-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.skill-bar {
+  height: 100%;
+  background: var(--p-outer);
+  border-radius: 999px;
+  transition: width 1.05s cubic-bezier(0.23, 1, 0.32, 1) 0.15s;
+}
+
+/* ── Timeline ── */
+.timeline {
+  flex: 1;
+  display: flex; flex-direction: column;
+}
+.timeline-item {
+  display: flex; gap: 14px;
+  padding-bottom: 1.25rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.45s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.timeline-item.active { opacity: 1; transform: translateY(0); }
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-marker {
+  display: flex; flex-direction: column; align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+.timeline-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--p-outer);
+  border: 2px solid var(--p-box);
+  box-shadow: 0 0 0 2px var(--p-outer);
+}
+.timeline-line {
+  width: 1px; flex: 1;
+  margin-top: 4px;
+  background: var(--p-border-strong);
+}
+.timeline-content { flex: 1; }
+.timeline-role {
+  font-size: 14px; font-weight: 600;
+  color: var(--p-text);
+  margin-bottom: 2px;
+}
+.timeline-place {
+  font-size: 13px;
+  color: var(--p-text-muted);
+  margin-bottom: 6px;
+}
+.timeline-year {
+  font-family: var(--p-mono);
+  font-size: 11px;
+  color: var(--p-text);
+  background: #ffffff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--p-border);
+  display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .showcase-label { display: none; }
+  .showcase-line { display: none; }
+  .projects-list { grid-template-columns: 1fr; }
+  .showcase-stack { height: clamp(500px, 72vh, 540px); }
+}
+@media (max-width: 480px) {
+  .card-inner { padding: 1.25rem; }
+  .card-head-text h4 { font-size: 16px; }
+}

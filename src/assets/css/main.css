@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ══════════════════════════════════════════
+   THEME TOKENS
+   Outer bg: #27384C  |  Box bg: #EEF2F6  |  Text: #1A2532
+══════════════════════════════════════════ */
+:root {
+  --p-outer: #27384c;
+  --p-box: #eef2f6;
+  --p-box-2: #dfe6ee;
+  --p-text: #1a2532;
+  --p-text-muted: #55637a;
+  --p-text-soft: #7f8ba0;
+  --p-border: rgba(26, 37, 50, 0.12);
+  --p-border-strong: rgba(26, 37, 50, 0.22);
+  --p-outer-border: rgba(255, 255, 255, 0.08);
+  --p-outer-soft: rgba(255, 255, 255, 0.06);
+  --p-accent: #1a2532;
+  --p-accent-bg: rgba(26, 37, 50, 0.06);
+  --p-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.35);
+  --p-shadow-sm: 0 4px 14px -4px rgba(0, 0, 0, 0.15);
+  --p-radius: 12px;
+  --p-radius-sm: 8px;
+  --p-radius-lg: 16px;
+  --p-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  overflow-y: scroll;
+  font-family: "Luckiest Guy", cursive;
+  background: var(--p-outer);
+}
+
+/* ══════════════════════════════════════════
+   APP WRAPPER
+══════════════════════════════════════════ */
+.app-wrapper {
+  display: flex; flex-direction: column; align-items: center;
+  padding-top: 62px; min-height: 100vh;
+  background: var(--p-outer);
+}
+
+/* ══════════════════════════════════════════
+   REVEAL ANIMATIONS
+══════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-stagger > * {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.5s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal-stagger.visible > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(3) { transition-delay: 0.19s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.visible > *:nth-child(4) { transition-delay: 0.26s; opacity: 1; transform: translateY(0); }
+
+/* ══════════════════════════════════════════
+   REDUCED MOTION
+══════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-stagger > *, .skill-bar, .timeline-item {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
