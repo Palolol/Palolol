@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=g06j6z4z1ig&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/g06j6z4z1ig/maxresdefault.jpg" width="700" alt="AURORA - All My Demons Greeting Me As A Friend (Flashback Tape)">
+<a href="https://www.youtube.com/watch?v=jfvB3DPJ4FU&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/jfvB3DPJ4FU/maxresdefault.jpg" width="700" alt="TVアニメ「Re:ゼロから始める異世界生活」2nd season EDテーマ「Memento」MV(full size)">
 </a>
 <!-- YOUTUBE:END -->
 
