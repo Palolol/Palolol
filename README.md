@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=jfvB3DPJ4FU&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/jfvB3DPJ4FU/maxresdefault.jpg" width="700" alt="TVアニメ「Re:ゼロから始める異世界生活」2nd season EDテーマ「Memento」MV(full size)">
+<a href="https://www.youtube.com/watch?v=m9Vs_uFBFLQ&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/m9Vs_uFBFLQ/maxresdefault.jpg" width="700" alt="MYTH &amp; ROID「Paradisus-Paradoxum」【Live MV】(TVアニメ「Re:ゼロから始める異世界生活」1st season後期OPテーマ)/2024.5.12@新宿BLAZE">
 </a>
 <!-- YOUTUBE:END -->
 
