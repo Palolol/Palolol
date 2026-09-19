@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=APIKVLw1tT0&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/APIKVLw1tT0/maxresdefault.jpg" width="700" alt="Susumu Hirasawa - Parade">
+<a href="https://www.youtube.com/watch?v=aRiVUVNUhIs&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/aRiVUVNUhIs/maxresdefault.jpg" width="700" alt="忘れらんねえよ「なんもねえ」Music Video">
 </a>
 <!-- YOUTUBE:END -->
 
