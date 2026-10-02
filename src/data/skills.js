@@ -1,5 +1,9 @@
 export const skills = [
-  { name: 'Python', pct: 90 },
+  { name: 'Java', pct: 90 },
+  { name: 'Python', pct: 80 },
+  { name: 'C/C++', pct: 70 },
+  { name: 'C#', pct: 10 },
+  { name: 'lua', pct: 5 },
   { name: 'Machine Learning', pct: 85 },
   { name: 'PyTorch / TensorFlow', pct: 80 },
   { name: 'Data Analysis', pct: 75 },
