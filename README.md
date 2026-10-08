@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=2B6nj38AdD0&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/2B6nj38AdD0/maxresdefault.jpg" width="700" alt="紅蓮の弓矢">
+<a href="https://www.youtube.com/watch?v=YDr4DW0bj38&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/YDr4DW0bj38/maxresdefault.jpg" width="700" alt="Love2D Physics (windfield) in under 10 minutes">
 </a>
 <!-- YOUTUBE:END -->
 
