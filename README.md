@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=nBlkT8OAgfo&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/nBlkT8OAgfo/maxresdefault.jpg" width="700" alt="I Tried Japan&#x27;s Weirdest Fast Food Items">
+<a href="https://www.youtube.com/watch?v=WIYG6ra-7Is&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/WIYG6ra-7Is/maxresdefault.jpg" width="700" alt="Namida no Kawa">
 </a>
 <!-- YOUTUBE:END -->
 
