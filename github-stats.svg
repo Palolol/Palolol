@@ -11,7 +11,7 @@
   <rect class="border" x="0.5" y="0.5" width="494" height="194" rx="8"/>
   <text class="title" x="20" y="32">GitHub Stats · @Palolol</text>
   <text class="label" x="20"  y="70">Public repos</text>
-  <text class="value" x="20"  y="95">10</text>
+  <text class="value" x="20"  y="95">11</text>
   <text class="label" x="160" y="70">Total stars</text>
   <text class="value" x="160" y="95">1</text>
   <text class="label" x="290" y="70">Followers</text>
