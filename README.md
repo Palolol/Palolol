@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=aLFiYuY8mO0&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/aLFiYuY8mO0/maxresdefault.jpg" width="700" alt="美人">
+<a href="https://www.youtube.com/watch?v=JTzhuGvvc-c&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/JTzhuGvvc-c/maxresdefault.jpg" width="700" alt="The NEW JPEG is Here">
 </a>
 <!-- YOUTUBE:END -->
 
