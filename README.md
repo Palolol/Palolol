@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=JTzhuGvvc-c&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/JTzhuGvvc-c/maxresdefault.jpg" width="700" alt="The NEW JPEG is Here">
+<a href="https://www.youtube.com/watch?v=J5-NUv2fNtk&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/J5-NUv2fNtk/maxresdefault.jpg" width="700" alt="ヨルシカ - 雲を抜け風下へ私だけ（OFFICIAL VIDEO）">
 </a>
 <!-- YOUTUBE:END -->
 
