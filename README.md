@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=zndGiDC2aTQ&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/zndGiDC2aTQ/maxresdefault.jpg" width="700" alt="Trace">
+<a href="https://www.youtube.com/watch?v=dZzAxYrUMRg&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/dZzAxYrUMRg/maxresdefault.jpg" width="700" alt="Adding Collisions and Walls (from Tiled) to your Love2D Game">
 </a>
 <!-- YOUTUBE:END -->
 
