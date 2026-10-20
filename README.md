@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=FLtqAi7WNBY&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/FLtqAi7WNBY/maxresdefault.jpg" width="700" alt="Software Design Tutorial #1 - Software Engineering &amp; Software Architecture">
+<a href="https://www.youtube.com/watch?v=E-INBbHdANU&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/E-INBbHdANU/maxresdefault.jpg" width="700" alt="Celebration (Ritual Mix)">
 </a>
 <!-- YOUTUBE:END -->
 
