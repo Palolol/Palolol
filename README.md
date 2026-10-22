@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=6XrL5jXmTwM&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/6XrL5jXmTwM/maxresdefault.jpg" width="700" alt="UML class diagrams">
+<a href="https://www.youtube.com/watch?v=uP8q5EdqX1U&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/uP8q5EdqX1U/maxresdefault.jpg" width="700" alt="How can we beat the heat without AC?">
 </a>
 <!-- YOUTUBE:END -->
 
