@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=_iZSC-XEZ6o&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/_iZSC-XEZ6o/maxresdefault.jpg" width="700" alt="NestJS Crash Course 2026 - NestJS v12 Full Video 1 HOUR | MengSreang Channel">
+<a href="https://www.youtube.com/watch?v=L65ySLia2C8&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/L65ySLia2C8/maxresdefault.jpg" width="700" alt="Why Are Gas Station Roofs So HUGE?">
 </a>
 <!-- YOUTUBE:END -->
 
