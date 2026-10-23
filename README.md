@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=L65ySLia2C8&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/L65ySLia2C8/maxresdefault.jpg" width="700" alt="Why Are Gas Station Roofs So HUGE?">
+<a href="https://www.youtube.com/watch?v=Xbu8_7a6mLg&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/Xbu8_7a6mLg/maxresdefault.jpg" width="700" alt="My Voice, My Life">
 </a>
 <!-- YOUTUBE:END -->
 
