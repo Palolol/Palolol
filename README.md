@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=wZPBQYuAC_s&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/wZPBQYuAC_s/maxresdefault.jpg" width="700" alt="SpaceX AI engineer Lauren Tan part 2">
+<a href="https://www.youtube.com/watch?v=Nj509PHzqQQ&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/Nj509PHzqQQ/maxresdefault.jpg" width="700" alt="How to Clone Any 3D Documentary Channel With Claude Opus 5.5 (Full Course)">
 </a>
 <!-- YOUTUBE:END -->
 
