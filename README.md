@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=8-KM1fUme_U&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/8-KM1fUme_U/maxresdefault.jpg" width="700" alt="ខ្ញុំរួចជីវិត ឆ្លងកាត់ព្យុះបច្ចេកវិទ្យា ទាំង 3 | Surviving 3 Waves of Tech Hype: From Web3 to AI">
+<a href="https://www.youtube.com/watch?v=xukbqwRuN5w&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/xukbqwRuN5w/maxresdefault.jpg" width="700" alt="Choosin&#x27; Texas">
 </a>
 <!-- YOUTUBE:END -->
 
