@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=wjGbFrvt2Ok&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/wjGbFrvt2Ok/maxresdefault.jpg" width="700" alt="Saving Progress and Loading Game Data | Indie Devlog">
+<a href="https://www.youtube.com/watch?v=cFdoXn6yvE4&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/cFdoXn6yvE4/maxresdefault.jpg" width="700" alt="local AI&#x27;s biggest problem... they solved it?">
 </a>
 <!-- YOUTUBE:END -->
 
