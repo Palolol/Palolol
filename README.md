@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=udTs9ZbxojI&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/udTs9ZbxojI/maxresdefault.jpg" width="700" alt="ヒグチアイ / トライアングル 【Official Music Video】| Ai Higuchi &#x27;Triangle&#x27;">
+<a href="https://www.youtube.com/watch?v=PDSkFeMVNFs&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/PDSkFeMVNFs/maxresdefault.jpg" width="700" alt="RADWIMPS - 前前前世 (movie ver.) [Official Music Video]">
 </a>
 <!-- YOUTUBE:END -->
 
