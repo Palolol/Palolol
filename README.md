@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=iQp5UCpYXOc&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/iQp5UCpYXOc/maxresdefault.jpg" width="700" alt="Why This Japanese Woman Would Rather Live In Cambodia Than Japan">
+<a href="https://www.youtube.com/watch?v=mPZ-5I1bAIY&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/mPZ-5I1bAIY/maxresdefault.jpg" width="700" alt="ヒグチアイ / 劇場 【Official Music Video】| Ai Higuchi ‘Gekijyou’">
 </a>
 <!-- YOUTUBE:END -->
 
