@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=mPZ-5I1bAIY&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/mPZ-5I1bAIY/maxresdefault.jpg" width="700" alt="ヒグチアイ / 劇場 【Official Music Video】| Ai Higuchi ‘Gekijyou’">
+<a href="https://www.youtube.com/watch?v=6maqCmfEmT8&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/6maqCmfEmT8/maxresdefault.jpg" width="700" alt="ヒグチアイ / やめるなら今 【Official Music Video】| Ai Higuchi ‘Yamerunara Ima’">
 </a>
 <!-- YOUTUBE:END -->
 
