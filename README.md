@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=s48xeUP_2qI&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/s48xeUP_2qI/maxresdefault.jpg" width="700" alt="CUDA is hard..">
+<a href="https://www.youtube.com/watch?v=yKNxeF4KMsY&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/yKNxeF4KMsY/maxresdefault.jpg" width="700" alt="Coldplay - Yellow (Official Video)">
 </a>
 <!-- YOUTUBE:END -->
 
