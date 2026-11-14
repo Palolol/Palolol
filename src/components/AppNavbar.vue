@@ -15,6 +15,14 @@
         </li>
       </ul>
       <a
+        href="https://www.youtube.com/playlist?list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-tg"
+        aria-label="YouTube Playlist"
+        >📺 YouTube</a
+      >
+      <a
         href="https://t.me/palolol"
         target="_blank"
         rel="noopener noreferrer"
@@ -47,6 +55,13 @@
       <a href="mailto:palolol1165@gmail.com" class="nav-cta mobile-cta">
         Hire Me
       </a>
+      <a
+        href="https://www.youtube.com/playlist?list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nav-tg mobile-tg"
+        >📺 YouTube Playlist</a
+      >
       <a
         href="https://t.me/palolol"
         target="_blank"
