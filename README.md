@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=yKNxeF4KMsY&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/yKNxeF4KMsY/maxresdefault.jpg" width="700" alt="Coldplay - Yellow (Official Video)">
+<a href="https://www.youtube.com/watch?v=g9sBCOxRSI0&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/g9sBCOxRSI0/maxresdefault.jpg" width="700" alt="My Voice, My Life">
 </a>
 <!-- YOUTUBE:END -->
 
