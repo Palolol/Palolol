@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=V9_il6ZGnas&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/V9_il6ZGnas/maxresdefault.jpg" width="700" alt="candle">
+<a href="https://www.youtube.com/watch?v=irGOK2aqC4g&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/irGOK2aqC4g/maxresdefault.jpg" width="700" alt="Why Japan Put These Yellow Blocks Everywhere">
 </a>
 <!-- YOUTUBE:END -->
 
