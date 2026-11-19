@@ -13,6 +13,9 @@
             >{{ link.label }}</a
           >
         </li>
+        <li>
+          <a href="/food_devliery/" class="nav-link">Food Delivery</a>
+        </li>
       </ul>
       <a
         href="https://www.youtube.com/playlist?list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6"
@@ -49,6 +52,15 @@
             @click.prevent="handleMobileClick(link.id)"
           >
             {{ link.label }}
+          </a>
+        </li>
+        <li>
+          <a
+            href="/food_devliery/"
+            class="mobile-link"
+            @click="menuOpen = false"
+          >
+            Food Delivery
           </a>
         </li>
       </ul>
