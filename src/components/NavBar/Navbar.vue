@@ -6,6 +6,15 @@
       <li><a href="#">About</a></li>
       <li><a href="#">Services</a></li>
       <li><a href="#">Contact</a></li>
+      <li>
+        <a
+          href="https://github.com/Palolol"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </li>
     </ul>
   </nav>
 </template>
