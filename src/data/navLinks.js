@@ -5,6 +5,7 @@ export const navLinks = [
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
     { id: 'contact', label: 'Contact' },
+    { id: 'testimonials', label: 'Testimonials' },
 ]
 
 // Links shown in the "More ▾" dropdown (drops down from the top-right corner).

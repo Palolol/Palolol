@@ -41,7 +41,13 @@ export function useStickyShowcase() {
 
       const state = { opacity: 0, scale: 0.94, y: 40, phase: 'hidden' }
 
-      if (local <= 0) {
+      if (i === 0 && raw <= 0) {
+        // Initial card is visible and holding so the showcase never starts empty
+        state.phase = 'holding'
+        state.opacity = 1
+        state.scale = 1
+        state.y = 0
+      } else if (local <= 0) {
         state.phase = 'hidden'
       } else if (local <= 0.16) {
         const t = easeInOut(local / 0.16)
@@ -70,6 +76,7 @@ export function useStickyShowcase() {
     else {
       const entering = result.findIndex(c => c.phase === 'entering')
       if (entering !== -1) activeIndex.value = entering
+      else if (raw <= 0) activeIndex.value = 0
     }
   }
 

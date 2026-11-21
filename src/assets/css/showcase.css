@@ -107,8 +107,8 @@
 .showcase-stack {
   position: relative;
   width: 100%;
-  max-width: 720px;
-  height: clamp(460px, 68vh, 500px);
+  max-width: 760px;
+  height: clamp(480px, 68vh, 580px);
 }
 .showcase-card {
   position: absolute; inset: 0;

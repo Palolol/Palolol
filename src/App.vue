@@ -16,11 +16,26 @@
     />
 
     <section id="portfolio" class="port-section">
-      <PortfolioHero />
-      <StatsGrid />
-      <StickyShowcase />
-      <ContactCard />
-      <div class="port-footer">Palolol © 2025 — All vibes reserved</div>
+      <div class="port-layout">
+        <!-- Glowing Connectors between Center & Side Panels -->
+        <PortfolioConnectors />
+
+        <PortfolioSideLeft
+          :active-section="activeSection"
+          @goto="goTo"
+        />
+
+        <div class="port-main">
+          <PortfolioHero />
+          <StatsGrid />
+          <StickyShowcase />
+          <ContactCard />
+          <TestimonialsSection />
+          <div class="port-footer">Palolol © 2025 — All vibes reserved</div>
+        </div>
+
+        <PortfolioSideRight />
+      </div>
     </section>
   </div>
 </template>
@@ -29,10 +44,19 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import AppNavbar from './components/AppNavbar.vue'
 import HomeSection from './components/HomeSection.vue'
+import PortfolioConnectors from './components/PortfolioConnectors.vue'
+import PortfolioSideLeft from './components/PortfolioSideLeft.vue'
+import PortfolioSideRight from './components/PortfolioSideRight.vue'
 import PortfolioHero from './components/PortfolioHero.vue'
 import StatsGrid from './components/StatsGrid.vue'
 import StickyShowcase from './components/StickyShowcase.vue'
 import ContactCard from './components/ContactCard.vue'
+import TestimonialsSection from './components/TestimonialsSection.vue'
+import { useZoomCounter } from './composables/useZoomCounter'
+
+// Counteract browser zoom shrinking
+useZoomCounter()
+
 
 // ── Audio ──
 const audio = ref(null)
