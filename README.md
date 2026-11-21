@@ -233,8 +233,8 @@ status: ✅ កំពុងដំណើរការ
 🎵 ចង្វាម Lo-fi និងសំឡេងកង្ហារកុំព្យូទ័រយួរដៃកំពុងបង្វឹកម៉ូដែល
 ```
 <!-- YOUTUBE:START -->
-<a href="https://www.youtube.com/watch?v=YykjpeuMNEk&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
-  <img src="https://img.youtube.com/vi/YykjpeuMNEk/maxresdefault.jpg" width="700" alt="Coldplay - Hymn For The Weekend (Official Video)">
+<a href="https://www.youtube.com/watch?v=VPRjCeoBqrI&list=PLLKtzYG4mEMLajJa5d59vLcig6oRfXgd6">
+  <img src="https://img.youtube.com/vi/VPRjCeoBqrI/maxresdefault.jpg" width="700" alt="Coldplay - A Sky Full Of Stars (Official Video)">
 </a>
 <!-- YOUTUBE:END -->
 
